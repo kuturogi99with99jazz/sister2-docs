@@ -1,0 +1,266 @@
+erDiagram
+  companies ||--o{ branches : has
+  branches ||--o{ divisions : has
+  companies ||--o{ users : has
+  users ||--o{ user_profiles : has
+
+  users ||--o{ user_roles : assigned
+  roles ||--o{ user_roles : includes
+  roles ||--o{ role_permissions : grants
+  permissions ||--o{ role_permissions : listed
+  permissions ||--o{ permission_resources : targets
+  resources ||--o{ permission_resources : listed
+
+  users ||--o{ projects : owns
+  projects ||--o{ tasks : has
+  tasks ||--o{ task_tag_links : tagged
+  task_tags ||--o{ task_tag_links : tag
+
+  projects ||--o{ blog_posts : has
+  blog_posts ||--o{ blog_post_tags : tagged
+  blog_tags ||--o{ blog_post_tags : tag
+  blog_posts ||--o{ blog_post_categories : categorized
+  blog_categories ||--o{ blog_post_categories : category
+
+  users ||--o{ audit_logs : actions
+
+  projects ||--o{ chat_threads : has
+  tasks ||--o{ chat_threads : has
+  chat_threads ||--o{ chat_messages : has
+  chat_threads ||--o{ chat_members : has
+  users ||--o{ chat_members : joins
+  users ||--o{ chat_reads : reads
+  chat_threads ||--o{ chat_reads : tracks
+  chat_messages ||--o{ chat_attachments : attaches
+  users ||--o{ chat_attachments : uploads
+
+  internal_tools ||--o{ tool_definitions : defines
+  internal_tools ||--o{ tool_entries : accepts
+  tool_entries ||--o{ tool_entry_approvals : has
+  users ||--o{ tool_entry_approvals : approves
+  tool_entries ||--o{ tool_attachments : attaches
+  users ||--o{ tool_entries : submits
+  users ||--o{ internal_tools : owns
+
+  companies {
+    string id
+    string name
+    string status
+    string created_at
+    string updated_at
+  }
+  branches {
+    string id
+    string company_id
+    string name
+    string status
+    string created_at
+    string updated_at
+  }
+  divisions {
+    string id
+    string branch_id
+    string name
+    string status
+    string created_at
+    string updated_at
+  }
+  users {
+    string id
+    string company_id
+    string email
+    string status
+    string created_at
+    string last_login_at
+  }
+  user_profiles {
+    string id
+    string user_id
+    string display_name
+    string avatar_url
+    string timezone
+  }
+  roles {
+    string id
+    string name
+    string description
+  }
+  permissions {
+    string id
+    string name
+    string description
+  }
+  resources {
+    string id
+    string name
+    string description
+  }
+  user_roles {
+    string id
+    string user_id
+    string role_id
+  }
+  role_permissions {
+    string id
+    string role_id
+    string permission_id
+  }
+  permission_resources {
+    string id
+    string permission_id
+    string resource_id
+  }
+  projects {
+    string id
+    string owner_user_id
+    string name
+    string status
+    string start_date
+    string end_date
+  }
+  tasks {
+    string id
+    string project_id
+    string title
+    string status
+    string due_date
+    string assignee_user_id
+  }
+  task_tags {
+    string id
+    string name
+  }
+  task_tag_links {
+    string id
+    string task_id
+    string tag_id
+  }
+  blog_posts {
+    string id
+    string project_id
+    string author_user_id
+    string title
+    string status
+    string published_at
+  }
+  blog_tags {
+    string id
+    string name
+  }
+  blog_categories {
+    string id
+    string name
+  }
+  blog_post_tags {
+    string id
+    string post_id
+    string tag_id
+  }
+  blog_post_categories {
+    string id
+    string post_id
+    string category_id
+  }
+  audit_logs {
+    string id
+    string user_id
+    string action
+    string resource_type
+    string resource_id
+    string created_at
+  }
+  %% message_type: text | system | file
+  chat_threads {
+    string id
+    string scope_type
+    string scope_id
+    string title
+    string created_by
+    string created_at
+  }
+  chat_messages {
+    string id
+    string chat_id
+    string user_id
+    string content
+    string message_type
+    string parent_message_id
+    string created_at
+    string edited_at
+    string deleted_at
+  }
+  chat_members {
+    string id
+    string chat_id
+    string user_id
+    string role
+    string joined_at
+  }
+  chat_reads {
+    string id
+    string chat_id
+    string user_id
+    string last_read_message_id
+    string last_read_at
+  }
+  chat_attachments {
+    string id
+    string chat_id
+    string message_id
+    string user_id
+    string file_key
+    string file_name
+    string content_type
+    string size_bytes
+    string created_at
+  }
+  internal_tools {
+    string id
+    string name
+    string type
+    string status
+    string created_by
+    string created_at
+    string updated_at
+  }
+  %% tool_definitions.version: auto-increment on update
+  tool_definitions {
+    string id
+    string tool_id
+    string version
+    string definition_json
+    string status
+    string created_by
+    string created_at
+  }
+  tool_entries {
+    string id
+    string tool_id
+    string user_id
+    string status
+    string payload_json
+    string submitted_at
+    string updated_at
+  }
+  %% tool_entries.status: draft | submitted | approved | rejected | resubmitted | cancelled
+  tool_entry_approvals {
+    string id
+    string entry_id
+    string approver_user_id
+    string approver_role
+    string step
+    string status
+    string decided_at
+    string comment
+  }
+  %% approver_role: manager | director | admin
+  tool_attachments {
+    string id
+    string entry_id
+    string user_id
+    string file_key
+    string file_name
+    string content_type
+    string size_bytes
+    string created_at
+  }
