@@ -313,6 +313,84 @@ Response:
 
 ---
 
+## 4.4 プロジェクト管理 要件詳細（現行UIベース）
+
+| 項目 | 内容 |
+|------|------|
+| 一覧表示 | [Assumption] サマリー（Total/Completed/In Progress）とカード一覧 |
+| 絞り込み | [Suggestion] ステータス/担当者/日付範囲/タグ |
+| 主要アクション | [Assumption] 一覧で「Show Filters」「Create New Project」 |
+| カード表示 | [Assumption] ID、名称、説明、ステータス、計画/実績日付、タスク数、PIC数 |
+| 詳細画面 | [Suggestion] プロジェクト概要 + タスク一覧 + Gantt |
+| 添付 | [Assumption] Upload/Download（S3署名URL） |
+| 編集 | [Assumption] Edit/Delete（管理者 or 作成者） |
+| 画像 | [Suggestion] プロジェクト代表画像（任意） |
+| 監査 | [Suggestion] 作成/更新/削除の監査ログ |
+
+### 4.4.1 プロジェクト登録/編集フォーム（現行項目）
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| project_id | string | yes | 画面上のID（英数） |
+| company_id | string | yes | 会社ID |
+| branch_id | string | yes | 拠点ID |
+| division_id | string | yes | 部門ID |
+| name | string | yes | プロジェクト名 |
+| description | string | no | 概要 |
+| start_date_planned | date | yes | 計画開始日 |
+| end_date_planned | date | yes | 計画終了日 |
+| start_date_actual | date | no | 実績開始日 |
+| end_date_actual | date | no | 実績終了日 |
+
+### 4.4.2 追加検討事項
+
+- [Open Question] project_idの採番ルール（手動/自動/重複可否）
+- [Assumption] 会社/拠点/部門のマスタ管理方針は別ドキュメントで定義
+- [Open Question] Completed/In Progressの判定条件（ステータス/日付）
+- [Risk] 実績日付が未入力のプロジェクト表示ルールが未定義
+
+---
+
+## 4.5 タスク管理 要件詳細（現行UIベース）
+
+| 項目 | 内容 |
+|------|------|
+| 一覧表示 | [Assumption] サマリー（Total/Completed/In Progress）＋リスト |
+| 絞り込み | [Suggestion] プロジェクト/担当者/ステータス/タグ/日付 |
+| 主要アクション | [Assumption] 「Show Filters」「Create New Task」 |
+| インポート/エクスポート | [Assumption] Upload/Download |
+| リスト表示 | [Assumption] ステータス、タイトル、計画/実績日付、担当者、タグ |
+| 詳細画面 | [Suggestion] タスク本文、コメント数、稼働時間、履歴 |
+| タグ | [Assumption] 複数タグ付与（色付きラベル） |
+| ステータス | [Assumption] In Progress / Completed など |
+| 監査 | [Suggestion] 作成/更新/削除、ステータス変更履歴 |
+
+### 4.5.1 タスク登録/編集フォーム（現行項目）
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| task_id | string | yes | 画面上のID |
+| user_id | string | yes | 作成者/担当者ID |
+| project_id | string | yes | 紐付けプロジェクト |
+| title | string | yes | タスク名 |
+| content | text | yes | 詳細内容 |
+| start_date_planned | date | yes | 計画開始日 |
+| end_date_planned | date | yes | 計画終了日 |
+| start_date_actual | date | no | 実績開始日 |
+| end_date_actual | date | no | 実績終了日 |
+| hours_worked | number | no | 稼働時間 |
+| status | string | yes | ステータス |
+| tags | string[] | no | タグ |
+
+### 4.5.2 追加検討事項
+
+- [Assumption] statusの値域: Not Started / In Progress / Completed / On Hold / Cancelled
+- [Assumption] hours_workedは手動入力のみ
+- [Assumption] タグはマスタ管理（現行踏襲）
+- [Risk] タスク一括アップロード時のバリデーション/重複処理が未定義
+
+---
+
 ## 5. 非機能要件
 
 | 分類 | 内容 |
