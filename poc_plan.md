@@ -29,8 +29,12 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 | ファイル管理 | S3署名付きURLの発行/利用 | Upload/Downloadが安定動作 |
 | 通知 | SES/SNSの通知送信 | トリガー通知が到達 |
 | 運用性 | 監視・ログ・デプロイ | 追跡可能なログが残る |
+| UI利用シーン適合 | iPadを主軸にしたUI検証（操作性/画面密度/携帯性） | iPadで主要導線がストレスなく成立 |
+| 長時間処理の成立性 | Fargateを用いた非同期処理の起動/完了通知 | Lambdaでは難しい処理が分離実行できる |
+| MCP理解/適用 | MCPの概念理解と自社向け活用余地の把握 | MCPサーバ設計の当たりが掴める |
 
 - [Suggestion] AI要約連携は PoC の後半または任意検証に留める
+- [Assumption] UI検証は「iPad > Desktop > Smartphone」の優先度で設計し、スマホは検索中心の検証に留める
 
 ---
 
@@ -43,6 +47,9 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - 認証（Cognito）
 - ファイルアップロード（S3署名URL）
 - 通知（SES/SNSの単一イベント通知）
+- iPadを主軸としたUI検証（入力/閲覧の主要導線）
+- Fargateを用いた非同期バッチの最小検証
+- MCPのキャッチアップと設計メモ作成
 
 ### 3.2 非対象（本PoCでは扱わない）
 
@@ -64,6 +71,8 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 | 構成図 | 実運用を想定した構成メモ |
 | API最小仕様 | PoCで使用したエンドポイント一覧 |
 | 画面モック | 主要画面の簡易UI（ワイヤーフレームレベル） |
+| MCP整理メモ | 用語・利用方針・自社MCPサーバの方向性案 |
+| 非同期処理メモ | Fargate利用の前提/制約/実運用イメージ |
 
 - [Suggestion] 失敗/詰まりポイントも必ず記録し、次フェーズの要件に反映する
 
@@ -116,4 +125,3 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Open Question] PoCの成果物レビュー形式（社内レビュー / ドキュメントのみ）
 - [Open Question] どの業務シナリオをPoCのユースケースに採用するか
 - [Open Question] PoCにおけるAI要約の扱い（実施/非実施）
-
