@@ -139,8 +139,11 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - [Risk] Cognitoの導入難易度が高く、PoC期間内で認証設計が固まらない可能性
   - [Suggestion] PoCは最小のユーザー種別で開始し、RBACは後工程に分離
+  - [Assumption] PoCで行う範囲は「単一ロールのログイン/認証フロー成立」に限定する
+  - [Assumption] PoCでは複数ロール/権限分岐、ユーザー招待・権限変更フローは扱わない
 - [Risk] Neonの接続方式（コネクション管理）がLambda特性と合わない可能性
   - [Suggestion] コネクションプール方針は PoC の検証項目として明示
+  - [Assumption] 同時実行を段階的に増やし、接続数の伸びとエラー発生条件を記録する
 - [Risk] 署名URLの期限/権限設計が未定義
   - [Suggestion] 期間・権限を要件として決める前提で動作検証のみ実施
 
