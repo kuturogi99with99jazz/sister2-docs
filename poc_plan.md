@@ -35,6 +35,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - [Suggestion] AI要約連携は PoC の後半または任意検証に留める
 - [Assumption] UI検証は「iPad > Desktop > Smartphone」の優先度で設計し、スマホは検索中心の検証に留める
+- [Suggestion] PoC計画/仕様の更新はPRレビューを必須とする
 
 ---
 
@@ -90,13 +91,47 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 | フェーズ | 期間 | 作業 |
 |---|---|---|
-| 1. 設計整理 | 3〜5日 | PoC要件・範囲確定、API最小仕様作成 |
-| 2. 構成準備 | 3〜5日 | Vercel/Lambda/Neon/S3/Cognito 接続確認 |
-| 3. 検証実装 | 5〜7日 | 最小CRUDとファイル操作の動作確認 |
-| 4. 検証/整理 | 3〜5日 | 監視・通知・コスト感の整理 |
-| 5. レポート作成 | 2〜3日 | 結果と課題のまとめ |
+| 1. 設計整理 | 1〜2週 | PoC要件・範囲確定、API最小仕様作成 |
+| 2. 構成準備 | 1〜2週 | Vercel/Lambda/Neon/S3/Cognito 接続確認 |
+| 3. 検証実装 | 2〜3週 | 最小CRUDとファイル操作の動作確認 |
+| 4. 検証/整理 | 1〜2週 | 監視・通知・コスト感の整理 |
+| 5. レポート作成 | 1週 | 結果と課題のまとめ |
 
-- [Open Question] PoC期間は提案の「3週間」前提でよいか
+---
+
+### 6.1 フェーズ成果物チェックリスト
+
+| フェーズ | 成果物（チェック項目） |
+|---|---|
+| 1. 設計整理 | PoC範囲・優先順位の確定 / API最小仕様のドラフト / 主要ユースケースの確定 |
+| 2. 構成準備 | Vercel/Lambda/Neon/S3/Cognitoの接続確認ログ / 初期デプロイ手順メモ |
+| 3. 検証実装 | CRUD一通りの動作確認 / S3署名URLの検証 / 最低限のUI導線確認 |
+| 4. 検証/整理 | 監視・ログの可視性確認 / コスト感の一次試算 / リスク課題の整理 |
+| 5. レポート作成 | PoC実行レポート / 次フェーズの判断材料まとめ |
+
+### 6.2 詰まりやすい工程（事前マーク）
+
+- [Risk] Cognito連携（権限モデルやトークン運用の設計詰め）
+- [Risk] Neonの接続方式（Lambda同時実行と接続上限の整合）
+- [Risk] Vercel↔API Gateway連携のCORS/認証ヘッダ周り
+- [Risk] S3署名URLの権限/期限設計
+- [Risk] GitHub ActionsでのLambda自動デプロイ設定（権限/パッケージング）
+
+---
+
+### 6.3 CI/CD方針（PoC）
+
+- [Assumption] リポジトリはGitHubを利用する
+- [Assumption] PoC段階でも「自動デプロイまで」を必須とする
+
+#### フロント（SvelteKit on Vercel）
+
+- VercelのGitHub連携でPRプレビューとmainマージ後の自動デプロイを有効化
+
+#### バックエンド（FastAPI on Lambda）
+
+- GitHub Actionsでテスト/ビルド/デプロイを自動化（PoC向けの最小構成）
+- デプロイ先はステージを1つに絞り、運用負荷を抑える
 
 ---
 
