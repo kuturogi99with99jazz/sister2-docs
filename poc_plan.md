@@ -160,6 +160,6 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 ## 9. 未確定事項
 
 - [Assumption] PoCの意思決定者はプロジェクトリーダー
-- [Open Question] PoCの成果物レビュー形式（社内レビュー / ドキュメントのみ）
+- [Assumption] PoCの成果物レビュー形式は社内レビュー
 - [Open Question] どの業務シナリオをPoCのユースケースに採用するか
 - [Open Question] PoCにおけるAI要約の扱い（実施/非実施）
