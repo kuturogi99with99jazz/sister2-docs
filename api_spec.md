@@ -210,9 +210,35 @@ Response:
 
 ---
 
-## 5. 追加検討事項
+## 5. 管理業務API（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /admin/masters | マスタ種別一覧取得 | 管理対象の列挙 |
+| GET | /admin/masters/{masterType} | マスタ一覧取得 | 検索/フィルタ |
+| POST | /admin/masters/{masterType} | マスタ作成 | 管理者のみ |
+| PATCH | /admin/masters/{masterType}/{id} | マスタ更新 | 管理者のみ |
+| DELETE | /admin/masters/{masterType}/{id} | マスタ削除（無効化） | 論理削除 |
+| POST | /admin/masters/{masterType}/bulk | 一括登録/更新 | CSV/JSON |
+
+masterType（必須マスタ）:
+- users, companies, branches, divisions, roles, resources, permissions, task-tags, blog-tags, blog-categories
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /admin/settings/system | 全体共通設定取得 | 管理者のみ |
+| PATCH | /admin/settings/system | 全体共通設定更新 | 履歴保持 |
+| GET | /admin/settings/companies/{companyId} | 組織設定取得 | 会社単位 |
+| PATCH | /admin/settings/companies/{companyId} | 組織設定更新 | 履歴保持 |
+
+- [Assumption] users は Cognito と同期し、編集可能範囲はアプリ側のプロフィール/ステータスに限定
+- [Assumption] DELETE は物理削除ではなく無効化（アーカイブ）を既定とする
+
+## 6. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
 - [Open Question] SSE/WebSocket移行条件（同時接続数・通知遅延・UI要件で判断）
+- [Open Question] 設定の優先順位（全体共通 vs 組織単位）
+- [Open Question] Cognitoとユーザー/ロール管理の同期方式
 - [Risk] entries更新と監査ログ/変更履歴の整合ルールが未定義
