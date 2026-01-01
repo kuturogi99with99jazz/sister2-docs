@@ -23,6 +23,9 @@ erDiagram
   blog_categories ||--o{ blog_post_categories : category
 
   users ||--o{ audit_logs : actions
+  users ||--o{ system_settings : updates
+  users ||--o{ company_settings : updates
+  companies ||--o{ company_settings : has
 
   projects ||--o{ chat_threads : has
   tasks ||--o{ chat_threads : has
@@ -168,6 +171,23 @@ erDiagram
     string resource_type
     string resource_id
     string created_at
+  }
+  system_settings {
+    string id
+    string key
+    string value_json
+    string is_active
+    string updated_by
+    string updated_at
+  }
+  company_settings {
+    string id
+    string company_id
+    string key
+    string value_json
+    string is_active
+    string updated_by
+    string updated_at
   }
   %% message_type: text | system | file
   chat_threads {
