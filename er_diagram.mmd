@@ -11,24 +11,34 @@ erDiagram
   permissions ||--o{ permission_resources : targets
   resources ||--o{ permission_resources : listed
 
-  users ||--o{ projects : owns
-  projects ||--o{ tasks : has
-  tasks ||--o{ task_tag_links : tagged
-  task_tags ||--o{ task_tag_links : tag
+  work_types ||--o{ works : defines
+  work_time_types ||--o{ works : defines
+  users ||--o{ works : creates
+  works ||--o{ work_assignees : assigns
+  users ||--o{ work_assignees : assigned
+  works ||--o{ work_activity_logs : logs
+  users ||--o{ work_activity_logs : acts
+  works ||--o{ work_tag_links : tagged
+  work_tags ||--o{ work_tag_links : tag
 
-  projects ||--o{ blog_posts : has
+  work_targets ||--o{ work_target_links : links
+  works ||--o{ work_target_links : links
+  users ||--o{ work_targets : owns
+
   blog_posts ||--o{ blog_post_tags : tagged
   blog_tags ||--o{ blog_post_tags : tag
   blog_posts ||--o{ blog_post_categories : categorized
   blog_categories ||--o{ blog_post_categories : category
+  blog_posts ||--o{ blog_work_links : links
+  works ||--o{ blog_work_links : linked
+  blog_posts ||--o{ blog_target_links : links
+  work_targets ||--o{ blog_target_links : linked
 
   users ||--o{ audit_logs : actions
   users ||--o{ system_settings : updates
   users ||--o{ company_settings : updates
   companies ||--o{ company_settings : has
 
-  projects ||--o{ chat_threads : has
-  tasks ||--o{ chat_threads : has
   chat_threads ||--o{ chat_messages : has
   chat_threads ||--o{ chat_members : has
   users ||--o{ chat_members : joins
@@ -113,34 +123,69 @@ erDiagram
     string permission_id
     string resource_id
   }
-  projects {
+  work_types {
     string id
-    string owner_user_id
     string name
-    string status
-    string start_date
-    string end_date
   }
-  tasks {
+  work_time_types {
     string id
-    string project_id
+    string name
+  }
+  works {
+    string id
+    string created_by
+    string work_type_id
+    string work_time_type_id
     string title
+    string content
     string status
-    string due_date
-    string assignee_user_id
+    string start_date_planned
+    string end_date_planned
+    string start_date_actual
+    string end_date_actual
+    string created_at
+    string updated_at
   }
-  task_tags {
+  work_assignees {
+    string id
+    string work_id
+    string user_id
+    boolean is_primary
+  }
+  work_activity_logs {
+    string id
+    string work_id
+    string user_id
+    string action
+    string meta_json
+    string created_at
+  }
+  work_tags {
     string id
     string name
   }
-  task_tag_links {
+  work_tag_links {
     string id
-    string task_id
+    string work_id
     string tag_id
+  }
+  work_targets {
+    string id
+    string target_type
+    string name
+    string description
+    string owner_user_id
+    string status
+    string created_at
+    string updated_at
+  }
+  work_target_links {
+    string id
+    string work_id
+    string target_id
   }
   blog_posts {
     string id
-    string project_id
     string author_user_id
     string title
     string status
@@ -163,6 +208,16 @@ erDiagram
     string id
     string post_id
     string category_id
+  }
+  blog_work_links {
+    string id
+    string post_id
+    string work_id
+  }
+  blog_target_links {
+    string id
+    string post_id
+    string target_id
   }
   audit_logs {
     string id
@@ -201,13 +256,11 @@ erDiagram
   chat_messages {
     string id
     string chat_id
-    string user_id
+    string sender_user_id
     string content
     string message_type
     string parent_message_id
     string created_at
-    string edited_at
-    string deleted_at
   }
   chat_members {
     string id
@@ -225,62 +278,53 @@ erDiagram
   }
   chat_attachments {
     string id
-    string chat_id
     string message_id
-    string user_id
+    string uploaded_by
     string file_key
     string file_name
     string content_type
     string size_bytes
-    string created_at
   }
   internal_tools {
     string id
+    string owner_user_id
     string name
     string type
     string status
-    string created_by
     string created_at
     string updated_at
   }
-  %% tool_definitions.version: auto-increment on update
   tool_definitions {
     string id
     string tool_id
-    string version
     string definition_json
-    string status
-    string created_by
+    string version
     string created_at
   }
   tool_entries {
     string id
     string tool_id
-    string user_id
+    string submitter_user_id
     string status
     string payload_json
-    string submitted_at
+    string created_at
     string updated_at
   }
-  %% tool_entries.status: draft | submitted | approved | rejected | resubmitted | cancelled
   tool_entry_approvals {
     string id
     string entry_id
     string approver_user_id
-    string approver_role
     string step
     string status
-    string decided_at
     string comment
+    string created_at
   }
-  %% approver_role: manager | director | admin
   tool_attachments {
     string id
     string entry_id
-    string user_id
+    string uploaded_by
     string file_key
     string file_name
     string content_type
     string size_bytes
-    string created_at
   }
