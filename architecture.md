@@ -10,7 +10,7 @@
 | バージョン | 0.1（初版） |
 | 作成日 | 2025-10-29 |
 | 作成者 | （あなたの氏名またはチーム名） |
-| 目的 | Sisterシステムをモダン化するためのアーキテクチャ・設計方針を定義する |
+| 目的 | Sister 2 のアーキテクチャ・設計方針を定義する |
 
 ---
 
@@ -54,7 +54,7 @@ flowchart LR
 | ストレージ | S3 | ファイル・添付・一時共有データ |
 | 認証 | Cognito | サインイン／グループ認可／JWT発行 |
 | 通知 | SES/SNS/WebPush | メール・リアルタイム通知 |
-| AI連携 | OpenAI API | タスク要約・ナレッジ自動生成 |
+| AI連携 | OpenAI API | Work要約・ナレッジ自動生成 |
 | モニタリング | CloudWatch / X-Ray | エラー・パフォーマンス監視 |
 | IaC | Serverless Framework | AWS構築自動化 |
 | CI/CD | GitHub Actions | 自動デプロイ・テスト・Lint |
@@ -64,16 +64,16 @@ flowchart LR
 ```mermaid
 graph TD
   subgraph Frontend [Vercel: SvelteKit]
-    UI1[ログイン画面] --> UI2[プロジェクトダッシュボード]
-    UI2 --> UI3[タスク編集]
+    UI1[ログイン画面] --> UI2[Workダッシュボード]
+    UI2 --> UI3[Work編集]
     UI3 --> UI4[ファイルアップロード]
     UI2 --> UI5[チャット]
     UI2 --> UI6[社内ツール]
   end
 
   subgraph Backend [AWS Lambda & Fargate]
-    L1[Auth Handler] --> L2[Project API]
-    L2 --> L3[Task API]
+    L1[Auth Handler] --> L2[Work API]
+    L2 --> L3[Work Target API]
     L3 --> L4[Blog API]
     L4 --> L5[File Service]
     L5 --> L6[AI Integration]
@@ -205,10 +205,13 @@ sister-next/
 | companies / branches / divisions | 組織構造 | 移行対象 |
 | users / user_profiles | ユーザー基本情報 | Cognito連携 |
 | roles / permissions / resources | RBAC制御 | 既存踏襲 |
-| projects / tasks / task_tags | プロジェクト／タスク管理 | コア機能 |
+| works / work_types / work_time_types | Work管理 | コア機能 |
+| work_targets / work_target_links | Work対象管理 | プロジェクト/システム/共通業務 |
+| work_tags / work_tag_links | Workタグ | 検索・分類 |
+| work_activity_logs | 操作ログ | 工数推定の基盤 |
 | blog_posts / blog_categories / blog_tags | ナレッジ機能 | AI要約対応 |
-| chat_threads / chat_messages | チャット機能 | プロジェクト/タスク単位 |
-| internal_tools / tool_forms / tool_workflows | 社内ツール | 定義駆動型 |
+| chat_threads / chat_messages | チャット機能 | Work/対象単位 |
+| internal_tools / tool_definitions / tool_entries | 社内ツール | 定義駆動型 |
 | audit_logs | 操作履歴 | 自動記録 |
 
 ---
@@ -228,8 +231,8 @@ sister-next/
 | 関数名 | 機能 | トリガー | 備考 |
 |--------|------|-----------|------|
 | auth_handler | JWT検証／Cognito認証 | API Gateway | 共通ミドル |
-| project_api | プロジェクトCRUD | API Gateway | FastAPI |
-| task_api | タスクCRUD／SNS通知 | API Gateway | |
+| work_api | Work CRUD | API Gateway | FastAPI |
+| work_target_api | Work対象CRUD | API Gateway | |
 | chat_api | チャットCRUD | API Gateway | HTTPベース |
 | internal_tools_api | 社内ツールCRUD | API Gateway | 定義駆動型 |
 | file_upload | S3署名URL発行 | API Gateway | |
