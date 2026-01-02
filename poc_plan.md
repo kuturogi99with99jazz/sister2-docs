@@ -43,8 +43,8 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 ### 3.1 対象機能（最小）
 
-- プロジェクト管理（最小CRUD）
-- タスク管理（最小CRUD）
+- Work対象管理（最小CRUD）
+- Work管理（最小CRUD）
 - 認証（Cognito）
 - ファイルアップロード（S3署名URL）
 - 通知（SES/SNSの単一イベント通知）
@@ -81,7 +81,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 ## 5. 成功基準（ドラフト）
 
-- [Suggestion] 主要フロー（ログイン → プロジェクト/タスクCRUD → ファイル操作）がデモ可能
+- [Suggestion] 主要フロー（ログイン → Work/Work対象CRUD → ファイル操作）がデモ可能
 - [Suggestion] API応答が安定し、エラーの原因追跡が可能なログが残る
 - [Suggestion] コスト見積りの初期レンジ（$20〜50/月）が現実的か評価できる
 
