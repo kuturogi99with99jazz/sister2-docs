@@ -45,6 +45,8 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - Work対象管理（最小CRUD）
 - Work管理（最小CRUD）
+- ToolTemplate（定義駆動の最小検証）
+- WorkLog（開始/完了の記録）
 - 認証（Cognito）
 - ファイルアップロード（S3署名URL）
 - 通知（SES/SNSの単一イベント通知）
