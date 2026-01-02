@@ -51,7 +51,9 @@
 | DELETE | /works/{workId} | Work削除 | 論理削除 |
 | POST | /works/{workId}/assign | 担当者割当 | 複数可 |
 | POST | /works/{workId}/status | ステータス更新 | 監査ログ対象 |
-| GET | /works/{workId}/activity | 操作ログ取得 | 稼働推定 |
+| POST | /works/{workId}/complete | 完了処理 | WorkLog記録 |
+| GET | /works/{workId}/logs | 操作ログ取得 | 稼働推定 |
+| POST | /works/{workId}/logs | 操作ログ追加 | start/pause/complete |
 
 ### 3.1 POST /works（Work作成）
 
@@ -64,6 +66,8 @@ Request:
 | status | string | yes | 初期ステータス |
 | work_type_id | string | yes | 業務の性質 |
 | work_time_type_id | string | yes | 時間的特性 |
+| template_id | string | no | ToolTemplate ID |
+| form_data | object | no | テンプレート入力値 |
 | target_links | object[] | no | 対象紐付け |
 | target_links[].target_type | string | no | project / system / common |
 | target_links[].target_id | string | no | 対象ID |
@@ -90,12 +94,28 @@ Request:
 | start_date_actual | string | no | 実績開始日 |
 | end_date_actual | string | no | 実績終了日 |
 | tags | string[] | no | タグID配列 |
+| form_data | object | no | テンプレート入力値 |
 
 Response:
 
 | 項目 | 型 | 説明 |
 |------|----|------|
 | work | object | 更新後のWork |
+
+### 3.3 POST /works/{workId}/logs（操作ログ追加）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| action | string | yes | start / pause / resume / comment / complete |
+| meta | object | no | 補足情報（任意） |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| log | object | 追加されたWorkLog |
 
 ---
 
@@ -213,22 +233,22 @@ Response:
 
 ---
 
-## 6. 社内ツールAPI（案）
+## 6. テンプレートAPI（ToolTemplate / 社内ツール定義）（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
-| GET | /internal-tools | ツール一覧取得 | 権限に応じてフィルタ |
-| POST | /internal-tools | ツール作成 | 管理者のみ |
-| GET | /internal-tools/{toolId} | ツール詳細取得 | 定義を含む |
-| PATCH | /internal-tools/{toolId} | ツール更新 | 定義変更 |
-| POST | /internal-tools/{toolId}/entries | 申請/入力作成 | フォーム入力 |
-| GET | /internal-tools/{toolId}/entries | 申請/入力一覧 | 状態フィルタ |
-| PATCH | /internal-tools/{toolId}/entries/{entryId} | 申請/入力更新 | 差戻し対応 |
-| POST | /internal-tools/{toolId}/entries/{entryId}/approve | 承認 | 2段階対応 |
-| POST | /internal-tools/{toolId}/entries/{entryId}/reject | 差戻し | 理由必須 |
-| GET | /internal-tools/{toolId}/reports | 集計取得 | 集計タイプのみ |
+| GET | /templates | テンプレート一覧取得 | 権限に応じてフィルタ |
+| POST | /templates | テンプレート作成 | 管理者のみ |
+| GET | /templates/{templateId} | テンプレート詳細取得 | 定義を含む |
+| PATCH | /templates/{templateId} | テンプレート更新 | 定義変更 |
+| POST | /templates/{templateId}/entries | 申請/入力作成 | フォーム入力 |
+| GET | /templates/{templateId}/entries | 申請/入力一覧 | 状態フィルタ |
+| PATCH | /templates/{templateId}/entries/{entryId} | 申請/入力更新 | 差戻し対応 |
+| POST | /templates/{templateId}/entries/{entryId}/approve | 承認 | 2段階対応 |
+| POST | /templates/{templateId}/entries/{entryId}/reject | 差戻し | 理由必須 |
+| GET | /templates/{templateId}/reports | 集計取得 | 集計タイプのみ |
 
-### 6.1 POST /internal-tools（ツール作成）
+### 6.1 POST /templates（テンプレート作成）
 
 Request:
 
@@ -247,7 +267,7 @@ Response:
 | [Assumption] created_by | string | JWTから自動取得 |
 | [Assumption] version | string | 自動増分（更新時に+1） |
 
-### 6.2 POST /internal-tools/{toolId}/entries（申請/入力作成）
+### 6.2 POST /templates/{templateId}/entries（申請/入力作成）
 
 Request:
 
@@ -266,7 +286,7 @@ Response:
 |------|----|------|
 | entry | object | entryオブジェクト |
 
-### 6.3 POST /internal-tools/{toolId}/entries/{entryId}/approve（承認）
+### 6.3 POST /templates/{templateId}/entries/{entryId}/approve（承認）
 
 Request:
 
@@ -282,7 +302,7 @@ Response:
 | entry | object | 更新後のentry |
 | [Assumption] approver_role | string | manager / director / admin |
 
-### 6.4 POST /internal-tools/{toolId}/entries/{entryId}/reject（差戻し）
+### 6.4 POST /templates/{templateId}/entries/{entryId}/reject（差戻し）
 
 Request:
 
@@ -298,7 +318,32 @@ Response:
 
 ---
 
-## 7. 管理業務API（案）
+## 7. AI補助API（案）
+
+AI補助は明示的な操作でのみ実行し、自動実行は行わない。
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| POST | /ai/works/{workId}/summarize | Work要約 | 明示実行のみ |
+| POST | /ai/works/{workId}/draft | Work下書き作成 | 明示実行のみ |
+
+### 7.1 POST /ai/works/{workId}/summarize（要約）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| style | string | no | short / bullets / detail |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| summary | string | 要約本文 |
+
+---
+
+## 8. 管理業務API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
