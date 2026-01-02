@@ -8,8 +8,8 @@
 |------|------|
 | 文書名 | Sister 2 Architecture 設計書 |
 | バージョン | 0.1（初版） |
-| 作成日 | 2025-10-29 |
-| 作成者 | （あなたの氏名またはチーム名） |
+| 作成日 | 2026-01-01 |
+| 作成者 | 金子 進一 |
 | 目的 | Sister 2 のアーキテクチャ・設計方針を定義する |
 
 ---
@@ -190,11 +190,24 @@ sister-next/
 | 項目 | 内容 |
 |------|------|
 | 認証 | Cognito（Hosted UI + JWT） |
-| 認可 | RBAC（roles／permissions） |
+| 認可 | RBAC（roles／permissions） + Work中心のScope/Action |
 | 通信 | 全通信HTTPS、API GatewayでCORS制御 |
 | 秘密情報 | AWS Secrets Manager管理（OpenAIキー等） |
 | ログ | CloudWatch Logs + DynamoDB監査テーブル |
 | 権限管理 | IAM最小権限（Least Privilege原則） |
+
+---
+
+### 10.1 権限モデル（Role / Scope / Action）
+
+権限は「人 × Work」を基準に設計し、プロジェクト/システムは補助情報として扱う。  
+Roleは最小限とし、業務の違いはScopeで表現する。
+
+| レイヤ | 目的 | 例 |
+|------|------|------|
+| Role | システム機能の上限 | 一般ユーザー / リーダー / 管理者 |
+| Scope | データ可視範囲 | 自分のWork / 関与対象のWork / 全体 |
+| Action | 操作可能範囲 | 閲覧 / 作成 / 更新 / 完了 / 管理 |
 
 ---
 
@@ -211,7 +224,7 @@ sister-next/
 | work_activity_logs | 操作ログ | 工数推定の基盤 |
 | blog_posts / blog_categories / blog_tags | ナレッジ機能 | AI要約対応 |
 | chat_threads / chat_messages | チャット機能 | Work/対象単位 |
-| internal_tools / tool_definitions / tool_entries | 社内ツール | 定義駆動型 |
+| internal_tools / tool_definitions / tool_entries | 社内ツール（ToolTemplate） | 定義駆動型 |
 | audit_logs | 操作履歴 | 自動記録 |
 
 ---
@@ -223,6 +236,13 @@ sister-next/
 - チャットは初期はHTTPベースで実装し、将来SSE/WebSocketを検討する
 
 詳細なAPI仕様は `api_spec.md` に記載する。
+
+---
+
+### 12.1 AI補助の実行方針
+
+AIは明示的な操作でのみ実行し、自動実行や自動完了は行わない。  
+AI処理の入力はユーザーが閲覧可能な範囲に限定する。
 
 ---
 
