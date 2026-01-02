@@ -47,6 +47,7 @@ erDiagram
   chat_messages ||--o{ chat_attachments : attaches
   users ||--o{ chat_attachments : uploads
 
+  %% internal_tools = ToolTemplate
   internal_tools ||--o{ tool_definitions : defines
   internal_tools ||--o{ tool_entries : accepts
   tool_entries ||--o{ tool_entry_approvals : has
@@ -54,6 +55,7 @@ erDiagram
   tool_entries ||--o{ tool_attachments : attaches
   users ||--o{ tool_entries : submits
   users ||--o{ internal_tools : owns
+  tool_definitions ||--o{ works : templates
 
   companies {
     string id
@@ -136,8 +138,10 @@ erDiagram
     string created_by
     string work_type_id
     string work_time_type_id
+    string template_id
     string title
     string content
+    string form_data_json
     string status
     string start_date_planned
     string end_date_planned
