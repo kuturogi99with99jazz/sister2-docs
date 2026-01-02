@@ -40,12 +40,100 @@
 
 ---
 
-## 3. チャットAPI（案）
+## 3. Work API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
-| GET | /projects/{projectId}/chats | スレッド一覧取得 | プロジェクト単位 |
-| GET | /tasks/{taskId}/chats | スレッド一覧取得 | タスク単位 |
+| GET | /works | Work一覧取得 | フィルタ/ソート |
+| POST | /works | Work作成 | 担当者/対象指定 |
+| GET | /works/{workId} | Work詳細取得 | |
+| PATCH | /works/{workId} | Work更新 | |
+| DELETE | /works/{workId} | Work削除 | 論理削除 |
+| POST | /works/{workId}/assign | 担当者割当 | 複数可 |
+| POST | /works/{workId}/status | ステータス更新 | 監査ログ対象 |
+| GET | /works/{workId}/activity | 操作ログ取得 | 稼働推定 |
+
+### 3.1 POST /works（Work作成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| title | string | yes | タイトル |
+| content | string | yes | 本文 |
+| status | string | yes | 初期ステータス |
+| work_type_id | string | yes | 業務の性質 |
+| work_time_type_id | string | yes | 時間的特性 |
+| target_links | object[] | no | 対象紐付け |
+| target_links[].target_type | string | no | project / system / common |
+| target_links[].target_id | string | no | 対象ID |
+| assignee_ids | string[] | no | 担当者 |
+| start_date_planned | string | yes | 予定開始日 |
+| end_date_planned | string | yes | 予定終了日 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| work | object | Workオブジェクト |
+| [Assumption] created_by | string | JWTから自動取得 |
+
+### 3.2 PATCH /works/{workId}（Work更新）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| title | string | no | タイトル |
+| content | string | no | 本文 |
+| status | string | no | ステータス |
+| start_date_actual | string | no | 実績開始日 |
+| end_date_actual | string | no | 実績終了日 |
+| tags | string[] | no | タグID配列 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| work | object | 更新後のWork |
+
+---
+
+## 4. Work対象 API（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /work-targets | 対象一覧取得 | 種別フィルタ |
+| POST | /work-targets | 対象作成 | 管理者のみ |
+| GET | /work-targets/{targetId} | 対象詳細取得 | |
+| PATCH | /work-targets/{targetId} | 対象更新 | |
+| DELETE | /work-targets/{targetId} | 対象削除 | 論理削除 |
+
+### 4.1 POST /work-targets（対象作成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| target_type | string | yes | project / system / common |
+| name | string | yes | 名称 |
+| description | string | no | 説明 |
+| owner_user_id | string | no | 管理責任者 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| target | object | 対象オブジェクト |
+
+---
+
+## 5. チャットAPI（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /works/{workId}/chats | スレッド一覧取得 | Work単位 |
+| GET | /work-targets/{targetId}/chats | スレッド一覧取得 | 対象単位 |
 | POST | /chats | スレッド作成 | 初期メンバー指定 |
 | GET | /chats/{chatId}/messages | メッセージ一覧取得 | ページング |
 | POST | /chats/{chatId}/messages | メッセージ投稿 | 文字/添付 |
@@ -53,14 +141,14 @@
 | DELETE | /chats/{chatId}/messages/{messageId} | メッセージ削除 | 投稿者/管理者 |
 | POST | /chats/{chatId}/read | 既読更新 | ユーザー単位 |
 
-### 3.1 POST /chats（スレッド作成）
+### 5.1 POST /chats（スレッド作成）
 
 Request:
 
 | 項目 | 型 | 必須 | 説明 |
 |------|----|------|------|
-| scope_type | string | yes | project / task |
-| scope_id | string | yes | projectId / taskId |
+| scope_type | string | yes | work / target |
+| scope_id | string | yes | workId / targetId |
 | title | string | no | スレッド名 |
 | member_ids | string[] | no | 初期メンバー |
 
@@ -71,7 +159,7 @@ Response:
 | chat | object | chatオブジェクト |
 | [Assumption] created_by | string | JWTから自動取得 |
 
-### 3.2 POST /chats/{chatId}/messages（メッセージ投稿）
+### 5.2 POST /chats/{chatId}/messages（メッセージ投稿）
 
 Request:
 
@@ -92,7 +180,7 @@ Response:
 |------|----|------|
 | message | object | messageオブジェクト |
 
-### 3.3 GET /chats/{chatId}/messages（メッセージ一覧）
+### 5.3 GET /chats/{chatId}/messages（メッセージ一覧）
 
 Request:
 
@@ -108,7 +196,7 @@ Response:
 | messages | object[] | message配列 |
 | next_cursor | string | 次ページカーソル |
 
-### 3.4 POST /chats/{chatId}/read（既読更新）
+### 5.4 POST /chats/{chatId}/read（既読更新）
 
 Request:
 
@@ -125,7 +213,7 @@ Response:
 
 ---
 
-## 4. 社内ツールAPI（案）
+## 6. 社内ツールAPI（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -140,7 +228,7 @@ Response:
 | POST | /internal-tools/{toolId}/entries/{entryId}/reject | 差戻し | 理由必須 |
 | GET | /internal-tools/{toolId}/reports | 集計取得 | 集計タイプのみ |
 
-### 4.1 POST /internal-tools（ツール作成）
+### 6.1 POST /internal-tools（ツール作成）
 
 Request:
 
@@ -159,7 +247,7 @@ Response:
 | [Assumption] created_by | string | JWTから自動取得 |
 | [Assumption] version | string | 自動増分（更新時に+1） |
 
-### 4.2 POST /internal-tools/{toolId}/entries（申請/入力作成）
+### 6.2 POST /internal-tools/{toolId}/entries（申請/入力作成）
 
 Request:
 
@@ -178,7 +266,7 @@ Response:
 |------|----|------|
 | entry | object | entryオブジェクト |
 
-### 4.3 POST /internal-tools/{toolId}/entries/{entryId}/approve（承認）
+### 6.3 POST /internal-tools/{toolId}/entries/{entryId}/approve（承認）
 
 Request:
 
@@ -194,7 +282,7 @@ Response:
 | entry | object | 更新後のentry |
 | [Assumption] approver_role | string | manager / director / admin |
 
-### 4.4 POST /internal-tools/{toolId}/entries/{entryId}/reject（差戻し）
+### 6.4 POST /internal-tools/{toolId}/entries/{entryId}/reject（差戻し）
 
 Request:
 
@@ -210,7 +298,7 @@ Response:
 
 ---
 
-## 5. 管理業務API（案）
+## 7. 管理業務API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -222,7 +310,9 @@ Response:
 | POST | /admin/masters/{masterType}/bulk | 一括登録/更新 | CSV/JSON |
 
 masterType（必須マスタ）:
-- users, companies, branches, divisions, roles, resources, permissions, task-tags, blog-tags, blog-categories
+- users, companies, branches, divisions, roles, resources, permissions
+- work-types, work-time-types, work-tags, work-target-types
+- blog-tags, blog-categories
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -234,11 +324,13 @@ masterType（必須マスタ）:
 - [Assumption] users は Cognito と同期し、編集可能範囲はアプリ側のプロフィール/ステータスに限定
 - [Assumption] DELETE は物理削除ではなく無効化（アーカイブ）を既定とする
 
-## 6. 追加検討事項
+---
+
+## 8. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
 - [Open Question] SSE/WebSocket移行条件（同時接続数・通知遅延・UI要件で判断）
 - [Open Question] 設定の優先順位（全体共通 vs 組織単位）
 - [Open Question] Cognitoとユーザー/ロール管理の同期方式
-- [Risk] entries更新と監査ログ/変更履歴の整合ルールが未定義
+- [Risk] Work操作ログと監査ログの整合ルールが未定義
