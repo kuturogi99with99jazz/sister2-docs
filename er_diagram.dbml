@@ -1,0 +1,375 @@
+// Use DBML to define your database structure
+// Schema for Sister 2
+
+Table companies {
+  id varchar [pk]
+  name varchar
+  status varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table branches {
+  id varchar [pk]
+  company_id varchar
+  name varchar
+  status varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table divisions {
+  id varchar [pk]
+  branch_id varchar
+  name varchar
+  status varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table users {
+  id varchar [pk]
+  company_id varchar
+  email varchar
+  status varchar
+  created_at varchar
+  last_login_at varchar
+}
+
+Table user_profiles {
+  id varchar [pk]
+  user_id varchar
+  display_name varchar
+  avatar_url varchar
+  timezone varchar
+}
+
+Table roles {
+  id varchar [pk]
+  name varchar
+  description varchar
+}
+
+Table permissions {
+  id varchar [pk]
+  name varchar
+  description varchar
+}
+
+Table resources {
+  id varchar [pk]
+  name varchar
+  description varchar
+}
+
+Table user_roles {
+  id varchar [pk]
+  user_id varchar
+  role_id varchar
+}
+
+Table role_permissions {
+  id varchar [pk]
+  role_id varchar
+  permission_id varchar
+}
+
+Table permission_resources {
+  id varchar [pk]
+  permission_id varchar
+  resource_id varchar
+}
+
+Table work_types {
+  id varchar [pk]
+  name varchar
+}
+
+Table work_time_types {
+  id varchar [pk]
+  name varchar
+}
+
+Table works {
+  id varchar [pk]
+  created_by varchar
+  work_type_id varchar
+  work_time_type_id varchar
+  template_id varchar
+  title varchar
+  content varchar
+  form_data_json varchar
+  status varchar
+  start_date_planned varchar
+  end_date_planned varchar
+  start_date_actual varchar
+  end_date_actual varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table work_assignees {
+  id varchar [pk]
+  work_id varchar
+  user_id varchar
+  is_primary boolean
+}
+
+Table work_activity_logs {
+  id varchar [pk]
+  work_id varchar
+  user_id varchar
+  action varchar
+  meta_json varchar
+  created_at varchar
+}
+
+Table work_tags {
+  id varchar [pk]
+  name varchar
+}
+
+Table work_tag_links {
+  id varchar [pk]
+  work_id varchar
+  tag_id varchar
+}
+
+Table work_targets {
+  id varchar [pk]
+  target_type varchar
+  name varchar
+  description varchar
+  owner_user_id varchar
+  status varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table work_target_links {
+  id varchar [pk]
+  work_id varchar
+  target_id varchar
+}
+
+Table blog_posts {
+  id varchar [pk]
+  author_user_id varchar
+  title varchar
+  status varchar
+  published_at varchar
+}
+
+Table blog_tags {
+  id varchar [pk]
+  name varchar
+}
+
+Table blog_categories {
+  id varchar [pk]
+  name varchar
+}
+
+Table blog_post_tags {
+  id varchar [pk]
+  post_id varchar
+  tag_id varchar
+}
+
+Table blog_post_categories {
+  id varchar [pk]
+  post_id varchar
+  category_id varchar
+}
+
+Table blog_work_links {
+  id varchar [pk]
+  post_id varchar
+  work_id varchar
+}
+
+Table blog_target_links {
+  id varchar [pk]
+  post_id varchar
+  target_id varchar
+}
+
+Table audit_logs {
+  id varchar [pk]
+  user_id varchar
+  action varchar
+  resource_type varchar
+  resource_id varchar
+  created_at varchar
+}
+
+Table system_settings {
+  id varchar [pk]
+  key varchar
+  value_json varchar
+  is_active varchar
+  updated_by varchar
+  updated_at varchar
+}
+
+Table company_settings {
+  id varchar [pk]
+  company_id varchar
+  key varchar
+  value_json varchar
+  is_active varchar
+  updated_by varchar
+  updated_at varchar
+}
+
+Table chat_threads {
+  id varchar [pk]
+  scope_type varchar
+  scope_id varchar
+  title varchar
+  created_by varchar
+  created_at varchar
+}
+
+Table chat_messages {
+  id varchar [pk]
+  chat_id varchar
+  sender_user_id varchar
+  content varchar
+  message_type varchar
+  parent_message_id varchar
+  created_at varchar
+}
+
+Table chat_members {
+  id varchar [pk]
+  chat_id varchar
+  user_id varchar
+  role varchar
+  joined_at varchar
+}
+
+Table chat_reads {
+  id varchar [pk]
+  chat_id varchar
+  user_id varchar
+  last_read_message_id varchar
+  last_read_at varchar
+}
+
+Table chat_attachments {
+  id varchar [pk]
+  message_id varchar
+  uploaded_by varchar
+  file_key varchar
+  file_name varchar
+  content_type varchar
+  size_bytes varchar
+}
+
+Table internal_tools {
+  id varchar [pk]
+  owner_user_id varchar
+  name varchar
+  type varchar
+  status varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table tool_definitions {
+  id varchar [pk]
+  tool_id varchar
+  definition_json varchar
+  version varchar
+  created_at varchar
+}
+
+Table tool_entries {
+  id varchar [pk]
+  tool_id varchar
+  submitter_user_id varchar
+  status varchar
+  payload_json varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table tool_entry_approvals {
+  id varchar [pk]
+  entry_id varchar
+  approver_user_id varchar
+  step varchar
+  status varchar
+  comment varchar
+  created_at varchar
+}
+
+Table tool_attachments {
+  id varchar [pk]
+  entry_id varchar
+  uploaded_by varchar
+  file_key varchar
+  file_name varchar
+  content_type varchar
+  size_bytes varchar
+}
+
+Ref: companies.id < branches.company_id
+Ref: branches.id < divisions.branch_id
+Ref: companies.id < users.company_id
+Ref: users.id < user_profiles.user_id
+
+Ref: users.id < user_roles.user_id
+Ref: roles.id < user_roles.role_id
+Ref: roles.id < role_permissions.role_id
+Ref: permissions.id < role_permissions.permission_id
+Ref: permissions.id < permission_resources.permission_id
+Ref: resources.id < permission_resources.resource_id
+
+Ref: work_types.id < works.work_type_id
+Ref: work_time_types.id < works.work_time_type_id
+Ref: users.id < works.created_by
+
+Ref: works.id < work_assignees.work_id
+Ref: users.id < work_assignees.user_id
+Ref: works.id < work_activity_logs.work_id
+Ref: users.id < work_activity_logs.user_id
+
+Ref: works.id < work_tag_links.work_id
+Ref: work_tags.id < work_tag_links.tag_id
+
+Ref: work_targets.id < work_target_links.target_id
+Ref: works.id < work_target_links.work_id
+Ref: users.id < work_targets.owner_user_id
+
+Ref: blog_posts.id < blog_post_tags.post_id
+Ref: blog_tags.id < blog_post_tags.tag_id
+Ref: blog_posts.id < blog_post_categories.post_id
+Ref: blog_categories.id < blog_post_categories.category_id
+Ref: blog_posts.id < blog_work_links.post_id
+Ref: works.id < blog_work_links.work_id
+Ref: blog_posts.id < blog_target_links.post_id
+Ref: work_targets.id < blog_target_links.target_id
+
+Ref: users.id < audit_logs.user_id
+Ref: users.id < system_settings.updated_by
+Ref: users.id < company_settings.updated_by
+Ref: companies.id < company_settings.company_id
+
+Ref: chat_threads.id < chat_messages.chat_id
+Ref: chat_threads.id < chat_members.chat_id
+Ref: users.id < chat_members.user_id
+Ref: chat_threads.id < chat_reads.chat_id
+Ref: users.id < chat_reads.user_id
+Ref: chat_messages.id < chat_attachments.message_id
+Ref: users.id < chat_attachments.uploaded_by
+
+Ref: internal_tools.id < tool_definitions.tool_id
+Ref: internal_tools.id < tool_entries.tool_id
+Ref: tool_entries.id < tool_entry_approvals.entry_id
+Ref: users.id < tool_entry_approvals.approver_user_id
+Ref: tool_entries.id < tool_attachments.entry_id
+Ref: users.id < tool_entries.submitter_user_id
+Ref: users.id < internal_tools.owner_user_id
+Ref: tool_definitions.id < works.template_id
