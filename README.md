@@ -120,7 +120,7 @@ flowchart LR
 
 - requirements.md — 要件定義
 - architecture.md — アーキテクチャ設計
-- api_spec.md — API仕様（ドラフト）
+- api_spec.md — API仕様
 - er_diagram.mmd — ER図
 - poc_plan.md — PoC計画
 - poc_dev_env_setup.md — PoC開発環境構築手順
