@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sister 2 - Work中心業務管理システム</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+        <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+      </nav>
+      <div class="header-right">
+        <details class="dropdown">
+          <summary class="dropdown-toggle notification-btn" aria-label="通知">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M10 2C7.5 2 5.5 4 5.5 6.5V10L3 12.5V14H17V12.5L14.5 10V6.5C14.5 4 12.5 2 10 2Z" stroke-width="1.5"/>
+              <path d="M8.5 14V15C8.5 16.1 9.4 17 10.5 17C11.6 17 12.5 16.1 12.5 15V14" stroke-width="1.5"/>
+            </svg>
+            <span class="badge">3</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-title">通知</div>
+            <div class="dropdown-list">
+              <div class="dropdown-item">
+                <strong>WK-001が更新されました</strong>
+                <div>田中太郎がコメントを追加しました</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>期限が近づいています</strong>
+                <div>WK-005の期限まで2日です</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>新しいWorkが割り当てられました</strong>
+                <div>WK-006: データ移行作業</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown user-dropdown">
+          <summary class="dropdown-toggle user-summary">
+            <span class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="user-name">田中太郎</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="user-meta">
+              <div class="user-name">田中太郎</div>
+              <div class="user-email">tanaka@example.com</div>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+
+        <details class="mobile-menu">
+          <summary class="dropdown-toggle menu-toggle-btn" aria-label="メニュー">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6H21M3 12H21M3 18H21" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mobile-panel">
+            <div class="mobile-user">
+              <img src="/placeholder-user.jpg" alt="田中太郎" class="avatar">
+              <div>
+                <div class="mobile-user-name">田中太郎</div>
+                <div class="mobile-user-email">tanaka@example.com</div>
+              </div>
+            </div>
+            <nav class="mobile-nav">
+              <a href="works.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+                  <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Work
+              </a>
+              <a href="chat.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                チャット
+              </a>
+              <a href="tools.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="7" cy="7" r="3" stroke-width="2"/>
+                </svg>
+                社内ツール
+              </a>
+              <a href="knowledge.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 4H19V20H5Z" stroke-width="2"/>
+                  <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ナレッジ
+              </a>
+            </nav>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <!-- ヒーローセクション -->
+  <section class="hero hero-v0">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <span class="hero-badge">Work中心業務管理システム</span>
+      <h1 class="hero-title">Sister 2</h1>
+      <p class="hero-description">今日やるべき仕事を迷わず把握できる。Work中心の設計で、開発・運用・保守・突発対応を一元管理。</p>
+      <div class="hero-actions">
+        <a href="works.html" class="btn btn-primary">Work一覧を見る</a>
+        <a href="knowledge.html" class="btn btn-secondary">ナレッジを探す</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 統計サマリー -->
+  <section class="stats stats-v0">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card stat-card-success">
+          <div class="stat-header">
+            <span class="stat-label">完了済み</span>
+            <span class="stat-icon stat-icon-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                <path d="M8 12L11 15L16 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="stat-value">24</div>
+          <div class="stat-sub">今月完了したWork</div>
+        </div>
+        <div class="stat-card stat-card-info">
+          <div class="stat-header">
+            <span class="stat-label">進行中</span>
+            <span class="stat-icon stat-icon-info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                <path d="M12 7V12L15 15" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub">現在進行中のWork</div>
+        </div>
+        <div class="stat-card stat-card-warn">
+          <div class="stat-header">
+            <span class="stat-label">期限間近</span>
+            <span class="stat-icon stat-icon-warn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="9" stroke-width="2"/>
+                <path d="M12 8V12" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+            </span>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-sub">48時間以内に期限</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 機能紹介 -->
+  <section id="features" class="features features-v0">
+    <div class="container">
+      <h2 class="section-title">主要機能</h2>
+      <p class="section-subtitle">業務を効率化するための充実した機能</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+              <rect x="6" y="8" width="20" height="16" rx="2" stroke-width="2"/>
+              <path d="M11 14H21M11 18H17" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Work管理</h3>
+          <p class="feature-description">開発・運用・保守を統合的に管理。今日やるべきWorkを一目で把握。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+              <path d="M6 10H26V20H10L6 24V10Z" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">チャット</h3>
+          <p class="feature-description">Work単位の進捗共有と意思決定の記録をリアルタイムで。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+              <path d="M12 4V6M12 26V28M4 12H6M26 12H28M7 7L9 9M23 23L25 25M7 25L9 23M23 9L25 7" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="4" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">社内ツール</h3>
+          <p class="feature-description">定期作業・雑務をシステム化。テンプレートで属人化を解消。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor">
+              <path d="M6 6H26V26H6Z" stroke-width="2"/>
+              <path d="M10 12H22M10 17H22M10 22H18" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">ナレッジ</h3>
+          <p class="feature-description">AI要約で知識を整理。必要な情報をすばやく検索・共有。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- アーキテクチャ -->
+  <section class="architecture architecture-v0">
+    <div class="container">
+      <h2 class="section-title">システムアーキテクチャ</h2>
+      <p class="section-subtitle">Serverless-firstで運用負荷を最小化</p>
+      <div class="arch-panel">
+        <div class="arch-card">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 18V6M4 18H20M4 10H10M12 14H18M12 10H16" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="arch-label">フロントエンド</div>
+          <div class="arch-value">SvelteKit + Vercel</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 12H20M12 4V20" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="8" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="arch-label">バックエンド</div>
+          <div class="arch-value">AWS Lambda + Fargate</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="5" y="4" width="14" height="16" rx="2" stroke-width="2"/>
+              <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="arch-label">データベース</div>
+          <div class="arch-value">Neon PostgreSQL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">業務管理を、もっとシンプルに</h2>
+      <p class="cta-description">Sister 2で、今日からWorkを一元管理</p>
+      <a href="works.html" class="btn btn-primary btn-large">今すぐ始める</a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Sister 2</h4>
+          <p>Work中心業務管理システム</p>
+        </div>
+        <div class="footer-section">
+          <h4>機能</h4>
+          <ul>
+            <li><a href="works.html">Work管理</a></li>
+            <li><a href="knowledge.html">ナレッジ</a></li>
+            <li><a href="chat.html">チャット</a></li>
+            <li><a href="tools.html">社内ツール</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>リソース</h4>
+          <ul>
+            <li><a href="#">ドキュメント</a></li>
+            <li><a href="#">API仕様</a></li>
+            <li><a href="#">サポート</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>会社情報</h4>
+          <ul>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sister 2. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

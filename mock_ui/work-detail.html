@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work詳細 - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+        <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+      </nav>
+      <div class="header-right">
+        <details class="dropdown">
+          <summary class="dropdown-toggle notification-btn" aria-label="通知">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M10 2C7.5 2 5.5 4 5.5 6.5V10L3 12.5V14H17V12.5L14.5 10V6.5C14.5 4 12.5 2 10 2Z" stroke-width="1.5"/>
+              <path d="M8.5 14V15C8.5 16.1 9.4 17 10.5 17C11.6 17 12.5 16.1 12.5 15V14" stroke-width="1.5"/>
+            </svg>
+            <span class="badge">3</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-title">通知</div>
+            <div class="dropdown-list">
+              <div class="dropdown-item">
+                <strong>WK-001が更新されました</strong>
+                <div>田中太郎がコメントを追加しました</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>期限が近づいています</strong>
+                <div>WK-005の期限まで2日です</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>新しいWorkが割り当てられました</strong>
+                <div>WK-006: データ移行作業</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown user-dropdown">
+          <summary class="dropdown-toggle user-summary">
+            <span class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="user-name">田中太郎</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="user-meta">
+              <div class="user-name">田中太郎</div>
+              <div class="user-email">tanaka@example.com</div>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+
+        <details class="mobile-menu">
+          <summary class="dropdown-toggle menu-toggle-btn" aria-label="メニュー">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6H21M3 12H21M3 18H21" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mobile-panel">
+            <div class="mobile-user">
+              <img src="/placeholder-user.jpg" alt="田中太郎" class="avatar">
+              <div>
+                <div class="mobile-user-name">田中太郎</div>
+                <div class="mobile-user-email">tanaka@example.com</div>
+              </div>
+            </div>
+            <nav class="mobile-nav">
+              <a href="works.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+                  <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Work
+              </a>
+              <a href="chat.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                チャット
+              </a>
+              <a href="tools.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="7" cy="7" r="3" stroke-width="2"/>
+                </svg>
+                社内ツール
+              </a>
+              <a href="knowledge.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 4H19V20H5Z" stroke-width="2"/>
+                  <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ナレッジ
+              </a>
+            </nav>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="container">
+      <!-- パンくずリスト -->
+      <nav class="breadcrumb">
+        <a href="index.html">ホーム</a>
+        <span>/</span>
+        <a href="works.html">Work</a>
+        <span>/</span>
+        <span>WRK-1234</span>
+      </nav>
+
+      <div class="detail-layout">
+        <!-- メインコンテンツエリア -->
+        <div class="detail-main">
+          <!-- Work詳細ヘッダー -->
+          <div class="detail-header">
+            <div>
+              <div class="detail-id">#WRK-1234</div>
+              <h1 class="detail-title">顧客管理システムのログイン機能実装</h1>
+              <div class="detail-tags">
+                <span class="tag tag-blue">開発</span>
+                <span class="tag tag-green">システムA</span>
+                <span class="status-badge status-progress">In Progress</span>
+              </div>
+            </div>
+            <div class="detail-actions">
+              <a class="btn btn-secondary" href="chat.html">チャットを開く</a>
+              <button class="btn btn-secondary">編集</button>
+              <button class="btn btn-primary">完了</button>
+            </div>
+          </div>
+
+          <!-- Work詳細情報 -->
+          <div class="detail-section">
+            <h2 class="section-heading">詳細情報</h2>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <div class="detail-label">担当者</div>
+                <div class="detail-value">
+                  <img src="images/placeholder.svg" alt="田中 太郎" class="avatar-small">
+                  田中 太郎
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">優先度</div>
+                <div class="detail-value">
+                  <span class="priority-badge priority-high">高</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">開始予定日</div>
+                <div class="detail-value">2026-01-05</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">完了予定日</div>
+                <div class="detail-value">2026-01-10</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">実績開始日</div>
+                <div class="detail-value">2026-01-05</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">推定稼働時間</div>
+                <div class="detail-value">12.5時間</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 本文 -->
+          <div class="detail-section">
+            <h2 class="section-heading">内容</h2>
+            <div class="detail-content">
+              <p>AWS Cognito を利用した認証機能の実装を行います。以下の要件を満たす必要があります：</p>
+              <ul>
+                <li>メールアドレスとパスワードによるログイン</li>
+                <li>多要素認証（MFA）対応</li>
+                <li>パスワードリセット機能</li>
+                <li>セッション管理とトークンリフレッシュ</li>
+                <li>ログアウト機能</li>
+              </ul>
+              <p>フロントエンドはSvelteKitで実装し、バックエンドAPIはFastAPIで提供します。</p>
+            </div>
+          </div>
+
+          <!-- AI要約 -->
+          <div class="detail-section ai-section">
+            <div class="ai-header">
+              <h2 class="section-heading">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 2L12 8L18 10L12 12L10 18L8 12L2 10L8 8L10 2Z"/>
+                </svg>
+                AI要約
+              </h2>
+              <button class="btn btn-small btn-secondary">再生成</button>
+            </div>
+            <div class="ai-content">
+              <p>このWorkは、AWS Cognitoを使用した顧客管理システムの認証機能実装です。MFA対応を含む包括的なログイン・ログアウト機能の開発が求められています。SvelteKitとFastAPIを組み合わせたフルスタック実装で、推定稼働時間は12.5時間、優先度は高に設定されています。</p>
+            </div>
+          </div>
+
+          <!-- コメント -->
+          <div class="detail-section">
+            <h2 class="section-heading">コメント (3)</h2>
+            <div class="comments">
+              <div class="comment">
+                <img src="images/placeholder.svg" alt="田中 太郎" class="comment-avatar">
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <span class="comment-author">田中 太郎</span>
+                    <span class="comment-time">2時間前</span>
+                  </div>
+                  <p class="comment-text">Cognito Hosted UIの設定が完了しました。次はフロントエンド側の実装に移ります。</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="images/placeholder.svg" alt="佐藤 部長" class="comment-avatar">
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <span class="comment-author">佐藤 部長</span>
+                    <span class="comment-time">5時間前</span>
+                  </div>
+                  <p class="comment-text">MFAはSMSとTOTPの両方に対応する必要があります。セキュリティ要件を確認してください。</p>
+                </div>
+              </div>
+              <div class="comment">
+                <img src="images/placeholder.svg" alt="鈴木 花子" class="comment-avatar">
+                <div class="comment-content">
+                  <div class="comment-header">
+                    <span class="comment-author">鈴木 花子</span>
+                    <span class="comment-time">1日前</span>
+                  </div>
+                  <p class="comment-text">参考資料を共有します。前回のプロジェクトで使用したCognitoの設定例です。</p>
+                </div>
+              </div>
+            </div>
+            <div class="comment-form">
+              <img src="images/placeholder.svg" alt="あなた" class="comment-avatar">
+              <div class="comment-input-wrapper">
+                <textarea class="comment-input" placeholder="コメントを入力..."></textarea>
+                <button class="btn btn-primary btn-small">投稿</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- サイドバー -->
+        <aside class="detail-sidebar">
+          <!-- アクティビティ -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-heading">アクティビティ</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <circle cx="8" cy="8" r="6"/>
+                  </svg>
+                </div>
+                <div class="activity-content">
+                  <div class="activity-text">田中 太郎 がコメントを追加</div>
+                  <div class="activity-time">2時間前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M4 8L7 11L12 5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  </svg>
+                </div>
+                <div class="activity-content">
+                  <div class="activity-text">ステータスを更新</div>
+                  <div class="activity-time">5時間前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <circle cx="8" cy="8" r="6"/>
+                  </svg>
+                </div>
+                <div class="activity-content">
+                  <div class="activity-text">鈴木 花子 がファイルを追加</div>
+                  <div class="activity-time">1日前</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="activity-content">
+                  <div class="activity-text">Workを作成</div>
+                  <div class="activity-time">2日前</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 添付ファイル -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-heading">添付ファイル</h3>
+            <div class="file-list">
+              <div class="file-item">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M4 4H12L16 8V16H4V4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  <path d="M12 4V8H16" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+                <div class="file-info">
+                  <div class="file-name">cognito-setup.pdf</div>
+                  <div class="file-size">2.4 MB</div>
+                </div>
+              </div>
+              <div class="file-item">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M4 4H12L16 8V16H4V4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                  <path d="M12 4V8H16" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+                <div class="file-info">
+                  <div class="file-name">api-design.md</div>
+                  <div class="file-size">15 KB</div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-small btn-full">ファイルを追加</button>
+          </div>
+
+          <!-- 関連Work -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-heading">関連Work</h3>
+            <div class="related-list">
+              <a href="#" class="related-item">
+                <span class="related-id">#WRK-1220</span>
+                <span class="related-title">認証API設計</span>
+              </a>
+              <a href="#" class="related-item">
+                <span class="related-id">#WRK-1245</span>
+                <span class="related-title">フロントエンド実装</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sister 2. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

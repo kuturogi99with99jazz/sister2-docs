@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新規ツール作成 - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+      </nav>
+      <div class="header-right">
+        <details class="dropdown">
+          <summary class="dropdown-toggle notification-btn" aria-label="通知">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M10 2C7.5 2 5.5 4 5.5 6.5V10L3 12.5V14H17V12.5L14.5 10V6.5C14.5 4 12.5 2 10 2Z" stroke-width="1.5"/>
+              <path d="M8.5 14V15C8.5 16.1 9.4 17 10.5 17C11.6 17 12.5 16.1 12.5 15V14" stroke-width="1.5"/>
+            </svg>
+            <span class="badge">3</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-title">通知</div>
+            <div class="dropdown-list">
+              <div class="dropdown-item">
+                <strong>WK-001が更新されました</strong>
+                <div>田中太郎がコメントを追加しました</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>期限が近づいています</strong>
+                <div>WK-005の期限まで2日です</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>新しいWorkが割り当てられました</strong>
+                <div>WK-006: データ移行作業</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown user-dropdown">
+          <summary class="dropdown-toggle user-summary">
+            <span class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="user-name">田中太郎</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="user-meta">
+              <div class="user-name">田中太郎</div>
+              <div class="user-email">tanaka@example.com</div>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+
+        <details class="mobile-menu">
+          <summary class="dropdown-toggle menu-toggle-btn" aria-label="メニュー">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6H21M3 12H21M3 18H21" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mobile-panel">
+            <div class="mobile-user">
+              <img src="/placeholder-user.jpg" alt="田中太郎" class="avatar">
+              <div>
+                <div class="mobile-user-name">田中太郎</div>
+                <div class="mobile-user-email">tanaka@example.com</div>
+              </div>
+            </div>
+            <nav class="mobile-nav">
+              <a href="works.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+                  <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Work
+              </a>
+              <a href="chat.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                チャット
+              </a>
+              <a href="tools.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="7" cy="7" r="3" stroke-width="2"/>
+                </svg>
+                社内ツール
+              </a>
+              <a href="knowledge.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 4H19V20H5Z" stroke-width="2"/>
+                  <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ナレッジ
+              </a>
+            </nav>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container form-page">
+      <div class="form-header">
+        <a class="back-link" href="tools.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          戻る
+        </a>
+        <h1>新規ツール作成</h1>
+        <p>フォームや承認フローを定義して社内ツールを作成します</p>
+      </div>
+
+      <form class="form-stack">
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>基本情報</h2>
+            <p>ツールの概要とカテゴリを設定してください</p>
+          </div>
+          <div class="form-card-body form-stack">
+            <label class="form-field">
+              <span class="form-label">ツール名 <span class="form-required">*</span></span>
+              <input class="form-control" type="text" placeholder="例: ソフトウェア開発報告書">
+            </label>
+            <label class="form-field">
+              <span class="form-label">説明 <span class="form-required">*</span></span>
+              <textarea class="form-control" rows="4" placeholder="用途や対象者を簡潔に記載"></textarea>
+            </label>
+            <label class="form-field">
+              <span class="form-label">カテゴリ</span>
+              <select class="form-control">
+                <option>申請</option>
+                <option>報告</option>
+                <option>チェックリスト</option>
+                <option>集計</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>フォーム設計</h2>
+            <p>入力項目と必須設定を定義します</p>
+          </div>
+          <div class="form-card-body form-stack">
+            <div class="form-inline">
+              <input class="form-control" type="text" placeholder="項目名を入力...">
+              <button class="btn btn-secondary" type="button">項目追加</button>
+            </div>
+            <div class="tag-list">
+              <span class="tag-chip">作業内容（必須）</span>
+              <span class="tag-chip">対象期間（必須）</span>
+              <span class="tag-chip">添付ファイル</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>承認フロー</h2>
+            <p>承認ステップと通知を設定します</p>
+          </div>
+          <div class="form-card-body form-grid">
+            <label class="form-field">
+              <span class="form-label">ステップ1承認者</span>
+              <select class="form-control">
+                <option>リーダー</option>
+                <option>管理者</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span class="form-label">ステップ2承認者</span>
+              <select class="form-control">
+                <option>管理者</option>
+                <option>部長</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="tools.html">キャンセル</a>
+          <button class="btn btn-primary" type="button">ツール作成</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

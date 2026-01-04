@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work一覧 - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+        <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+      </nav>
+      <div class="header-right">
+        <details class="dropdown">
+          <summary class="dropdown-toggle notification-btn" aria-label="通知">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M10 2C7.5 2 5.5 4 5.5 6.5V10L3 12.5V14H17V12.5L14.5 10V6.5C14.5 4 12.5 2 10 2Z" stroke-width="1.5"/>
+              <path d="M8.5 14V15C8.5 16.1 9.4 17 10.5 17C11.6 17 12.5 16.1 12.5 15V14" stroke-width="1.5"/>
+            </svg>
+            <span class="badge">3</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-title">通知</div>
+            <div class="dropdown-list">
+              <div class="dropdown-item">
+                <strong>WK-001が更新されました</strong>
+                <div>田中太郎がコメントを追加しました</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>期限が近づいています</strong>
+                <div>WK-005の期限まで2日です</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>新しいWorkが割り当てられました</strong>
+                <div>WK-006: データ移行作業</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown user-dropdown">
+          <summary class="dropdown-toggle user-summary">
+            <span class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="user-name">田中太郎</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="user-meta">
+              <div class="user-name">田中太郎</div>
+              <div class="user-email">tanaka@example.com</div>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+
+        <details class="mobile-menu">
+          <summary class="dropdown-toggle menu-toggle-btn" aria-label="メニュー">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6H21M3 12H21M3 18H21" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mobile-panel">
+            <div class="mobile-user">
+              <img src="/placeholder-user.jpg" alt="田中太郎" class="avatar">
+              <div>
+                <div class="mobile-user-name">田中太郎</div>
+                <div class="mobile-user-email">tanaka@example.com</div>
+              </div>
+            </div>
+            <nav class="mobile-nav">
+              <a href="works.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+                  <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Work
+              </a>
+              <a href="chat.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                チャット
+              </a>
+              <a href="tools.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="7" cy="7" r="3" stroke-width="2"/>
+                </svg>
+                社内ツール
+              </a>
+              <a href="knowledge.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 4H19V20H5Z" stroke-width="2"/>
+                  <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ナレッジ
+              </a>
+            </nav>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="container">
+      <!-- ページヘッダー -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Work管理</h1>
+          <p class="page-description">開発・運用・保守・突発対応を一元管理</p>
+        </div>
+        <a class="btn btn-primary" href="work-new.html">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          新規Work作成
+        </a>
+      </div>
+
+      <!-- サマリーカード -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-label">Total Works</div>
+          <div class="summary-value">247</div>
+          <div class="summary-note">全Work数</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">In Progress</div>
+          <div class="summary-value accent">24</div>
+          <div class="summary-note">進行中</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Completed</div>
+          <div class="summary-value success">156</div>
+          <div class="summary-note">完了済み</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Due Soon</div>
+          <div class="summary-value warning">8</div>
+          <div class="summary-note">期限間近</div>
+        </div>
+      </div>
+
+      <input class="view-switch" type="radio" name="view" id="view-grid" checked>
+      <input class="view-switch" type="radio" name="view" id="view-list">
+
+      <!-- フィルター -->
+      <div class="filters">
+        <details class="filter-panel">
+          <summary class="btn btn-secondary btn-small">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+              <path d="M2 4H14M4 8H12M6 12H10" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Show Filters
+          </summary>
+          <div class="filter-panel-body">
+            <div class="filter-grid">
+              <label class="filter-field">
+                <span>担当者</span>
+                <select>
+                  <option>全員</option>
+                  <option>田中 太郎</option>
+                  <option>鈴木 花子</option>
+                  <option>佐藤 部長</option>
+                </select>
+              </label>
+              <label class="filter-field">
+                <span>ステータス</span>
+                <select>
+                  <option>In Progress</option>
+                  <option>Not Started</option>
+                  <option>Completed</option>
+                  <option>On Hold</option>
+                </select>
+              </label>
+              <label class="filter-field">
+                <span>対象</span>
+                <select>
+                  <option>全対象</option>
+                  <option>システムA</option>
+                  <option>システムB</option>
+                  <option>プロジェクトX</option>
+                </select>
+              </label>
+              <label class="filter-field">
+                <span>タグ</span>
+                <select>
+                  <option>全タグ</option>
+                  <option>開発</option>
+                  <option>運用</option>
+                  <option>保守</option>
+                  <option>障害対応</option>
+                </select>
+              </label>
+              <label class="filter-field filter-field-full">
+                <span>期間</span>
+                <div class="filter-range">
+                  <input type="date">
+                  <span>〜</span>
+                  <input type="date">
+                </div>
+              </label>
+              <label class="filter-field">
+                <span>優先度</span>
+                <select>
+                  <option>全て</option>
+                  <option>高</option>
+                  <option>中</option>
+                  <option>低</option>
+                </select>
+              </label>
+            </div>
+            <div class="filter-actions">
+              <button class="btn btn-secondary btn-small">クリア</button>
+              <button class="btn btn-primary btn-small">適用</button>
+            </div>
+          </div>
+        </details>
+        <div class="filter-tags">
+          <span class="filter-tag">担当者: 全員 <button>×</button></span>
+          <span class="filter-tag">ステータス: In Progress <button>×</button></span>
+        </div>
+        <div class="view-toggle">
+          <label class="view-btn" for="view-grid" aria-label="カード表示">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <rect x="2" y="2" width="5" height="5" rx="1"/>
+              <rect x="9" y="2" width="5" height="5" rx="1"/>
+              <rect x="2" y="9" width="5" height="5" rx="1"/>
+              <rect x="9" y="9" width="5" height="5" rx="1"/>
+            </svg>
+          </label>
+          <label class="view-btn" for="view-list" aria-label="リスト表示">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <rect x="2" y="3" width="12" height="2" rx="1"/>
+              <rect x="2" y="7" width="12" height="2" rx="1"/>
+              <rect x="2" y="11" width="12" height="2" rx="1"/>
+            </svg>
+          </label>
+        </div>
+      </div>
+
+      <!-- Work一覧 -->
+      <div class="work-list">
+        <!-- Work Item 1 -->
+        <div class="work-item">
+          <div class="work-status status-progress"></div>
+          <div class="work-content">
+            <div class="work-header">
+              <h3 class="work-title">顧客管理システムのログイン機能実装</h3>
+              <span class="work-id">#WRK-1234</span>
+            </div>
+            <p class="work-description">AWS Cognito を利用した認証機能の実装。MFA対応を含む。</p>
+            <div class="work-meta">
+              <div class="work-tags">
+                <span class="tag tag-blue">開発</span>
+                <span class="tag tag-green">システムA</span>
+              </div>
+              <div class="work-info">
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  2026-01-10
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="5" r="3" stroke-width="1.5"/>
+                    <path d="M2 12C2 10 4 9 7 9C10 9 12 10 12 12" stroke-width="1.5"/>
+                  </svg>
+                  田中 太郎
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <path d="M3 10L7 6L11 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 6L7 2L11 6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  高
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="work-actions">
+            <a class="btn-icon" href="work-detail.html" aria-label="詳細">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Work Item 2 -->
+        <div class="work-item">
+          <div class="work-status status-progress"></div>
+          <div class="work-content">
+            <div class="work-header">
+              <h3 class="work-title">ECサイトの商品検索API性能改善</h3>
+              <span class="work-id">#WRK-1235</span>
+            </div>
+            <p class="work-description">データベースクエリの最適化とキャッシング戦略の実装。レスポンス時間を50%短縮目標。</p>
+            <div class="work-meta">
+              <div class="work-tags">
+                <span class="tag tag-purple">運用</span>
+                <span class="tag tag-green">システムB</span>
+              </div>
+              <div class="work-info">
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  2026-01-12
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="5" r="3" stroke-width="1.5"/>
+                    <path d="M2 12C2 10 4 9 7 9C10 9 12 10 12 12" stroke-width="1.5"/>
+                  </svg>
+                  鈴木 花子
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                  </svg>
+                  中
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="work-actions">
+            <a class="btn-icon" href="work-detail.html" aria-label="詳細">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Work Item 3 -->
+        <div class="work-item">
+          <div class="work-status status-urgent"></div>
+          <div class="work-content">
+            <div class="work-header">
+              <h3 class="work-title">決済システムの障害対応</h3>
+              <span class="work-id">#WRK-1236</span>
+            </div>
+            <p class="work-description">クレジットカード決済の一部エラー発生。原因調査と暫定対応の実施。</p>
+            <div class="work-meta">
+              <div class="work-tags">
+                <span class="tag tag-red">障害対応</span>
+                <span class="tag tag-green">システムC</span>
+              </div>
+              <div class="work-info">
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  2026-01-05
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="5" r="3" stroke-width="1.5"/>
+                    <path d="M2 12C2 10 4 9 7 9C10 9 12 10 12 12" stroke-width="1.5"/>
+                  </svg>
+                  佐藤 次郎
+                </span>
+                <span class="info-item urgent">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <path d="M7 2L8 8L7 10M7 11V12" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  緊急
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="work-actions">
+            <a class="btn-icon" href="work-detail.html" aria-label="詳細">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Work Item 4 -->
+        <div class="work-item">
+          <div class="work-status status-completed"></div>
+          <div class="work-content">
+            <div class="work-header">
+              <h3 class="work-title">月次レポート自動生成機能の開発</h3>
+              <span class="work-id">#WRK-1237</span>
+            </div>
+            <p class="work-description">Pythonスクリプトによる月次レポート生成の自動化。PDF出力とメール送信を含む。</p>
+            <div class="work-meta">
+              <div class="work-tags">
+                <span class="tag tag-blue">開発</span>
+                <span class="tag tag-orange">共通業務</span>
+              </div>
+              <div class="work-info">
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  2026-01-03
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="5" r="3" stroke-width="1.5"/>
+                    <path d="M2 12C2 10 4 9 7 9C10 9 12 10 12 12" stroke-width="1.5"/>
+                  </svg>
+                  山田 三郎
+                </span>
+                <span class="info-item success">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <path d="M3 7L6 10L11 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  完了
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="work-actions">
+            <button class="btn-icon" aria-label="詳細">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Work Item 5 -->
+        <div class="work-item">
+          <div class="work-status status-hold"></div>
+          <div class="work-content">
+            <div class="work-header">
+              <h3 class="work-title">新規プロジェクトの要件定義</h3>
+              <span class="work-id">#WRK-1238</span>
+            </div>
+            <p class="work-description">次期システム開発の要件定義フェーズ。ステークホルダーへのヒアリングと仕様書作成。</p>
+            <div class="work-meta">
+              <div class="work-tags">
+                <span class="tag tag-yellow">保守</span>
+                <span class="tag tag-teal">プロジェクトX</span>
+              </div>
+              <div class="work-info">
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="5" stroke-width="1.5"/>
+                    <path d="M7 4V7L9 9" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  2026-01-20
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="5" r="3" stroke-width="1.5"/>
+                    <path d="M2 12C2 10 4 9 7 9C10 9 12 10 12 12" stroke-width="1.5"/>
+                  </svg>
+                  高橋 美咲
+                </span>
+                <span class="info-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+                    <circle cx="7" cy="7" r="2" fill="currentColor"/>
+                  </svg>
+                  保留
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="work-actions">
+            <button class="btn-icon" aria-label="詳細">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ページネーション -->
+      <div class="pagination">
+        <button class="pagination-btn" disabled>前へ</button>
+        <div class="pagination-pages">
+          <button class="pagination-page active">1</button>
+          <button class="pagination-page">2</button>
+          <button class="pagination-page">3</button>
+          <span class="pagination-ellipsis">...</span>
+          <button class="pagination-page">10</button>
+        </div>
+        <button class="pagination-btn">次へ</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sister 2. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

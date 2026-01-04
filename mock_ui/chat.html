@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>チャット - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+      </nav>
+      <div class="header-right">
+        <details class="dropdown">
+          <summary class="dropdown-toggle notification-btn" aria-label="通知">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+              <path d="M10 2C7.5 2 5.5 4 5.5 6.5V10L3 12.5V14H17V12.5L14.5 10V6.5C14.5 4 12.5 2 10 2Z" stroke-width="1.5"/>
+              <path d="M8.5 14V15C8.5 16.1 9.4 17 10.5 17C11.6 17 12.5 16.1 12.5 15V14" stroke-width="1.5"/>
+            </svg>
+            <span class="badge">3</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="dropdown-title">通知</div>
+            <div class="dropdown-list">
+              <div class="dropdown-item">
+                <strong>WK-001が更新されました</strong>
+                <div>田中太郎がコメントを追加しました</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>期限が近づいています</strong>
+                <div>WK-005の期限まで2日です</div>
+              </div>
+              <div class="dropdown-item">
+                <strong>新しいWorkが割り当てられました</strong>
+                <div>WK-006: データ移行作業</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown user-dropdown">
+          <summary class="dropdown-toggle user-summary">
+            <span class="user-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="user-name">田中太郎</span>
+          </summary>
+          <div class="dropdown-panel">
+            <div class="user-meta">
+              <div class="user-name">田中太郎</div>
+              <div class="user-email">tanaka@example.com</div>
+            </div>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+
+        <details class="mobile-menu">
+          <summary class="dropdown-toggle menu-toggle-btn" aria-label="メニュー">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6H21M3 12H21M3 18H21" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="mobile-panel">
+            <div class="mobile-user">
+              <img src="/placeholder-user.jpg" alt="田中太郎" class="avatar">
+              <div>
+                <div class="mobile-user-name">田中太郎</div>
+                <div class="mobile-user-email">tanaka@example.com</div>
+              </div>
+            </div>
+            <nav class="mobile-nav">
+              <a href="works.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+                  <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Work
+              </a>
+              <a href="chat.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                チャット
+              </a>
+              <a href="tools.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="7" cy="7" r="3" stroke-width="2"/>
+                </svg>
+                社内ツール
+              </a>
+              <a href="knowledge.html" class="mobile-nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 4H19V20H5Z" stroke-width="2"/>
+                  <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ナレッジ
+              </a>
+            </nav>
+            <div class="menu-divider"></div>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="4" stroke-width="2"/>
+                <path d="M4 20C4 15.6 19.999 15.6 20 20" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              プロフィール
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 4V6M12 18V20M4 12H6M18 12H20M7.5 7.5L9 9M15 15L16.5 16.5M7.5 16.5L9 15M15 9L16.5 7.5" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="3" stroke-width="2"/>
+              </svg>
+              設定
+            </a>
+            <a class="menu-item" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10 6H20M10 12H20M10 18H20" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12L8 8M4 12L8 16" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              ログアウト
+            </a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">チャット</h1>
+          <p class="page-description">Work単位で進捗を共有・議論できます</p>
+        </div>
+      </div>
+
+      <div class="chat-layout">
+        <section class="chat-panel">
+          <div class="chat-panel-header">
+            <h2 class="panel-title">スレッド</h2>
+            <div class="search-field compact">
+              <span class="search-icon">🔍</span>
+              <input class="search-input" type="text" placeholder="検索...">
+            </div>
+          </div>
+          <div class="panel-hint">Work作成時にスレッド自動生成。未投稿は一覧に表示しません。</div>
+          <label class="thread-toggle">
+            <input type="checkbox">
+            未投稿も含める
+          </label>
+          <div class="thread-list">
+            <button class="thread-item active">
+              <div class="thread-meta">
+                <span class="tag tag-blue">WRK-1234</span>
+                <span class="thread-unread">3</span>
+              </div>
+              <p class="thread-title">顧客管理システムのログイン機能実装</p>
+              <p class="thread-preview">AWS Cognito を利用した認証機能の実装。</p>
+            </button>
+            <button class="thread-item">
+              <div class="thread-meta">
+                <span class="tag tag-purple">WRK-1235</span>
+                <span class="thread-unread muted">0</span>
+              </div>
+              <p class="thread-title">ECサイトの商品検索API性能改善</p>
+              <p class="thread-preview">データベースクエリの最適化とキャッシング。</p>
+            </button>
+            <button class="thread-item">
+              <div class="thread-meta">
+                <span class="tag tag-teal">WRK-1236</span>
+                <span class="thread-unread">1</span>
+              </div>
+              <p class="thread-title">決済システムの障害対応</p>
+              <p class="thread-preview">原因調査と暫定対応の実施。</p>
+            </button>
+            <div class="thread-hidden">
+              <button class="thread-item thread-item-muted">
+                <div class="thread-meta">
+                  <span class="tag tag-orange">WRK-1238</span>
+                  <span class="thread-unread muted">未投稿</span>
+                </div>
+                <p class="thread-title">新規プロジェクトの要件定義</p>
+                <p class="thread-preview">未投稿のため通常は非表示</p>
+              </button>
+              <button class="thread-item thread-item-muted">
+                <div class="thread-meta">
+                  <span class="tag tag-orange">WRK-1237</span>
+                  <span class="thread-unread muted">未投稿</span>
+                </div>
+                <p class="thread-title">月次レポート自動生成機能の開発</p>
+                <p class="thread-preview">未投稿のため通常は非表示</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="chat-panel chat-panel-main">
+          <div class="chat-panel-header">
+            <div>
+              <span class="tag tag-blue">WRK-1234</span>
+              <h2 class="panel-title">顧客管理システムのログイン機能実装</h2>
+            </div>
+            <button class="btn btn-secondary btn-small">詳細を見る</button>
+          </div>
+          <div class="message-list">
+            <div class="message-row own">
+              <img src="images/placeholder-user.jpg" alt="田中 太郎" class="chat-avatar">
+              <div class="message-body">
+                <div class="message-meta">10:30 / 田中 太郎</div>
+                <div class="message-bubble own">セッション管理の調査を開始しました。</div>
+              </div>
+            </div>
+            <div class="message-row">
+              <img src="images/placeholder-user.jpg" alt="佐藤 花子" class="chat-avatar">
+              <div class="message-body">
+                <div class="message-meta">14:15 / 佐藤 花子</div>
+                <div class="message-bubble">タイムアウト時間は他のシステムと合わせて30分で良いでしょうか？</div>
+              </div>
+            </div>
+            <div class="message-row own">
+              <img src="images/placeholder-user.jpg" alt="田中 太郎" class="chat-avatar">
+              <div class="message-body">
+                <div class="message-meta">15:00 / 田中 太郎</div>
+                <div class="message-bubble own">30分で問題ありません。警告は3分前に表示する仕様で進めます。</div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <button class="btn btn-secondary btn-small">添付</button>
+            <input class="chat-input" type="text" placeholder="メッセージを入力...">
+            <button class="btn btn-primary btn-small">送信</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
