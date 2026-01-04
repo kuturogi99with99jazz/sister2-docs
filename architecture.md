@@ -193,7 +193,7 @@ sister-next/
 | 認可 | RBAC（roles／permissions） + Work中心のScope/Action |
 | 通信 | 全通信HTTPS、API GatewayでCORS制御 |
 | 秘密情報 | AWS Secrets Manager管理（OpenAIキー等） |
-| ログ | CloudWatch Logs + DynamoDB監査テーブル |
+| ログ | CloudWatch Logs + Neon監査テーブル（RDB） |
 | 権限管理 | IAM最小権限（Least Privilege原則） |
 
 ---
