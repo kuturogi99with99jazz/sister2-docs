@@ -1721,6 +1721,14 @@ body {
   flex-wrap: wrap;
 }
 
+.detail-tags .tag {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .status-badge {
   padding: 0.375rem 0.875rem;
   border-radius: var(--radius-md);
@@ -2323,6 +2331,49 @@ body {
   gap: var(--spacing-sm);
 }
 
+.related-add {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.related-suggest {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.related-suggest-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0.5rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.related-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.related-input:focus {
+  outline: none;
+  border-color: var(--color-border-hover);
+}
+
 .related-item {
   display: flex;
   align-items: center;
@@ -2349,6 +2400,51 @@ body {
   font-size: 0.875rem;
   color: var(--color-text-primary);
   flex: 1;
+}
+
+.related-remove {
+  color: var(--color-text-tertiary);
+}
+
+.related-remove:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+}
+
+/* ========================================
+   モーダル（簡易モック）
+======================================== */
+.modal-backdrop {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: rgba(15, 23, 42, 0.08);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.modal-card {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.modal-text {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
 }
 
 /* ========================================
