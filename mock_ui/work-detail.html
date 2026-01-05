@@ -423,15 +423,53 @@
           <!-- 関連Work -->
           <div class="sidebar-section">
             <h3 class="sidebar-heading">関連Work</h3>
+            <div class="related-add">
+              <input class="related-input" type="text" placeholder="Work ID またはタイトルで検索" />
+              <button class="btn btn-secondary btn-small">追加</button>
+            </div>
+            <div class="related-suggest">
+              <div class="related-suggest-item">
+                <span class="related-id">#WRK-1291</span>
+                <span class="related-title">認証フロー調整</span>
+                <button class="btn btn-secondary btn-small">追加</button>
+              </div>
+              <div class="related-suggest-item">
+                <span class="related-id">#WRK-1302</span>
+                <span class="related-title">APIエラーハンドリング整理</span>
+                <button class="btn btn-secondary btn-small">追加</button>
+              </div>
+            </div>
             <div class="related-list">
               <a href="#" class="related-item">
                 <span class="related-id">#WRK-1220</span>
                 <span class="related-title">認証API設計</span>
+                <button class="btn-icon related-remove" aria-label="関連Workを解除">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                    <path d="M4 4L12 12M12 4L4 12" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
               </a>
               <a href="#" class="related-item">
                 <span class="related-id">#WRK-1245</span>
                 <span class="related-title">フロントエンド実装</span>
+                <button class="btn-icon related-remove" aria-label="関連Workを解除">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                    <path d="M4 4L12 12M12 4L4 12" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
               </a>
+            </div>
+          </div>
+
+          <!-- 関連Work解除確認（モック） -->
+          <div class="modal-backdrop">
+            <div class="modal-card">
+              <h4 class="modal-title">関連Workを解除しますか？</h4>
+              <p class="modal-text">#WRK-1220 認証API設計 の関連を解除します。</p>
+              <div class="modal-actions">
+                <button class="btn btn-secondary btn-small">キャンセル</button>
+                <button class="btn btn-primary btn-small">解除する</button>
+              </div>
             </div>
           </div>
         </aside>
