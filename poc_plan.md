@@ -30,12 +30,18 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 | 通知 | SES/SNSの通知送信 | トリガー通知が到達 |
 | 運用性 | 監視・ログ・デプロイ | 追跡可能なログが残る |
 | UI利用シーン適合 | iPadを主軸にしたUI検証（操作性/画面密度/携帯性） | iPadで主要導線がストレスなく成立 |
+| フロントUI実装性 | Svelte + Tailwind + shadcn-svelteの開発体験確認 | 主要画面のUIを無理なく組める手触りが得られる |
 | 長時間処理の成立性 | Fargateを用いた非同期処理の起動/完了通知 | Lambdaでは難しい処理が分離実行できる |
 | MCP理解/適用 | MCPの概念理解と自社向け活用余地の把握 | MCPサーバ設計の当たりが掴める |
+| ORM/マイグレーション成立性 | SQLModel/SQLAlchemyの採用可否と運用方針の検証 | 複雑クエリ/多対多/履歴管理の表現とマイグレーション運用が無理なく成立 |
 
 - [Suggestion] AI要約連携は PoC の後半または任意検証に留める
 - [Assumption] UI検証は「iPad > Desktop > Smartphone」の優先度で設計し、スマホは検索中心の検証に留める
 - [Suggestion] PoC計画/仕様の更新はPRレビューを必須とする
+- [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemy直利用を許容する前提で評価する
+- [Assumption] 運用方針は「通常CRUDはSQLModel、難所はSQLAlchemyに降りる」ことを前提とする
+- [Assumption] フロントの入力バリデーションはZodを第一候補とし、必要に応じて代替案も検討する
+- [Open Question] 複雑な集計/分析系クエリのPoC検証範囲（最小でも扱うか/別途検証とするか）
 
 ---
 
@@ -51,6 +57,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - ファイルアップロード（S3署名URL）
 - 通知（SES/SNSの単一イベント通知）
 - iPadを主軸としたUI検証（入力/閲覧の主要導線）
+- Svelte + Tailwind + shadcn-svelteのUI実装性検証
 - Fargateを用いた非同期バッチの最小検証
 - MCPのキャッチアップと設計メモ作成
 
@@ -148,6 +155,9 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
   - [Assumption] 同時実行を段階的に増やし、接続数の伸びとエラー発生条件を記録する
 - [Risk] 署名URLの期限/権限設計が未定義
   - [Suggestion] 期間・権限を要件として決める前提で動作検証のみ実施
+- [Risk] PoCスコープで分析機能を除外しているため、複雑クエリ/多対多/履歴管理の成立性が未検証となる可能性
+  - [Suggestion] 最小ケース（多対多 + 履歴 + 集計1件）だけでもPoCで検証する
+  - [Assumption] 仕様としては将来的に複雑クエリが必要になる前提で設計する
 
 ---
 
@@ -156,6 +166,12 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Assumption] 本PoCは仕様確定前のため、要件変更を許容する
 - [Assumption] 本PoCの成果は実装方針決定の判断材料に限定する
 - [Assumption] 追加技術の採用は行わず、既定アーキテクチャ内で検証する
+- [Assumption] 環境は最小構成で準備し、環境分離方針（単一/複数）はPoC開始前に決定する
+- [Assumption] SecretsはVercel/AWSの環境変数で管理し、命名規則を事前に定める
+- [Assumption] Cognito/S3/SESはPoCでも最小権限を意識したIAM設定を行う
+- [Assumption] ログ/監視はAPI Gateway/Lambda/Fargateの追跡ができる粒度を最低要件とする
+- [Assumption] CI/CDはmainマージ後の自動デプロイを最低要件とする
+- [Assumption] Neonの接続方式（プール/リトライ/タイムアウト方針）はPoC開始前に仮決めする
 
 ---
 
