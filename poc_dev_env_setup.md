@@ -33,6 +33,8 @@
 
 - [Assumption] 開発環境はDockerコンテナ内に構築し、VSCodeでコンテナにアタッチして作業する
 - [Assumption] ローカル環境に依存関係を直接インストールしない
+- [Assumption] SecretsはVercel/AWSの環境変数で管理し、命名規則を事前に定める
+- [Assumption] 環境分離方針（単一/複数）はPoC開始前に決定する
 
 ---
 
@@ -81,6 +83,7 @@
 - Vercelへのデプロイを前提に環境変数設計を行う
 
 - [Assumption] UIフレームワークはshadcn-svelteを採用する
+- [Assumption] フロントの入力バリデーションはZodを第一候補とする
 
 ### 4.1.1 shadcn-svelte 導入（PoC）
 
@@ -108,6 +111,8 @@
 
 - FastAPIをベースに最小CRUDのAPIを作成
 - Lambda実行を前提にSAMでパッケージング/デプロイする
+- [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemyに降りる前提で構成する
+- [Assumption] マイグレーション運用はAlembic導入を第一候補として検討する
 
 ### 5.3 SAMテンプレート方針（PoC）
 
@@ -137,6 +142,7 @@
 - 接続数の動作傾向を軽く確認
 
 - [Assumption] PoCはFree枠で開始する
+- [Assumption] Neonの接続方式（プール/リトライ/タイムアウト方針）はPoC開始前に仮決めする
 
 ---
 
@@ -159,6 +165,7 @@
 
 - バックエンドのテスト/ビルド/デプロイを自動化
 - Secrets（AWS認証情報）をGitHubに登録
+- [Assumption] mainマージ後の自動デプロイを最低要件とする
 
 ### 8.2 Vercel
 
