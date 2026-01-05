@@ -57,6 +57,9 @@ Workの一覧、登録、編集、削除を提供し、ステータス・期日�
 
 登録/編集時は work_id, created_by, title, content, status, start_date_planned, end_date_planned を必須とし、start_date_actual, end_date_actual, tags は任意とする。  
 Workは複数人担当を許容し、責任者（PIC）を明示できること。
+Workは他のWorkと関連付けでき、関連の追加/削除を手動で行えること。
+関連は関係タイプを持たない参照リンクとし、双方向に表示されること。
+関連Workの解除（削除）がUIから実行できること。
 
 共通ヘッダを主要画面に表示し、以下を含めること。  
 - グローバルナビ（主要機能への導線）  
@@ -70,6 +73,7 @@ Workは複数人担当を許容し、責任者（PIC）を明示できること�
 - [Assumption] statusの値域: Not Started / In Progress / Completed / On Hold / Cancelled
 - [Open Question] Work完了判定条件（ステータス/日付/レビュー）
 - [Risk] 一括アップロード時のバリデーション/重複処理が未定義
+- [Assumption] 関連Workの関係タイプ（依存/重複など）は将来検討とする
 
 ---
 
