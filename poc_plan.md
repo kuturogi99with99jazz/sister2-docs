@@ -31,6 +31,9 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 | 運用性 | 監視・ログ・デプロイ | 追跡可能なログが残る |
 | UI利用シーン適合 | iPadを主軸にしたUI検証（操作性/画面密度/携帯性） | iPadで主要導線がストレスなく成立 |
 | フロントUI実装性 | Svelte + Tailwind + shadcn-svelteの開発体験確認 | 主要画面のUIを無理なく組める手触りが得られる |
+| 関連Work手動リンク | Work詳細での関連Work追加/表示の成立性 | 参照リンクの追加/削除と双方向表示が確認できる |
+| 関連Workサジェスト | 関連Work検索候補の表示/追加導線の検証 | 候補表示と選択追加のUXが破綻しない |
+| 関連Work解除確認 | 関連Work削除時の確認導線の検証 | 誤操作防止がUXを損なわず成立する |
 | 長時間処理の成立性 | Fargateを用いた非同期処理の起動/完了通知 | Lambdaでは難しい処理が分離実行できる |
 | MCP理解/適用 | MCPの概念理解と自社向け活用余地の把握 | MCPサーバ設計の当たりが掴める |
 | ORM/マイグレーション成立性 | SQLModel/SQLAlchemyの採用可否と運用方針の検証 | 複雑クエリ/多対多/履歴管理の表現とマイグレーション運用が無理なく成立 |
@@ -58,6 +61,9 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - 通知（SES/SNSの単一イベント通知）
 - iPadを主軸としたUI検証（入力/閲覧の主要導線）
 - Svelte + Tailwind + shadcn-svelteのUI実装性検証
+- 関連Workの手動リンク（参照リンク）UI検証
+- 関連Workサジェスト（候補表示/追加）UI検証
+- 関連Work解除時の確認UI検証
 - Fargateを用いた非同期バッチの最小検証
 - MCPのキャッチアップと設計メモ作成
 
