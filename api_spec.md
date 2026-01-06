@@ -49,11 +49,12 @@
 | GET | /works/{workId} | Work詳細取得 | |
 | PATCH | /works/{workId} | Work更新 | |
 | DELETE | /works/{workId} | Work削除 | 論理削除 |
-| POST | /works/{workId}/assign | 担当者割当 | 複数可 |
+| POST | /works/{workId}/assign | 担当者割当 | 主担当必須 |
 | POST | /works/{workId}/status | ステータス更新 | 監査ログ対象 |
 | POST | /works/{workId}/complete | 完了処理 | WorkLog記録 |
 | GET | /works/{workId}/logs | 操作ログ取得 | 稼働推定 |
 | POST | /works/{workId}/logs | 操作ログ追加 | start/pause/complete |
+| GET | /search | 横断検索 | Work/チャット |
 
 ### 3.1 POST /works（Work作成）
 
@@ -71,7 +72,8 @@ Request:
 | target_links | object[] | no | 対象紐付け |
 | target_links[].target_type | string | no | project / system / common |
 | target_links[].target_id | string | no | 対象ID |
-| assignee_ids | string[] | no | 担当者 |
+| primary_assignee_id | string | yes | 主担当 |
+| participant_ids | string[] | no | 参加者 |
 | start_date_planned | string | yes | 予定開始日 |
 | end_date_planned | string | yes | 予定終了日 |
 
@@ -102,7 +104,38 @@ Response:
 |------|----|------|
 | work | object | 更新後のWork |
 
-### 3.3 POST /works/{workId}/logs（操作ログ追加）
+### 3.3 POST /works/{workId}/assign（担当者割当）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| primary_assignee_id | string | yes | 主担当 |
+| participant_ids | string[] | no | 参加者 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| work | object | 更新後のWork |
+
+### 3.4 POST /works/{workId}/complete（完了処理）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| note | string | no | 完了メモ |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| work | object | 更新後のWork |
+
+- [Assumption] 完了処理で end_date_actual を自動記録し、必要に応じて後から編集可能とする
+
+### 3.5 POST /works/{workId}/logs（操作ログ追加）
 
 Request:
 
@@ -116,6 +149,31 @@ Response:
 | 項目 | 型 | 説明 |
 |------|----|------|
 | log | object | 追加されたWorkLog |
+
+### 3.6 GET /search（横断検索）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| q | string | yes | 検索キーワード |
+| types | string[] | no | work / chat |
+| limit | number | no | 取得件数 |
+| cursor | string | no | ページングカーソル |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| results | object[] | 検索結果 |
+| results[].type | string | work / chat |
+| results[].id | string | リソースID |
+| results[].title | string | Workタイトル / チャットスレッド名 |
+| results[].snippet | string | 該当箇所の抜粋 |
+| results[].updated_at | string | 更新日時 |
+| next_cursor | string | 次ページカーソル |
+
+- [Assumption] PoCではPostgreSQLの全文検索で成立性のみ確認する
 
 ---
 
