@@ -232,9 +232,37 @@
             <div class="detail-grid">
               <div class="detail-item">
                 <div class="detail-label">担当者</div>
-                <div class="detail-value">
-                  <img src="images/placeholder.svg" alt="田中 太郎" class="avatar-small">
-                  田中 太郎
+                <div class="detail-value detail-value-stack">
+                  <div class="assignee-line">
+                    <span class="assignee-role">主担当</span>
+                    <img src="images/placeholder.svg" alt="田中 太郎" class="avatar-small">
+                    田中 太郎
+                  </div>
+                  <div class="assignee-line assignee-muted">
+                    <span class="assignee-role">参加者</span>
+                    <img src="images/avatar-1.svg" alt="佐藤 花子" class="avatar-small">
+                    佐藤 花子
+                    <img src="images/placeholder.svg" alt="鈴木 一郎" class="avatar-small">
+                    鈴木 一郎
+                    <span class="assignee-more">+1</span>
+                  </div>
+                  <details class="assignee-expand">
+                    <summary class="assignee-toggle">参加者一覧を展開</summary>
+                    <div class="assignee-list">
+                      <div class="assignee-person">
+                        <img src="images/avatar-1.svg" alt="佐藤 花子" class="avatar-small">
+                        佐藤 花子
+                      </div>
+                      <div class="assignee-person">
+                        <img src="images/placeholder.svg" alt="鈴木 一郎" class="avatar-small">
+                        鈴木 一郎
+                      </div>
+                      <div class="assignee-person">
+                        <img src="images/placeholder.svg" alt="高橋 次郎" class="avatar-small">
+                        高橋 次郎
+                      </div>
+                    </div>
+                  </details>
                 </div>
               </div>
               <div class="detail-item">
@@ -253,7 +281,19 @@
               </div>
               <div class="detail-item">
                 <div class="detail-label">実績開始日</div>
-                <div class="detail-value">2026-01-05</div>
+                <div class="detail-value">
+                  2026-01-05
+                  <span class="detail-note">編集可</span>
+                  <button class="detail-edit-btn" type="button">編集</button>
+                </div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">実績完了日</div>
+                <div class="detail-value">
+                  2026-01-12
+                  <span class="detail-note">編集可</span>
+                  <button class="detail-edit-btn" type="button">編集</button>
+                </div>
               </div>
               <div class="detail-item">
                 <div class="detail-label">推定稼働時間</div>
