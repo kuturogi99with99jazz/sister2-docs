@@ -31,6 +31,7 @@ Sister 2 は、既存のプロジェクト進捗管理システム「Sister」�
 ### コア機能
 
 - Work管理（CRUD / ステータス / タグ）
+- Work担当（主担当 + 参加者）
 - Work対象管理（プロジェクト / システム / 共通業務）
 - ファイル管理（S3署名URL）
 - 通知（SES / SNS）
@@ -97,7 +98,7 @@ flowchart LR
 ### CI/CD & IaC
 
 - GitHub Actions
-- AWS SAM
+- Serverless Framework
 
 ### AI
 
@@ -109,9 +110,10 @@ flowchart LR
 /
 ├─ frontend/        # SvelteKit
 ├─ backend/         # FastAPI (Lambda)
+│  └─ serverless.yml   # IaC (Serverless Framework)
 ├─ jobs/            # Fargate batch jobs
-├─ infra/           # IaC (SAM)
 ├─ db/              # schema / migrations
+├─ .github/         # GitHub Actions
 ├─ docs/            # 設計・仕様ドキュメント
 └─ README.md
 ```
