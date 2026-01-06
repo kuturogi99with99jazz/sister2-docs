@@ -192,7 +192,7 @@ sister-next/
 | 認証 | Cognito（Hosted UI + JWT） |
 | 認可 | RBAC（roles／permissions） + Work中心のScope/Action |
 | 通信 | 全通信HTTPS、API GatewayでCORS制御 |
-| 秘密情報 | AWS Secrets Manager管理（OpenAIキー等） |
+| 秘密情報 | PoCは環境変数で管理し、本番移行時にSecrets Managerを検討 |
 | ログ | CloudWatch Logs + Neon監査テーブル（RDB） |
 | 権限管理 | IAM最小権限（Least Privilege原則） |
 
@@ -226,6 +226,13 @@ Roleは最小限とし、業務の違いはScopeで表現する。
 | chat_threads / chat_messages | チャット機能 | Work/対象単位 |
 | internal_tools / tool_definitions / tool_entries | 社内ツール（ToolTemplate） | 定義駆動型 |
 | audit_logs | 操作履歴 | 自動記録 |
+
+---
+
+### 11.1 検索方針（PoC）
+
+- [Assumption] 全文検索はPoCではNeon PostgreSQLの全文検索で成立性のみ確認する
+- [Assumption] 専用検索基盤の採用判断は次フェーズに回す
 
 ---
 
