@@ -228,6 +228,8 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Assumption] CI/CDはmainマージ後の自動デプロイを最低要件とする
 - [Assumption] Neonの接続方式（プール/リトライ/タイムアウト方針）はPoC開始前に仮決めする
 - [Assumption] PoCでCognito Hosted UIやメール通知（SES）を検証する場合、検証用ドメインを事前に確保する
+- [Assumption] Workの完了日は「完了ボタン押下時に自動記録」し、後から編集可能とする
+- [Assumption] Work担当者は主担当を必須とし、参加者は複数追加可能とする
 
 ---
 
@@ -237,3 +239,23 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Assumption] PoCの成果物レビュー形式は社内レビュー
 - [Assumption] 架空のシステム再構築シナリオをPoCのユースケースに採用する
 - [Open Question] PoCにおけるAI要約の扱い（実施/非実施）
+- [Suggestion] 全文検索はPoCではPostgreSQLの全文検索で成立性のみ確認し、専用検索基盤の採用判断は次フェーズに回す
+- [Assumption] 専用検索基盤の候補はメモ止まりで保持し、要件確定後に選定する
+  - OpenSearch（AWSマネージド）：AWS完結、運用は比較的楽、コストは中〜高
+  - Elasticsearch（Elastic Cloud含む）：機能豊富、運用と費用が重くなりやすい
+  - Meilisearch：導入が簡単、スケールや分析系は軽め
+  - Typesense：高速で軽量、複雑検索は限定的
+  - Algolia（SaaS）：体験良いがロックインとコスト上昇に注意
+
+### 9.1 全文検索（PoC）最小検証項目（案）
+
+| 項目 | 内容 |
+|---|---|
+| 対象データ | Workタイトル/本文、チャット本文（最小） |
+| 件数 | 1,000件程度のサンプル |
+| サンプル作成 | 手動入力 + 簡易ダミーデータ生成 |
+| 検索パターン | 部分一致/複合条件/新規追加直後の反映 |
+| 観測項目 | 応答時間、ヒット精度の体感、エラー有無 |
+
+- [Assumption] PoCでは検索品質の厳密評価ではなく「成立性」を優先する
+- [Suggestion] サンプルデータは最小構成で作成し、Work/チャット双方の検索に使える粒度を確保する
