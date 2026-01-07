@@ -140,4 +140,5 @@ flowchart LR
 
 ## 📝 ライセンス
 
-MIT
+Apache-2.0
+Copyright 2026 Kaneko Shinichi
