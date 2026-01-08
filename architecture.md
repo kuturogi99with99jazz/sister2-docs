@@ -192,6 +192,7 @@ sister-next/
 | 認証 | Cognito（Hosted UI + JWT） |
 | 認可 | RBAC（roles／permissions） + Work中心のScope/Action |
 | 通信 | 全通信HTTPS、API GatewayでCORS制御 |
+| ドメイン/証明書 | ドメインはRoute53で管理、VercelのフロントはVercel自動発行の証明書を利用、AWS側（API Gateway等）はACMで証明書を発行 |
 | 秘密情報 | PoCは環境変数で管理し、本番移行時にSecrets Managerを検討 |
 | ログ | CloudWatch Logs + Neon監査テーブル（RDB） |
 | 権限管理 | IAM最小権限（Least Privilege原則） |
@@ -199,6 +200,8 @@ sister-next/
 ---
 
 ### 10.1 権限モデル（Role / Scope / Action）
+
+CORSはAPI Gateway側で有効化し、FastAPI側のCORS設定は原則不要とする（Vercelからのブラウザアクセス前提）。
 
 権限は「人 × Work」を基準に設計し、プロジェクト/システムは補助情報として扱う。  
 Roleは「ゲスト / パートナー / 担当 / リーダー / マネージャー / ディレクター / 管理者」に限定し、業務の違いはScopeで表現する。
