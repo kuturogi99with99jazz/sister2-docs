@@ -110,14 +110,15 @@
 ### 5.1 初期セットアップ方針
 
 - FastAPIをベースに最小CRUDのAPIを作成
-- Lambda実行を前提にSAMでパッケージング/デプロイする
+- Lambda実行を前提にServerless Frameworkでパッケージング/デプロイする
 - [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemyに降りる前提で構成する
 - [Assumption] マイグレーション運用はAlembic導入を第一候補として検討する
 
-### 5.3 SAMテンプレート方針（PoC）
+### 5.3 Serverless Framework方針（PoC）
 
-- `backend/template.yaml` を用意し、API Gateway + Lambdaを定義する
-- 環境変数（Neon接続情報、Cognito設定など）はSAMで外出しする
+- `backend/serverless.yml` を用意し、API Gateway + Lambdaを定義する
+- CORSはAPI Gateway側で有効化する（Vercelからのブラウザアクセス前提）
+- 環境変数（Neon接続情報、Cognito設定など）はServerless Frameworkで外出しする
 - PoCではステージは1つに絞り、最小構成で回す
 
 ### 5.2 AWSリソース準備
