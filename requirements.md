@@ -5,6 +5,15 @@
 Sister 2は、既存のプロジェクト進捗管理システムを、**Work（仕事）中心モデル**として再構築することを目的とします。  
 管理の最小単位を「プロジェクト」ではなく「人が日々行うWork」とし、開発・運用・保守・定期作業・突発対応を一元的に扱います。
 
+### 1.2 ドキュメント/モックUI公開方針
+
+- [Assumption] 公開先は GitHub Pages とし、`sister2-docs` リポジトリから配信する
+- [Assumption] 公開URLは `https://kuturogi99with99jazz.github.io/sister2-docs/mockui/` を基準とする
+- [Assumption] mockui は静的ビルド成果物として出力され、Pages から配信可能である
+- [Suggestion] 将来の拡張（`/docs` など）を見据え、mockui はサブディレクトリ `/mockui` で公開する
+- [Assumption] mockui は `mock_ui/` 配下の静的HTML/CSSとして管理し、GitHub Pages は `mock_ui/` を公開ディレクトリとして扱う
+- [Risk] サブパス配信のため、SvelteKit 等は `paths.base` 等の設定が必要になる可能性がある
+
 ### 1.1 追加検討事項
 
 - 想定ユーザー規模
