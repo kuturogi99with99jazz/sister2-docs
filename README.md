@@ -150,4 +150,4 @@ flowchart LR
 ## 📝 ライセンス
 
 Apache-2.0
-Copyright 2026 Kaneko Shinichi
+Copyright 2026 Sister 2 Team
