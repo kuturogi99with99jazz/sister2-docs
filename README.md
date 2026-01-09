@@ -4,6 +4,8 @@
 > Serverless-first なWork管理・社内業務基盤  
 > SvelteKit + FastAPI + AWS + Neon + AI
 
+mockui: https://kuturogi99with99jazz.github.io/sister2-docs/mockui/
+
 ## 📘 概要
 
 Sister 2 は、既存のプロジェクト進捗管理システム「Sister」を、
@@ -126,6 +128,13 @@ flowchart LR
 - er_diagram.mmd — ER図
 - poc_plan.md — PoC計画
 - poc_dev_env_setup.md — PoC開発環境構築手順
+
+## 🌐 mockui 公開
+
+- 公開URL: `https://kuturogi99with99jazz.github.io/sister2-docs/mockui/`
+- 配信内容: `mock_ui/` 配下の静的HTML/CSS
+- 更新手順: `mock_ui/` を更新 → `main` に push → GitHub Actions が Pages にデプロイ
+- Pages 設定: Settings → Pages → Source が `GitHub Actions` になっていることを確認
 
 ## 🚧 ステータス
 
