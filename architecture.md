@@ -152,10 +152,79 @@ sister-next/
 |------|-----------|-------------|
 | フロントエンド | Lint → Build → Deploy | GitHub Actions → Vercel |
 | バックエンド | Test → Package → Deploy | GitHub Actions → Serverless Framework |
+| mockui | Build → Deploy | GitHub Actions → GitHub Pages |
 | IaC | serverless deploy | Serverless Framework |
 | テスト | pytest, playwright | 自動実行・結果レポート化 |
 
 ---
+
+### 7.1 GitHub Pages（mockui）
+
+- [Assumption] mockui の公開先は GitHub Pages とし、`sister2-docs` リポジトリから配信する
+- [Assumption] 公開URLは `https://kuturogi99with99jazz.github.io/sister2-docs/mockui/` を基準とする
+- [Assumption] mockui は `mock_ui/` 配下の静的HTML/CSSとして管理し、GitHub Pages は `mock_ui/` を公開ディレクトリとして扱う
+- [Suggestion] 将来の拡張（`/docs` など）を見据え、mockui はサブディレクトリ `/mockui` で公開する
+- [Risk] サブパス配信のため、SvelteKit 等は `paths.base` 等の設定が必要になる可能性がある
+
+#### 7.1.1 GitHub Pages デプロイ方針（概要）
+
+- [Assumption] GitHub Actions を用い、`main` ブランチ更新で Pages に反映する
+- [Assumption] Actions は `mock_ui/` を成果物として Pages に公開する
+- [Suggestion] 公開方式は GitHub Pages の Pages artifact を採用する（`gh-pages` ブランチを管理しない）
+- [Assumption] 公開方式は Pages artifact を採用する
+
+#### 7.1.2 GitHub Pages デプロイ手順（概要）
+
+- [Assumption] GitHub Pages の Source を `GitHub Actions` に設定する
+- [Assumption] Actions ワークフローで `mock_ui/` を Pages artifact としてアップロードする
+- [Assumption] Pages へのデプロイは Actions の `deploy` ジョブで実行する
+- [Suggestion] リポジトリ Settings → Pages で Source が `GitHub Actions` になっていることを確認する
+
+#### 7.1.3 付録: GitHub Actions ワークフロー案（mockui）
+
+| 区分 | 内容 |
+|------|------|
+| トリガー | `main` ブランチへの push |
+| ビルド | なし（`mock_ui/` をそのまま配信） |
+| 成果物 | `mock_ui/` を Pages artifact としてアップロード |
+| デプロイ | Actions の Pages デプロイジョブで公開 |
+| 権限 | `pages: write` / `id-token: write` を付与 |
+
+```yaml
+name: Deploy mockui to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: mock_ui
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
 
 ## 8. 運用・保守方針
 
