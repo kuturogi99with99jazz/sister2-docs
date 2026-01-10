@@ -116,6 +116,27 @@ sequenceDiagram
   F-->>U: 画面更新
 ```
 
+### 5.1 画面評価（Good/Bad）データフロー
+
+```mermaid
+sequenceDiagram
+  participant U as User (ブラウザ)
+  participant F as Vercel (SvelteKit)
+  participant G as API Gateway
+  participant L as Lambda (FastAPI)
+  participant N as Neon (PostgreSQL)
+
+  U->>F: 画面評価（Good/Bad + 理由/テンプレ）
+  F->>G: HTTPS Request + JWT
+  G->>L: 評価の作成/更新
+  L->>N: 評価保存 + 監査ログ記録
+  L-->>G: 評価集計結果
+  G-->>F: 結果返却
+  F-->>U: 画面評価の集計表示
+```
+
+[Assumption] 評価集計は即時集計のみとする。  
+
 ---
 
 ## 6. ディレクトリ構成（想定）
@@ -157,6 +178,10 @@ sister-next/
 | テスト | pytest, playwright | 自動実行・結果レポート化 |
 
 ---
+
+### 7.2 リポジトリ運用方針
+
+- [Assumption] PoCリポジトリを本番実装に継続利用し、作り直しは原則行わない
 
 ### 7.1 GitHub Pages（mockui）
 
@@ -247,6 +272,11 @@ jobs:
 | 開発環境 | Docker Compose (Local) | Lambdaエミュレーション含む |
 | 検証環境 | AWS（Staging） | CI/CD自動デプロイ |
 | 本番環境 | AWS + Vercel | 常時稼働環境 |
+
+### 9.0.1 ブランチ運用方針
+
+- [Assumption] 本番運用は trunkベース（`main` 一本）で進める
+- [Assumption] 環境はブランチ分割ではなく、デプロイ先（Staging/Production）で分離する
 
 ### 9.1 追加検討事項
 
