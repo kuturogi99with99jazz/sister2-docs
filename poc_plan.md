@@ -206,6 +206,14 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 ---
 
+### 6.2.1 有料プラン判断のための記録観点（PoC）
+
+- [Assumption] 無料枠で詰まった具体ポイント（制限/速度/運用）を記録する
+- [Assumption] 環境分離が必要な理由（誰が/いつ/何を検証するか）を記録する
+- [Assumption] 有料化で解決できるかどうかを検証メモに残す
+
+---
+
 ### 6.3 CI/CD方針（PoC）
 
 - [Assumption] リポジトリはGitHubを利用する
@@ -243,6 +251,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - [Assumption] 本PoCは仕様確定前のため、要件変更を許容する
 - [Assumption] 本PoCの成果は実装方針決定の判断材料に限定する
+- [Assumption] PoCリポジトリは本番実装に継続利用し、作り直しは原則行わない
 - [Assumption] 追加技術の採用は行わず、既定アーキテクチャ内で検証する
 - [Assumption] 環境は最小構成で準備し、環境分離方針（単一/複数）はPoC開始前に決定する
 - [Assumption] SecretsはVercel/AWSの環境変数で管理し、命名規則を事前に定める
