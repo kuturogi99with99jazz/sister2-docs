@@ -291,7 +291,59 @@ Response:
 
 ---
 
-## 6. テンプレートAPI（ToolTemplate / 社内ツール定義）（案）
+## 6. 画面評価API（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /screen-routes | 画面一覧取得 | ルート単位 |
+| GET | /screen-feedback-templates | 理由テンプレ一覧取得 | 任意選択 |
+| POST | /screen-feedbacks | 画面評価の作成/更新 | 最新1件を上書き |
+| GET | /screen-feedbacks/summary | 画面評価の集計取得 | 公開集計 |
+
+### 6.1 POST /screen-feedbacks（画面評価の作成/更新）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| route_path | string | yes | 画面ルート（例: /work） |
+| rating | string | yes | good / bad |
+| reason | string | no | 理由（最大400文字） |
+| template_id | string | no | テンプレ選択 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| feedback | object | 評価オブジェクト |
+| summary | object | 集計オブジェクト |
+| [Assumption] user_id | string | JWTから自動取得 |
+
+- [Assumption] 評価の作成/更新は監査ログに記録する
+- [Assumption] 画面一覧はルートの静的定義で管理する
+
+### 6.2 GET /screen-feedbacks/summary（画面評価の集計取得）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| route_path | string | yes | 画面ルート |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| route_path | string | 画面ルート |
+| good_count | number | Good件数 |
+| bad_count | number | Bad件数 |
+| total_count | number | 合計件数 |
+| good_rate | number | Good率（0-1） |
+| updated_at | string | 集計更新日時 |
+
+---
+
+## 7. テンプレートAPI（ToolTemplate / 社内ツール定義）（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -306,7 +358,7 @@ Response:
 | POST | /templates/{templateId}/entries/{entryId}/reject | 差戻し | 理由必須 |
 | GET | /templates/{templateId}/reports | 集計取得 | 集計タイプのみ |
 
-### 6.1 POST /templates（テンプレート作成）
+### 7.1 POST /templates（テンプレート作成）
 
 Request:
 
@@ -325,7 +377,7 @@ Response:
 | [Assumption] created_by | string | JWTから自動取得 |
 | [Assumption] version | string | 自動増分（更新時に+1） |
 
-### 6.2 POST /templates/{templateId}/entries（申請/入力作成）
+### 7.2 POST /templates/{templateId}/entries（申請/入力作成）
 
 Request:
 
@@ -344,7 +396,7 @@ Response:
 |------|----|------|
 | entry | object | entryオブジェクト |
 
-### 6.3 POST /templates/{templateId}/entries/{entryId}/approve（承認）
+### 7.3 POST /templates/{templateId}/entries/{entryId}/approve（承認）
 
 Request:
 
@@ -360,7 +412,7 @@ Response:
 | entry | object | 更新後のentry |
 | [Assumption] approver_role | string | manager / director / admin |
 
-### 6.4 POST /templates/{templateId}/entries/{entryId}/reject（差戻し）
+### 7.4 POST /templates/{templateId}/entries/{entryId}/reject（差戻し）
 
 Request:
 
@@ -376,7 +428,7 @@ Response:
 
 ---
 
-## 7. AI補助API（案）
+## 8. AI補助API（案）
 
 AI補助は明示的な操作でのみ実行し、自動実行は行わない。
 
@@ -385,7 +437,7 @@ AI補助は明示的な操作でのみ実行し、自動実行は行わない。
 | POST | /ai/works/{workId}/summarize | Work要約 | 明示実行のみ |
 | POST | /ai/works/{workId}/draft | Work下書き作成 | 明示実行のみ |
 
-### 7.1 POST /ai/works/{workId}/summarize（要約）
+### 8.1 POST /ai/works/{workId}/summarize（要約）
 
 Request:
 
@@ -401,7 +453,7 @@ Response:
 
 ---
 
-## 8. 管理業務API（案）
+## 9. 管理業務API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -429,7 +481,7 @@ masterType（必須マスタ）:
 
 ---
 
-## 8. 追加検討事項
+## 10. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
