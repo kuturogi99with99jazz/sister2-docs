@@ -137,6 +137,30 @@ sequenceDiagram
 
 [Assumption] 評価集計は即時集計のみとする。  
 
+### 5.2 帳票（Reports）データフロー
+
+```mermaid
+sequenceDiagram
+  participant U as User (ブラウザ)
+  participant F as Vercel (SvelteKit)
+  participant G as API Gateway
+  participant L as Lambda (FastAPI)
+  participant J as Fargate (帳票生成)
+  participant N as Neon (PostgreSQL)
+  participant S as S3
+
+  U->>F: 帳票生成（手動/定期）
+  F->>G: HTTPS Request + JWT
+  G->>L: 帳票生成リクエスト
+  L->>N: 帳票ジョブ登録
+  L->>J: 生成ジョブ起動
+  J->>N: 生成データ取得
+  J->>S: 生成ファイル保存（Excel/PDF）
+  J->>N: 実行結果/ファイル参照保存
+  L-->>G: 実行受付レスポンス
+  G-->>F: 受付完了
+```
+
 ---
 
 ## 6. ディレクトリ構成（想定）
@@ -327,6 +351,7 @@ Roleは「ゲスト / パートナー / 担当 / リーダー / マネージャ�
 | blog_posts / blog_categories / blog_tags | ナレッジ機能 | AI要約対応 |
 | chat_threads / chat_messages | チャット機能 | Work/対象単位 |
 | internal_tools / tool_definitions / tool_entries | 社内ツール（ToolTemplate） | 定義駆動型 |
+| report_templates / report_runs / report_files | 帳票 | Excel/PDF |
 | audit_logs | 操作履歴 | 自動記録 |
 
 ---
@@ -366,6 +391,8 @@ AI処理の入力はユーザーが閲覧可能な範囲に限定する。
 | internal_tools_api | 社内ツールCRUD | API Gateway | 定義駆動型 |
 | file_upload | S3署名URL発行 | API Gateway | |
 | ai_summary | OpenAI要約生成 | Fargate | 長時間・重処理に固定 |
+| report_generate | 帳票生成 | Fargate | 手動/定期バッチ |
+| report_schedule | 帳票定期生成 | CloudWatch Event | スケジュール実行 |
 | scheduled_backup | DBバックアップ | CloudWatch Event | |
 
 ---
