@@ -21,6 +21,12 @@ erDiagram
   works ||--o{ work_tag_links : tagged
   work_tags ||--o{ work_tag_links : tag
 
+  screen_routes ||--o{ screen_feedbacks : targets
+  users ||--o{ screen_feedbacks : rates
+  screen_feedback_templates ||--o{ screen_feedbacks : templates
+  screen_feedbacks ||--o{ screen_feedback_logs : logs
+  users ||--o{ screen_feedback_logs : records
+
   work_targets ||--o{ work_target_links : links
   works ||--o{ work_target_links : links
   users ||--o{ work_targets : owns
@@ -172,6 +178,41 @@ erDiagram
     string id
     string work_id
     string tag_id
+  }
+  screen_routes {
+    string id
+    string route_path
+    string name
+    string description
+    string is_active
+    string created_at
+    string updated_at
+  }
+  screen_feedback_templates {
+    string id
+    string label
+    string is_active
+    string created_at
+    string updated_at
+  }
+  screen_feedbacks {
+    string id
+    string screen_route_id
+    string user_id
+    string rating
+    string reason
+    string template_id
+    string created_at
+    string updated_at
+  }
+  screen_feedback_logs {
+    string id
+    string feedback_id
+    string user_id
+    string action
+    string before_json
+    string after_json
+    string created_at
   }
   work_targets {
     string id
