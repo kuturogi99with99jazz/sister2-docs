@@ -135,6 +135,45 @@ Table work_tag_links {
   tag_id varchar
 }
 
+Table screen_routes {
+  id varchar [pk]
+  route_path varchar
+  name varchar
+  description varchar
+  is_active varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table screen_feedback_templates {
+  id varchar [pk]
+  label varchar
+  is_active varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table screen_feedbacks {
+  id varchar [pk]
+  screen_route_id varchar
+  user_id varchar
+  rating varchar
+  reason varchar
+  template_id varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table screen_feedback_logs {
+  id varchar [pk]
+  feedback_id varchar
+  user_id varchar
+  action varchar
+  before_json varchar
+  after_json varchar
+  created_at varchar
+}
+
 Table work_targets {
   id varchar [pk]
   target_type varchar
@@ -338,6 +377,12 @@ Ref: users.id < work_activity_logs.user_id
 
 Ref: works.id < work_tag_links.work_id
 Ref: work_tags.id < work_tag_links.tag_id
+
+Ref: screen_routes.id < screen_feedbacks.screen_route_id
+Ref: users.id < screen_feedbacks.user_id
+Ref: screen_feedback_templates.id < screen_feedbacks.template_id
+Ref: screen_feedbacks.id < screen_feedback_logs.feedback_id
+Ref: users.id < screen_feedback_logs.user_id
 
 Ref: work_targets.id < work_target_links.target_id
 Ref: works.id < work_target_links.work_id
