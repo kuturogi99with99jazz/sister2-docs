@@ -57,7 +57,24 @@
           <span class="admin-badge">管理者</span>
         </a>
 </nav>
-      <div class="header-right"></div>
+      <div class="header-right">
+        <div class="screen-feedback" aria-label="画面評価">
+          <button class="feedback-btn good" type="button" aria-label="この画面をGoodと評価">
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M7 11V5a2 2 0 0 1 2-2h2l1 4h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 11H4v9h3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Good <span class="feedback-count">28</span>
+          </button>
+          <button class="feedback-btn bad" type="button" aria-label="この画面をBadと評価">
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 13v6a2 2 0 0 1-2 2h-2l-1-4H6a2 2 0 0 1-2-2l2-9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17 13h3V4h-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Bad <span class="feedback-count">6</span>
+          </button>
+        </div>
+</div>
     </div>
   </header>
 
