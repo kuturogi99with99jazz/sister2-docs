@@ -27,6 +27,14 @@ erDiagram
   screen_feedbacks ||--o{ screen_feedback_logs : logs
   users ||--o{ screen_feedback_logs : records
 
+  report_templates ||--o{ report_template_roles : grants
+  roles ||--o{ report_template_roles : allowed
+  report_templates ||--o{ report_runs : generates
+  users ||--o{ report_runs : triggers
+  report_runs ||--o{ report_run_files : outputs
+  report_templates ||--o{ report_schedules : schedules
+  users ||--o{ report_templates : defines
+
   work_targets ||--o{ work_target_links : links
   works ||--o{ work_target_links : links
   users ||--o{ work_targets : owns
@@ -213,6 +221,57 @@ erDiagram
     string before_json
     string after_json
     string created_at
+  }
+  report_templates {
+    string id
+    string name
+    string report_type
+    string output_formats
+    string template_file_key
+    string template_file_name
+    string retention_days
+    string is_immutable
+    string status
+    string created_by
+    string created_at
+    string updated_at
+  }
+  report_template_roles {
+    string id
+    string report_template_id
+    string role_id
+    string access_type
+  }
+  report_runs {
+    string id
+    string report_template_id
+    string triggered_by
+    string trigger_type
+    string parameters_json
+    string status
+    string started_at
+    string finished_at
+    string created_at
+  }
+  report_run_files {
+    string id
+    string report_run_id
+    string file_key
+    string file_name
+    string content_type
+    string size_bytes
+    string created_at
+  }
+  report_schedules {
+    string id
+    string report_template_id
+    string cron
+    string timezone
+    string is_active
+    string last_run_at
+    string next_run_at
+    string created_at
+    string updated_at
   }
   work_targets {
     string id
