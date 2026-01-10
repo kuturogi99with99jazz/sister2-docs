@@ -343,7 +343,80 @@ Response:
 
 ---
 
-## 7. テンプレートAPI（ToolTemplate / 社内ツール定義）（案）
+## 7. 帳票API（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /reports/templates | 帳票テンプレ一覧取得 | 権限に応じてフィルタ |
+| POST | /reports/templates | 帳票テンプレ作成 | 管理者のみ |
+| GET | /reports/templates/{reportTemplateId} | 帳票テンプレ詳細取得 | |
+| PATCH | /reports/templates/{reportTemplateId} | 帳票テンプレ更新 | 差し替え対応 |
+| GET | /reports/templates/{reportTemplateId}/runs | 生成履歴取得 | |
+| POST | /reports/templates/{reportTemplateId}/runs | 帳票生成（手動） | 生成ジョブ起動 |
+| GET | /reports/runs/{reportRunId} | 生成結果取得 | |
+| GET | /reports/runs/{reportRunId}/file | 出力ファイル取得 | 署名URL発行 |
+| POST | /reports/templates/{reportTemplateId}/schedules | 定期生成スケジュール作成 | 管理者のみ |
+| PATCH | /reports/templates/{reportTemplateId}/schedules/{scheduleId} | 定期生成スケジュール更新 | 管理者のみ |
+
+### 7.1 POST /reports/templates（帳票テンプレ作成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| name | string | yes | 帳票名 |
+| report_type | string | yes | work_summary / attendance / utilization / knowledge_list |
+| output_formats | string[] | yes | xlsx / pdf |
+| template_file_key | string | no | ExcelテンプレS3キー |
+| retention_days | number | no | 保存期間（日数） |
+| is_immutable | boolean | no | 改ざん防止 |
+| access_roles | string[] | yes | 閲覧/生成可能ロール |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| template | object | テンプレオブジェクト |
+| [Assumption] created_by | string | JWTから自動取得 |
+
+### 7.2 POST /reports/templates/{reportTemplateId}/runs（帳票生成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| parameters | object | no | 期間/対象などの条件 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| run | object | 生成ジョブ |
+| [Assumption] trigger_type | string | manual |
+
+### 7.3 POST /reports/templates/{reportTemplateId}/schedules（定期生成スケジュール作成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| cron | string | yes | cron式 |
+| timezone | string | no | タイムゾーン |
+| is_active | boolean | no | 有効/無効 |
+| parameters | object | no | 生成条件 |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| schedule | object | スケジュールオブジェクト |
+
+- [Assumption] 定期生成はスケジュール設定により自動実行される
+- [Assumption] 保存期間・改ざん防止は帳票テンプレート単位で適用される
+
+---
+
+## 8. テンプレートAPI（ToolTemplate / 社内ツール定義）（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -358,7 +431,7 @@ Response:
 | POST | /templates/{templateId}/entries/{entryId}/reject | 差戻し | 理由必須 |
 | GET | /templates/{templateId}/reports | 集計取得 | 集計タイプのみ |
 
-### 7.1 POST /templates（テンプレート作成）
+### 8.1 POST /templates（テンプレート作成）
 
 Request:
 
@@ -377,7 +450,7 @@ Response:
 | [Assumption] created_by | string | JWTから自動取得 |
 | [Assumption] version | string | 自動増分（更新時に+1） |
 
-### 7.2 POST /templates/{templateId}/entries（申請/入力作成）
+### 8.2 POST /templates/{templateId}/entries（申請/入力作成）
 
 Request:
 
@@ -396,7 +469,7 @@ Response:
 |------|----|------|
 | entry | object | entryオブジェクト |
 
-### 7.3 POST /templates/{templateId}/entries/{entryId}/approve（承認）
+### 8.3 POST /templates/{templateId}/entries/{entryId}/approve（承認）
 
 Request:
 
@@ -412,7 +485,7 @@ Response:
 | entry | object | 更新後のentry |
 | [Assumption] approver_role | string | manager / director / admin |
 
-### 7.4 POST /templates/{templateId}/entries/{entryId}/reject（差戻し）
+### 8.4 POST /templates/{templateId}/entries/{entryId}/reject（差戻し）
 
 Request:
 
@@ -428,7 +501,7 @@ Response:
 
 ---
 
-## 8. AI補助API（案）
+## 9. AI補助API（案）
 
 AI補助は明示的な操作でのみ実行し、自動実行は行わない。
 
@@ -437,7 +510,7 @@ AI補助は明示的な操作でのみ実行し、自動実行は行わない。
 | POST | /ai/works/{workId}/summarize | Work要約 | 明示実行のみ |
 | POST | /ai/works/{workId}/draft | Work下書き作成 | 明示実行のみ |
 
-### 8.1 POST /ai/works/{workId}/summarize（要約）
+### 9.1 POST /ai/works/{workId}/summarize（要約）
 
 Request:
 
@@ -453,7 +526,7 @@ Response:
 
 ---
 
-## 9. 管理業務API（案）
+## 10. 管理業務API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -481,7 +554,7 @@ masterType（必須マスタ）:
 
 ---
 
-## 10. 追加検討事項
+## 11. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
