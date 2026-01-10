@@ -226,6 +226,32 @@ body {
   font-weight: 700;
 }
 
+.report-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.report-export-btn:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+  background: var(--color-surface-elevated);
+}
+
+.report-export-icon {
+  width: 16px;
+  height: 16px;
+}
+
 .dropdown {
   position: relative;
 }
