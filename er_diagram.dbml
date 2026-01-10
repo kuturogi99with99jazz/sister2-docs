@@ -174,6 +174,62 @@ Table screen_feedback_logs {
   created_at varchar
 }
 
+Table report_templates {
+  id varchar [pk]
+  name varchar
+  report_type varchar
+  output_formats varchar
+  template_file_key varchar
+  template_file_name varchar
+  retention_days varchar
+  is_immutable varchar
+  status varchar
+  created_by varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table report_template_roles {
+  id varchar [pk]
+  report_template_id varchar
+  role_id varchar
+  access_type varchar
+}
+
+Table report_runs {
+  id varchar [pk]
+  report_template_id varchar
+  triggered_by varchar
+  trigger_type varchar
+  parameters_json varchar
+  status varchar
+  started_at varchar
+  finished_at varchar
+  created_at varchar
+}
+
+Table report_run_files {
+  id varchar [pk]
+  report_run_id varchar
+  file_key varchar
+  file_name varchar
+  content_type varchar
+  size_bytes varchar
+  created_at varchar
+}
+
+Table report_schedules {
+  id varchar [pk]
+  report_template_id varchar
+  cron varchar
+  timezone varchar
+  is_active varchar
+  last_run_at varchar
+  next_run_at varchar
+  created_at varchar
+  updated_at varchar
+}
+
 Table work_targets {
   id varchar [pk]
   target_type varchar
@@ -383,6 +439,14 @@ Ref: users.id < screen_feedbacks.user_id
 Ref: screen_feedback_templates.id < screen_feedbacks.template_id
 Ref: screen_feedbacks.id < screen_feedback_logs.feedback_id
 Ref: users.id < screen_feedback_logs.user_id
+
+Ref: users.id < report_templates.created_by
+Ref: report_templates.id < report_template_roles.report_template_id
+Ref: roles.id < report_template_roles.role_id
+Ref: report_templates.id < report_runs.report_template_id
+Ref: users.id < report_runs.triggered_by
+Ref: report_runs.id < report_run_files.report_run_id
+Ref: report_templates.id < report_schedules.report_template_id
 
 Ref: work_targets.id < work_target_links.target_id
 Ref: works.id < work_target_links.work_id
