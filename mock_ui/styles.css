@@ -1388,6 +1388,21 @@ body {
   color: var(--color-tag-teal);
 }
 
+.tag-urgency-high {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-error);
+}
+
+.tag-urgency-medium {
+  background: rgba(245, 158, 11, 0.18);
+  color: var(--color-warning);
+}
+
+.tag-urgency-hold {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--color-text-secondary);
+}
+
 .work-info {
   display: flex;
   align-items: center;
@@ -1400,6 +1415,11 @@ body {
   gap: var(--spacing-xs);
   font-size: 0.875rem;
   color: var(--color-text-secondary);
+}
+
+.assignee-summary {
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .info-item.success {
@@ -1696,6 +1716,59 @@ body {
 .work-actions {
   display: flex;
   align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.work-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.work-action-btn:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-elevated);
+}
+
+.work-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.work-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--color-primary);
+}
+
+.work-status-chip.completed {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-success);
+}
+
+.work-status-chip.hold {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--color-text-secondary);
+}
+
+.work-status-chip.urgent {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-error);
 }
 
 /* ========================================
