@@ -20,6 +20,10 @@ erDiagram
   users ||--o{ work_activity_logs : acts
   works ||--o{ work_tag_links : tagged
   work_tags ||--o{ work_tag_links : tag
+  users ||--o{ announcements : creates
+  announcements ||--o{ announcement_targets : targets
+  announcements ||--o{ announcement_reads : reads
+  users ||--o{ announcement_reads : dismisses
 
   screen_routes ||--o{ screen_feedbacks : targets
   users ||--o{ screen_feedbacks : rates
@@ -186,6 +190,30 @@ erDiagram
     string id
     string work_id
     string tag_id
+  }
+  announcements {
+    string id
+    string title
+    string body
+    string link_url
+    string priority
+    string start_at
+    string end_at
+    string created_by
+    string created_at
+    string updated_at
+  }
+  announcement_targets {
+    string id
+    string announcement_id
+    string target_scope
+    string target_id
+  }
+  announcement_reads {
+    string id
+    string announcement_id
+    string user_id
+    string dismissed_at
   }
   screen_routes {
     string id

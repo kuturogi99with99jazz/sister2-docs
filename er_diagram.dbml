@@ -135,6 +135,33 @@ Table work_tag_links {
   tag_id varchar
 }
 
+Table announcements {
+  id varchar [pk]
+  title varchar
+  body varchar
+  link_url varchar
+  priority varchar
+  start_at varchar
+  end_at varchar
+  created_by varchar
+  created_at varchar
+  updated_at varchar
+}
+
+Table announcement_targets {
+  id varchar [pk]
+  announcement_id varchar
+  target_scope varchar
+  target_id varchar
+}
+
+Table announcement_reads {
+  id varchar [pk]
+  announcement_id varchar
+  user_id varchar
+  dismissed_at varchar
+}
+
 Table screen_routes {
   id varchar [pk]
   route_path varchar
@@ -433,6 +460,11 @@ Ref: users.id < work_activity_logs.user_id
 
 Ref: works.id < work_tag_links.work_id
 Ref: work_tags.id < work_tag_links.tag_id
+
+Ref: users.id < announcements.created_by
+Ref: announcements.id < announcement_targets.announcement_id
+Ref: announcements.id < announcement_reads.announcement_id
+Ref: users.id < announcement_reads.user_id
 
 Ref: screen_routes.id < screen_feedbacks.screen_route_id
 Ref: users.id < screen_feedbacks.user_id
