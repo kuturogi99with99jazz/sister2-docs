@@ -526,7 +526,68 @@ Response:
 
 ---
 
-## 10. 管理業務API（案）
+## 10. お知らせAPI（案）
+
+| メソッド | パス | 目的 | 備考 |
+|----------|------|------|------|
+| GET | /announcements | お知らせ一覧取得 | 有効期間/対象でフィルタ |
+
+### 10.1 GET /announcements（お知らせ一覧取得）
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| announcements | object[] | お知らせ一覧 |
+| announcements[].id | string | お知らせID |
+| announcements[].title | string | タイトル |
+| announcements[].body | string | 本文 |
+| announcements[].link_url | string | 遷移先URL |
+| announcements[].priority | string | info / warning / critical |
+| announcements[].start_at | string | ISO8601 |
+| announcements[].end_at | string | ISO8601 |
+
+### 10.2 POST /admin/announcements（お知らせ作成）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| title | string | yes | タイトル |
+| body | string | yes | 本文 |
+| link_url | string | no | 遷移先URL |
+| priority | string | yes | info / warning / critical |
+| start_at | string | yes | 表示開始 |
+| end_at | string | yes | 表示終了 |
+| target_scope | string | yes | global / company / role |
+| target_ids | string[] | no | company_id / role_id |
+
+### 10.3 PATCH /admin/announcements/{announcementId}（お知らせ更新）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| title | string | no | タイトル |
+| body | string | no | 本文 |
+| link_url | string | no | 遷移先URL |
+| priority | string | no | info / warning / critical |
+| start_at | string | no | 表示開始 |
+| end_at | string | no | 表示終了 |
+| target_scope | string | no | global / company / role |
+| target_ids | string[] | no | company_id / role_id |
+
+### 10.4 POST /announcements/{announcementId}/dismiss（お知らせ閉じる）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| dismissed | boolean | yes | true固定 |
+
+---
+
+## 11. 管理業務API（案）
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
@@ -554,7 +615,7 @@ masterType（必須マスタ）:
 
 ---
 
-## 11. 追加検討事項
+## 12. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
