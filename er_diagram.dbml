@@ -2,439 +2,439 @@
 // Schema for Sister 2
 
 Table companies {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
   status varchar
-  created_at varchar
-  updated_at varchar
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table branches {
-  id varchar [pk]
-  company_id varchar
-  name varchar
+  id uuid [pk]
+  company_id uuid
+  name text
   status varchar
-  created_at varchar
-  updated_at varchar
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table divisions {
-  id varchar [pk]
-  branch_id varchar
-  name varchar
+  id uuid [pk]
+  branch_id uuid
+  name text
   status varchar
-  created_at varchar
-  updated_at varchar
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table users {
-  id varchar [pk]
-  company_id varchar
-  email varchar
+  id uuid [pk]
+  company_id uuid
+  email text
   status varchar
-  created_at varchar
-  last_login_at varchar
+  created_at timestamptz
+  last_login_at timestamptz
 }
 
 Table user_profiles {
-  id varchar [pk]
-  user_id varchar
-  display_name varchar
-  avatar_url varchar
-  timezone varchar
+  id uuid [pk]
+  user_id uuid
+  display_name text
+  avatar_url text
+  timezone text
 }
 
 Table roles {
-  id varchar [pk]
-  name varchar
-  description varchar
+  id uuid [pk]
+  name text
+  description text
 }
 
 Table permissions {
-  id varchar [pk]
-  name varchar
-  description varchar
+  id uuid [pk]
+  name text
+  description text
 }
 
 Table resources {
-  id varchar [pk]
-  name varchar
-  description varchar
+  id uuid [pk]
+  name text
+  description text
 }
 
 Table user_roles {
-  id varchar [pk]
-  user_id varchar
-  role_id varchar
+  id uuid [pk]
+  user_id uuid
+  role_id uuid
 }
 
 Table role_permissions {
-  id varchar [pk]
-  role_id varchar
-  permission_id varchar
+  id uuid [pk]
+  role_id uuid
+  permission_id uuid
 }
 
 Table permission_resources {
-  id varchar [pk]
-  permission_id varchar
-  resource_id varchar
+  id uuid [pk]
+  permission_id uuid
+  resource_id uuid
 }
 
 Table work_types {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
 }
 
 Table work_time_types {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
 }
 
 Table works {
-  id varchar [pk]
-  created_by varchar
-  work_type_id varchar
-  work_time_type_id varchar
-  template_id varchar
-  title varchar
-  content varchar
-  form_data_json varchar
+  id uuid [pk]
+  created_by uuid
+  work_type_id uuid
+  work_time_type_id uuid
+  template_id uuid
+  title text
+  content text
+  form_data_json jsonb
   status varchar
-  start_date_planned varchar
-  end_date_planned varchar
-  start_date_actual varchar
-  end_date_actual varchar
-  created_at varchar
-  updated_at varchar
+  start_date_planned date
+  end_date_planned date
+  start_date_actual date
+  end_date_actual date
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table work_assignees {
-  id varchar [pk]
-  work_id varchar
-  user_id varchar
+  id uuid [pk]
+  work_id uuid
+  user_id uuid
   is_primary boolean
 }
 
 Table work_activity_logs {
-  id varchar [pk]
-  work_id varchar
-  user_id varchar
+  id uuid [pk]
+  work_id uuid
+  user_id uuid
   action varchar
-  meta_json varchar
-  created_at varchar
+  meta_json jsonb
+  created_at timestamptz
 }
 
 Table work_tags {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
 }
 
 Table work_tag_links {
-  id varchar [pk]
-  work_id varchar
-  tag_id varchar
+  id uuid [pk]
+  work_id uuid
+  tag_id uuid
 }
 
 Table announcements {
-  id varchar [pk]
-  title varchar
-  body varchar
-  link_url varchar
+  id uuid [pk]
+  title text
+  body text
+  link_url text
   priority varchar
-  start_at varchar
-  end_at varchar
-  created_by varchar
-  created_at varchar
-  updated_at varchar
+  start_at timestamptz
+  end_at timestamptz
+  created_by uuid
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table announcement_targets {
-  id varchar [pk]
-  announcement_id varchar
+  id uuid [pk]
+  announcement_id uuid
   target_scope varchar
-  target_id varchar
+  target_id uuid
 }
 
 Table announcement_reads {
-  id varchar [pk]
-  announcement_id varchar
-  user_id varchar
-  dismissed_at varchar
+  id uuid [pk]
+  announcement_id uuid
+  user_id uuid
+  dismissed_at timestamptz
 }
 
 Table screen_routes {
-  id varchar [pk]
-  route_path varchar
-  name varchar
-  description varchar
-  is_active varchar
-  created_at varchar
-  updated_at varchar
+  id uuid [pk]
+  route_path text
+  name text
+  description text
+  is_active boolean
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table screen_feedback_templates {
-  id varchar [pk]
-  label varchar
-  is_active varchar
-  created_at varchar
-  updated_at varchar
+  id uuid [pk]
+  label text
+  is_active boolean
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table screen_feedbacks {
-  id varchar [pk]
-  screen_route_id varchar
-  user_id varchar
+  id uuid [pk]
+  screen_route_id uuid
+  user_id uuid
   rating varchar
-  reason varchar
-  template_id varchar
-  created_at varchar
-  updated_at varchar
+  reason text
+  template_id uuid
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table screen_feedback_logs {
-  id varchar [pk]
-  feedback_id varchar
-  user_id varchar
+  id uuid [pk]
+  feedback_id uuid
+  user_id uuid
   action varchar
-  before_json varchar
-  after_json varchar
-  created_at varchar
+  before_json jsonb
+  after_json jsonb
+  created_at timestamptz
 }
 
 Table report_templates {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
   report_type varchar
-  output_formats varchar
-  template_file_key varchar
-  template_file_name varchar
-  retention_days varchar
-  is_immutable varchar
+  output_formats text[]
+  template_file_key text
+  template_file_name text
+  retention_days int
+  is_immutable boolean
   status varchar
-  created_by varchar
-  created_at varchar
-  updated_at varchar
+  created_by uuid
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table report_template_roles {
-  id varchar [pk]
-  report_template_id varchar
-  role_id varchar
+  id uuid [pk]
+  report_template_id uuid
+  role_id uuid
   access_type varchar
 }
 
 Table report_runs {
-  id varchar [pk]
-  report_template_id varchar
-  triggered_by varchar
+  id uuid [pk]
+  report_template_id uuid
+  triggered_by uuid
   trigger_type varchar
-  parameters_json varchar
+  parameters_json jsonb
   status varchar
-  started_at varchar
-  finished_at varchar
-  created_at varchar
+  started_at timestamptz
+  finished_at timestamptz
+  created_at timestamptz
 }
 
 Table report_run_files {
-  id varchar [pk]
-  report_run_id varchar
-  file_key varchar
-  file_name varchar
-  content_type varchar
-  size_bytes varchar
-  created_at varchar
+  id uuid [pk]
+  report_run_id uuid
+  file_key text
+  file_name text
+  content_type text
+  size_bytes bigint
+  created_at timestamptz
 }
 
 Table report_schedules {
-  id varchar [pk]
-  report_template_id varchar
-  cron varchar
-  timezone varchar
-  is_active varchar
-  last_run_at varchar
-  next_run_at varchar
-  created_at varchar
-  updated_at varchar
+  id uuid [pk]
+  report_template_id uuid
+  cron text
+  timezone text
+  is_active boolean
+  last_run_at timestamptz
+  next_run_at timestamptz
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table work_targets {
-  id varchar [pk]
+  id uuid [pk]
   target_type varchar
-  name varchar
-  description varchar
-  owner_user_id varchar
+  name text
+  description text
+  owner_user_id uuid
   status varchar
-  created_at varchar
-  updated_at varchar
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table work_target_links {
-  id varchar [pk]
-  work_id varchar
-  target_id varchar
+  id uuid [pk]
+  work_id uuid
+  target_id uuid
 }
 
 Table blog_posts {
-  id varchar [pk]
-  author_user_id varchar
-  title varchar
+  id uuid [pk]
+  author_user_id uuid
+  title text
   status varchar
-  published_at varchar
+  published_at timestamptz
 }
 
 Table blog_tags {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
 }
 
 Table blog_categories {
-  id varchar [pk]
-  name varchar
+  id uuid [pk]
+  name text
 }
 
 Table blog_post_tags {
-  id varchar [pk]
-  post_id varchar
-  tag_id varchar
+  id uuid [pk]
+  post_id uuid
+  tag_id uuid
 }
 
 Table blog_post_categories {
-  id varchar [pk]
-  post_id varchar
-  category_id varchar
+  id uuid [pk]
+  post_id uuid
+  category_id uuid
 }
 
 Table blog_work_links {
-  id varchar [pk]
-  post_id varchar
-  work_id varchar
+  id uuid [pk]
+  post_id uuid
+  work_id uuid
 }
 
 Table blog_target_links {
-  id varchar [pk]
-  post_id varchar
-  target_id varchar
+  id uuid [pk]
+  post_id uuid
+  target_id uuid
 }
 
 Table audit_logs {
-  id varchar [pk]
-  user_id varchar
+  id uuid [pk]
+  user_id uuid
   action varchar
   resource_type varchar
-  resource_id varchar
-  created_at varchar
+  resource_id uuid
+  created_at timestamptz
 }
 
 Table system_settings {
-  id varchar [pk]
+  id uuid [pk]
   key varchar
-  value_json varchar
-  is_active varchar
-  updated_by varchar
-  updated_at varchar
+  value_json jsonb
+  is_active boolean
+  updated_by uuid
+  updated_at timestamptz
 }
 
 Table company_settings {
-  id varchar [pk]
-  company_id varchar
+  id uuid [pk]
+  company_id uuid
   key varchar
-  value_json varchar
-  is_active varchar
-  updated_by varchar
-  updated_at varchar
+  value_json jsonb
+  is_active boolean
+  updated_by uuid
+  updated_at timestamptz
 }
 
 Table chat_threads {
-  id varchar [pk]
+  id uuid [pk]
   scope_type varchar
-  scope_id varchar
-  title varchar
-  created_by varchar
-  created_at varchar
+  scope_id uuid
+  title text
+  created_by uuid
+  created_at timestamptz
 }
 
 Table chat_messages {
-  id varchar [pk]
-  chat_id varchar
-  sender_user_id varchar
-  content varchar
+  id uuid [pk]
+  chat_id uuid
+  sender_user_id uuid
+  content text
   message_type varchar
-  parent_message_id varchar
-  created_at varchar
+  parent_message_id uuid
+  created_at timestamptz
 }
 
 Table chat_members {
-  id varchar [pk]
-  chat_id varchar
-  user_id varchar
+  id uuid [pk]
+  chat_id uuid
+  user_id uuid
   role varchar
-  joined_at varchar
+  joined_at timestamptz
 }
 
 Table chat_reads {
-  id varchar [pk]
-  chat_id varchar
-  user_id varchar
-  last_read_message_id varchar
-  last_read_at varchar
+  id uuid [pk]
+  chat_id uuid
+  user_id uuid
+  last_read_message_id uuid
+  last_read_at timestamptz
 }
 
 Table chat_attachments {
-  id varchar [pk]
-  message_id varchar
-  uploaded_by varchar
-  file_key varchar
-  file_name varchar
-  content_type varchar
-  size_bytes varchar
+  id uuid [pk]
+  message_id uuid
+  uploaded_by uuid
+  file_key text
+  file_name text
+  content_type text
+  size_bytes bigint
 }
 
 Table internal_tools {
-  id varchar [pk]
-  owner_user_id varchar
-  name varchar
+  id uuid [pk]
+  owner_user_id uuid
+  name text
   type varchar
   status varchar
-  created_at varchar
-  updated_at varchar
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table tool_definitions {
-  id varchar [pk]
-  tool_id varchar
-  definition_json varchar
+  id uuid [pk]
+  tool_id uuid
+  definition_json jsonb
   version varchar
-  created_at varchar
+  created_at timestamptz
 }
 
 Table tool_entries {
-  id varchar [pk]
-  tool_id varchar
-  submitter_user_id varchar
+  id uuid [pk]
+  tool_id uuid
+  submitter_user_id uuid
   status varchar
-  payload_json varchar
-  created_at varchar
-  updated_at varchar
+  payload_json jsonb
+  created_at timestamptz
+  updated_at timestamptz
 }
 
 Table tool_entry_approvals {
-  id varchar [pk]
-  entry_id varchar
-  approver_user_id varchar
-  step varchar
+  id uuid [pk]
+  entry_id uuid
+  approver_user_id uuid
+  step int
   status varchar
-  comment varchar
-  created_at varchar
+  comment text
+  created_at timestamptz
 }
 
 Table tool_attachments {
-  id varchar [pk]
-  entry_id varchar
-  uploaded_by varchar
-  file_key varchar
-  file_name varchar
-  content_type varchar
-  size_bytes varchar
+  id uuid [pk]
+  entry_id uuid
+  uploaded_by uuid
+  file_key text
+  file_name text
+  content_type text
+  size_bytes bigint
 }
 
 Ref: companies.id < branches.company_id
