@@ -59,6 +59,8 @@ flowchart LR
 | IaC | Serverless Framework | AWS構築自動化 |
 | CI/CD | GitHub Actions | 自動デプロイ・テスト・Lint |
 
+フロントエンドは共通コンポーネントとして「お知らせバナー」をヘッダ上に常備し、条件に応じて表示/非表示を切り替える。
+
 ### コンポーネント構成図（詳細）
 
 ```mermaid
@@ -348,6 +350,7 @@ Roleは「ゲスト / パートナー / 担当 / リーダー / マネージャ�
 | work_targets / work_target_links | Work対象管理 | プロジェクト/システム/共通業務 |
 | work_tags / work_tag_links | Workタグ | 検索・分類 |
 | work_activity_logs | 操作ログ | 工数推定の基盤 |
+| announcements / announcement_targets / announcement_reads | お知らせバナー | 表示期間/対象/既読管理 |
 | blog_posts / blog_categories / blog_tags | ナレッジ機能 | AI要約対応 |
 | chat_threads / chat_messages | チャット機能 | Work/対象単位 |
 | internal_tools / tool_definitions / tool_entries | 社内ツール（ToolTemplate） | 定義駆動型 |
