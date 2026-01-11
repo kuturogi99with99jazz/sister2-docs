@@ -74,6 +74,65 @@ body {
 }
 
 /* ========================================
+   お知らせバナー
+======================================== */
+.announcement-bar {
+  background: rgba(59, 130, 246, 0.08);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.announcement-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.5rem var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.announcement-badge {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.announcement-link {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.announcement-link:hover {
+  text-decoration: underline;
+}
+
+.announcement-dismiss {
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.announcement-dismiss:hover {
+  color: var(--color-text-primary);
+}
+
+/* ========================================
    ヘッダー（v0準拠）
 ======================================== */
 .header {
