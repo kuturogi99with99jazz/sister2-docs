@@ -76,387 +76,387 @@ erDiagram
   tool_definitions ||--o{ works : templates
 
   companies {
-    string id
-    string name
-    string status
-    string created_at
-    string updated_at
+    uuid id
+    text name
+    varchar status
+    timestamptz created_at
+    timestamptz updated_at
   }
   branches {
-    string id
-    string company_id
-    string name
-    string status
-    string created_at
-    string updated_at
+    uuid id
+    uuid company_id
+    text name
+    varchar status
+    timestamptz created_at
+    timestamptz updated_at
   }
   divisions {
-    string id
-    string branch_id
-    string name
-    string status
-    string created_at
-    string updated_at
+    uuid id
+    uuid branch_id
+    text name
+    varchar status
+    timestamptz created_at
+    timestamptz updated_at
   }
   users {
-    string id
-    string company_id
-    string email
-    string status
-    string created_at
-    string last_login_at
+    uuid id
+    uuid company_id
+    text email
+    varchar status
+    timestamptz created_at
+    timestamptz last_login_at
   }
   user_profiles {
-    string id
-    string user_id
-    string display_name
-    string avatar_url
-    string timezone
+    uuid id
+    uuid user_id
+    text display_name
+    text avatar_url
+    text timezone
   }
   roles {
-    string id
-    string name
-    string description
+    uuid id
+    text name
+    text description
   }
   permissions {
-    string id
-    string name
-    string description
+    uuid id
+    text name
+    text description
   }
   resources {
-    string id
-    string name
-    string description
+    uuid id
+    text name
+    text description
   }
   user_roles {
-    string id
-    string user_id
-    string role_id
+    uuid id
+    uuid user_id
+    uuid role_id
   }
   role_permissions {
-    string id
-    string role_id
-    string permission_id
+    uuid id
+    uuid role_id
+    uuid permission_id
   }
   permission_resources {
-    string id
-    string permission_id
-    string resource_id
+    uuid id
+    uuid permission_id
+    uuid resource_id
   }
   work_types {
-    string id
-    string name
+    uuid id
+    text name
   }
   work_time_types {
-    string id
-    string name
+    uuid id
+    text name
   }
   works {
-    string id
-    string created_by
-    string work_type_id
-    string work_time_type_id
-    string template_id
-    string title
-    string content
-    string form_data_json
-    string status
-    string start_date_planned
-    string end_date_planned
-    string start_date_actual
-    string end_date_actual
-    string created_at
-    string updated_at
+    uuid id
+    uuid created_by
+    uuid work_type_id
+    uuid work_time_type_id
+    uuid template_id
+    text title
+    text content
+    jsonb form_data_json
+    varchar status
+    date start_date_planned
+    date end_date_planned
+    date start_date_actual
+    date end_date_actual
+    timestamptz created_at
+    timestamptz updated_at
   }
   work_assignees {
-    string id
-    string work_id
-    string user_id
+    uuid id
+    uuid work_id
+    uuid user_id
     boolean is_primary
   }
   work_activity_logs {
-    string id
-    string work_id
-    string user_id
-    string action
-    string meta_json
-    string created_at
+    uuid id
+    uuid work_id
+    uuid user_id
+    varchar action
+    jsonb meta_json
+    timestamptz created_at
   }
   work_tags {
-    string id
-    string name
+    uuid id
+    text name
   }
   work_tag_links {
-    string id
-    string work_id
-    string tag_id
+    uuid id
+    uuid work_id
+    uuid tag_id
   }
   announcements {
-    string id
-    string title
-    string body
-    string link_url
-    string priority
-    string start_at
-    string end_at
-    string created_by
-    string created_at
-    string updated_at
+    uuid id
+    text title
+    text body
+    text link_url
+    varchar priority
+    timestamptz start_at
+    timestamptz end_at
+    uuid created_by
+    timestamptz created_at
+    timestamptz updated_at
   }
   announcement_targets {
-    string id
-    string announcement_id
-    string target_scope
-    string target_id
+    uuid id
+    uuid announcement_id
+    varchar target_scope
+    uuid target_id
   }
   announcement_reads {
-    string id
-    string announcement_id
-    string user_id
-    string dismissed_at
+    uuid id
+    uuid announcement_id
+    uuid user_id
+    timestamptz dismissed_at
   }
   screen_routes {
-    string id
-    string route_path
-    string name
-    string description
-    string is_active
-    string created_at
-    string updated_at
+    uuid id
+    text route_path
+    text name
+    text description
+    boolean is_active
+    timestamptz created_at
+    timestamptz updated_at
   }
   screen_feedback_templates {
-    string id
-    string label
-    string is_active
-    string created_at
-    string updated_at
+    uuid id
+    text label
+    boolean is_active
+    timestamptz created_at
+    timestamptz updated_at
   }
   screen_feedbacks {
-    string id
-    string screen_route_id
-    string user_id
-    string rating
-    string reason
-    string template_id
-    string created_at
-    string updated_at
+    uuid id
+    uuid screen_route_id
+    uuid user_id
+    varchar rating
+    text reason
+    uuid template_id
+    timestamptz created_at
+    timestamptz updated_at
   }
   screen_feedback_logs {
-    string id
-    string feedback_id
-    string user_id
-    string action
-    string before_json
-    string after_json
-    string created_at
+    uuid id
+    uuid feedback_id
+    uuid user_id
+    varchar action
+    jsonb before_json
+    jsonb after_json
+    timestamptz created_at
   }
   report_templates {
-    string id
-    string name
-    string report_type
-    string output_formats
-    string template_file_key
-    string template_file_name
-    string retention_days
-    string is_immutable
-    string status
-    string created_by
-    string created_at
-    string updated_at
+    uuid id
+    text name
+    varchar report_type
+    text[] output_formats
+    text template_file_key
+    text template_file_name
+    int retention_days
+    boolean is_immutable
+    varchar status
+    uuid created_by
+    timestamptz created_at
+    timestamptz updated_at
   }
   report_template_roles {
-    string id
-    string report_template_id
-    string role_id
-    string access_type
+    uuid id
+    uuid report_template_id
+    uuid role_id
+    varchar access_type
   }
   report_runs {
-    string id
-    string report_template_id
-    string triggered_by
-    string trigger_type
-    string parameters_json
-    string status
-    string started_at
-    string finished_at
-    string created_at
+    uuid id
+    uuid report_template_id
+    uuid triggered_by
+    varchar trigger_type
+    jsonb parameters_json
+    varchar status
+    timestamptz started_at
+    timestamptz finished_at
+    timestamptz created_at
   }
   report_run_files {
-    string id
-    string report_run_id
-    string file_key
-    string file_name
-    string content_type
-    string size_bytes
-    string created_at
+    uuid id
+    uuid report_run_id
+    text file_key
+    text file_name
+    text content_type
+    bigint size_bytes
+    timestamptz created_at
   }
   report_schedules {
-    string id
-    string report_template_id
-    string cron
-    string timezone
-    string is_active
-    string last_run_at
-    string next_run_at
-    string created_at
-    string updated_at
+    uuid id
+    uuid report_template_id
+    text cron
+    text timezone
+    boolean is_active
+    timestamptz last_run_at
+    timestamptz next_run_at
+    timestamptz created_at
+    timestamptz updated_at
   }
   work_targets {
-    string id
-    string target_type
-    string name
-    string description
-    string owner_user_id
-    string status
-    string created_at
-    string updated_at
+    uuid id
+    varchar target_type
+    text name
+    text description
+    uuid owner_user_id
+    varchar status
+    timestamptz created_at
+    timestamptz updated_at
   }
   work_target_links {
-    string id
-    string work_id
-    string target_id
+    uuid id
+    uuid work_id
+    uuid target_id
   }
   blog_posts {
-    string id
-    string author_user_id
-    string title
-    string status
-    string published_at
+    uuid id
+    uuid author_user_id
+    text title
+    varchar status
+    timestamptz published_at
   }
   blog_tags {
-    string id
-    string name
+    uuid id
+    text name
   }
   blog_categories {
-    string id
-    string name
+    uuid id
+    text name
   }
   blog_post_tags {
-    string id
-    string post_id
-    string tag_id
+    uuid id
+    uuid post_id
+    uuid tag_id
   }
   blog_post_categories {
-    string id
-    string post_id
-    string category_id
+    uuid id
+    uuid post_id
+    uuid category_id
   }
   blog_work_links {
-    string id
-    string post_id
-    string work_id
+    uuid id
+    uuid post_id
+    uuid work_id
   }
   blog_target_links {
-    string id
-    string post_id
-    string target_id
+    uuid id
+    uuid post_id
+    uuid target_id
   }
   audit_logs {
-    string id
-    string user_id
-    string action
-    string resource_type
-    string resource_id
-    string created_at
+    uuid id
+    uuid user_id
+    varchar action
+    varchar resource_type
+    uuid resource_id
+    timestamptz created_at
   }
   system_settings {
-    string id
-    string key
-    string value_json
-    string is_active
-    string updated_by
-    string updated_at
+    uuid id
+    varchar key
+    jsonb value_json
+    boolean is_active
+    uuid updated_by
+    timestamptz updated_at
   }
   company_settings {
-    string id
-    string company_id
-    string key
-    string value_json
-    string is_active
-    string updated_by
-    string updated_at
+    uuid id
+    uuid company_id
+    varchar key
+    jsonb value_json
+    boolean is_active
+    uuid updated_by
+    timestamptz updated_at
   }
   %% message_type: text | system | file
   chat_threads {
-    string id
-    string scope_type
-    string scope_id
-    string title
-    string created_by
-    string created_at
+    uuid id
+    varchar scope_type
+    uuid scope_id
+    text title
+    uuid created_by
+    timestamptz created_at
   }
   chat_messages {
-    string id
-    string chat_id
-    string sender_user_id
-    string content
-    string message_type
-    string parent_message_id
-    string created_at
+    uuid id
+    uuid chat_id
+    uuid sender_user_id
+    text content
+    varchar message_type
+    uuid parent_message_id
+    timestamptz created_at
   }
   chat_members {
-    string id
-    string chat_id
-    string user_id
-    string role
-    string joined_at
+    uuid id
+    uuid chat_id
+    uuid user_id
+    varchar role
+    timestamptz joined_at
   }
   chat_reads {
-    string id
-    string chat_id
-    string user_id
-    string last_read_message_id
-    string last_read_at
+    uuid id
+    uuid chat_id
+    uuid user_id
+    uuid last_read_message_id
+    timestamptz last_read_at
   }
   chat_attachments {
-    string id
-    string message_id
-    string uploaded_by
-    string file_key
-    string file_name
-    string content_type
-    string size_bytes
+    uuid id
+    uuid message_id
+    uuid uploaded_by
+    text file_key
+    text file_name
+    text content_type
+    bigint size_bytes
   }
   internal_tools {
-    string id
-    string owner_user_id
-    string name
-    string type
-    string status
-    string created_at
-    string updated_at
+    uuid id
+    uuid owner_user_id
+    text name
+    varchar type
+    varchar status
+    timestamptz created_at
+    timestamptz updated_at
   }
   tool_definitions {
-    string id
-    string tool_id
-    string definition_json
-    string version
-    string created_at
+    uuid id
+    uuid tool_id
+    jsonb definition_json
+    varchar version
+    timestamptz created_at
   }
   tool_entries {
-    string id
-    string tool_id
-    string submitter_user_id
-    string status
-    string payload_json
-    string created_at
-    string updated_at
+    uuid id
+    uuid tool_id
+    uuid submitter_user_id
+    varchar status
+    jsonb payload_json
+    timestamptz created_at
+    timestamptz updated_at
   }
   tool_entry_approvals {
-    string id
-    string entry_id
-    string approver_user_id
-    string step
-    string status
-    string comment
-    string created_at
+    uuid id
+    uuid entry_id
+    uuid approver_user_id
+    int step
+    varchar status
+    text comment
+    timestamptz created_at
   }
   tool_attachments {
-    string id
-    string entry_id
-    string uploaded_by
-    string file_key
-    string file_name
-    string content_type
-    string size_bytes
+    uuid id
+    uuid entry_id
+    uuid uploaded_by
+    text file_key
+    text file_name
+    text content_type
+    bigint size_bytes
   }
