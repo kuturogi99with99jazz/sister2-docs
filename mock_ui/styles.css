@@ -52,6 +52,9 @@
   /* トランジション */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
+
+  /* ヘッダーコントロール */
+  --header-control-height: 36px;
 }
 
 * {
@@ -233,6 +236,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  height: var(--header-control-height);
   padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--color-border);
@@ -246,7 +250,8 @@ body {
   border: none;
   background: transparent;
   color: var(--color-text-secondary);
-  padding: 6px 10px;
+  height: 28px;
+  padding: 0 10px;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -276,8 +281,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 22px;
-  padding: 2px 6px;
+  height: 20px;
+  min-width: 20px;
+  padding: 0 6px;
   border-radius: 999px;
   background: var(--color-surface);
   color: var(--color-text-primary);
@@ -292,7 +298,8 @@ body {
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-text-secondary);
-  padding: 6px 12px;
+  height: var(--header-control-height);
+  padding: 0 12px;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -330,10 +337,17 @@ body {
   border: none;
   background: transparent;
   color: var(--color-text-secondary);
-  padding: 8px;
+  height: var(--header-control-height);
+  padding: 0 8px;
   border-radius: 10px;
   cursor: pointer;
   transition: var(--transition-fast);
+}
+
+.notification-btn {
+  width: var(--header-control-height);
+  justify-content: center;
+  padding: 0;
 }
 
 .dropdown-toggle:hover {
@@ -370,9 +384,11 @@ body {
   color: #fff;
   font-size: 0.625rem;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 999px;
+  height: 18px;
   min-width: 18px;
+  padding: 0 5px;
+  line-height: 18px;
+  border-radius: 999px;
   text-align: center;
 }
 
@@ -403,7 +419,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 10px;
+  height: var(--header-control-height);
+  padding: 0 10px;
   border-radius: 999px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -1330,8 +1347,18 @@ body {
   transition: var(--transition-fast);
 }
 
+.work-item-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .work-item:hover {
   border-color: var(--color-border-hover);
+}
+
+.work-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .work-status {
