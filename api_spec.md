@@ -604,14 +604,17 @@ Request:
 
 ## 11. 管理業務API（案）
 
+管理UIは「運用者向け（限定権限）」と「管理者向け（フル権限）」を分離し、メンテ対象は「マスタ系＋運用で必要な一部のみ」とする。  
+運用者は masterType の範囲を限定したCRUDのみ許可し、管理者は全 masterType を対象とする。
+
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
 | GET | /admin/masters | マスタ種別一覧取得 | 管理対象の列挙 |
 | GET | /admin/masters/{masterType} | マスタ一覧取得 | 検索/フィルタ |
-| POST | /admin/masters/{masterType} | マスタ作成 | 管理者のみ |
-| PATCH | /admin/masters/{masterType}/{id} | マスタ更新 | 管理者のみ |
-| DELETE | /admin/masters/{masterType}/{id} | マスタ削除（無効化） | 論理削除 |
-| POST | /admin/masters/{masterType}/bulk | 一括登録/更新 | CSV/JSON |
+| POST | /admin/masters/{masterType} | マスタ作成 | 運用者/管理者（masterTypeで制御） |
+| PATCH | /admin/masters/{masterType}/{id} | マスタ更新 | 運用者/管理者（masterTypeで制御） |
+| DELETE | /admin/masters/{masterType}/{id} | マスタ削除（無効化） | 運用者/管理者（masterTypeで制御） |
+| POST | /admin/masters/{masterType}/bulk | 一括登録/更新 | 運用者/管理者（masterTypeで制御） |
 
 masterType（必須マスタ）:
 - users, companies, branches, divisions, roles, resources, permissions
@@ -633,6 +636,7 @@ masterType（必須マスタ）:
 ## 12. 追加検討事項
 
 - [Open Question] API認可ポリシーの詳細（リソース単位の権限チェック）
+- [Open Question] 運用者に許可する masterType の範囲（CRUD対象の限定リスト）
 - [Open Question] rate_limitの閾値/適用単位（ユーザー/組織/IP）
 - [Open Question] SSE/WebSocket移行条件（同時接続数・通知遅延・UI要件で判断）
 - [Open Question] 設定の優先順位（全体共通 vs 組織単位）
