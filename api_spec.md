@@ -38,6 +38,21 @@
 | created_at | string | ISO8601 |
 | updated_at | string | ISO8601 |
 
+### 2.4 ナレッジ本文フォーマット
+
+- ナレッジ本文はMarkdownで保存する
+- 表示用にサーバ側でHTMLを生成して返却する
+- 初期対応の記法は見出し/リスト/リンク/画像/コードブロック/インラインコード/太字/斜体/引用/水平線
+- 画像はS3の社内限定公開バケットに保存し、1ファイル1MB上限とする
+- 社内限定公開バケットは社内IP/VPNからの読み取りのみ許可する
+
+### 2.5 ナレッジHTMLのサニタイズ方針
+
+- 許可タグ: p, br, strong, em, code, pre, ul, ol, li, h1, h2, h3, h4, a, img, blockquote, hr
+- 許可属性: a[href,title], img[src,alt,title]
+- 許可URLスキーム: https, http, mailto
+- 不許可: script/style/iframe, on*イベント属性, style属性
+
 ---
 
 ## 3. Work API（案）
