@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マスタ管理 - Sister 2</title>
+  <title>帳票テンプレート一覧 - Sister 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +75,6 @@
           </button>
         </div>
 
-
         <button class="report-export-btn" type="button" aria-label="帳票出力">
           <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,81 +84,131 @@
           </svg>
           帳票出力
         </button>
-</div>
+      </div>
     </div>
   </header>
 
   <main class="main-content">
     <div class="container">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        <a href="admin-master-category-settings.html">設定/定義/運用</a>
+        <span>/</span>
+        帳票テンプレート一覧
+      </div>
+
       <div class="page-header">
         <div>
-          <h1 class="page-title">マスタ管理</h1>
-          <p class="page-description">マスタ/設定/定義/お知らせを同一ナビで管理します。</p>
+          <h1 class="page-title">帳票テンプレート</h1>
+          <p class="page-description">帳票テンプレートの一覧です。</p>
         </div>
         <div class="page-actions">
-          <a class="btn btn-secondary" href="admin.html">管理ダッシュボード</a>
-          <a class="btn btn-primary" href="admin-master-category-masters.html">カテゴリ一覧を開く</a>
+          <a class="btn btn-secondary" href="admin-masters.html">マスタ管理トップ</a>
+          <a class="btn btn-primary" href="admin-report-template-edit.html">＋ 新規登録</a>
+        </div>
+      </div>
+
+      <div class="panel search-card">
+        <div class="panel-title">検索/フィルタ</div>
+        <div class="search-field">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" type="text" placeholder="名称/コードで検索">
+        </div>
+        <div class="search-note">ステータスや利用頻度で絞り込み可能</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">一覧</div>
+        <div class="master-list">
+          <div class="master-row">
+            <div>
+              <div class="master-title">月次レポート</div>
+              <div class="master-meta">
+                <span>出力: PDF/CSV</span>
+                <span>テンプレID: RPT-001</span>
+                <span class="tag tag-green">公開</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-report-template-edit.html">編集</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">作業実績サマリ</div>
+              <div class="master-meta">
+                <span>出力: PDF</span>
+                <span>テンプレID: RPT-002</span>
+                <span class="tag tag-blue">下書き</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-report-template-edit.html">編集</a>
+            </div>
+          </div>
+        </div>
+              <div class="master-meta">
+                <span>コード: DEV</span>
+                <span>関連Work: 128</span>
+                <span class="tag tag-green">有効</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-master-edit.html">編集</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">運用</div>
+              <div class="master-meta">
+                <span>コード: OPS</span>
+                <span>関連Work: 64</span>
+                <span class="tag tag-blue">有効</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-master-edit.html">編集</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">保守</div>
+              <div class="master-meta">
+                <span>コード: MAINT</span>
+                <span>関連Work: 42</span>
+                <span class="tag tag-yellow">要確認</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-master-edit.html">編集</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">障害対応</div>
+              <div class="master-meta">
+                <span>コード: IR</span>
+                <span>関連Work: 14</span>
+                <span class="tag tag-red">停止中</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-master-edit.html">編集</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">マスタメンテ対象</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-masters.html">一覧を開く</a>
-        </div>
+        <div class="panel-title">運用メモ</div>
         <div class="info-card">
           <ul>
-            <li>組織/ユーザー: 会社、拠点、部門、ユーザー</li>
-            <li>権限: ロール、リソース、パーミッション</li>
-            <li>Work: Work分類、Work時間分類、Workタグ、Work対象</li>
-            <li>ナレッジ: タグ、カテゴリ</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">設定/定義/運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-settings.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>system_settings / company_settings</li>
-            <li>internal_tools / tool_definitions</li>
-            <li>report_templates / screen_feedback_templates</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">お知らせ運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-announcements.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>announcements（掲出/停止/期間管理）</li>
-            <li>announcement_targets（対象組織/ロールの指定）</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">メンテナンスフロー</div>
-        <ol class="form-steps">
-          <li>一覧画面からメンテ対象のデータを見つける</li>
-          <li>一覧内の編集項目を選び、対象のメンテ画面へ遷移する</li>
-          <li>メンテ画面で編集/保存後、一覧画面に戻る</li>
-        </ol>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">運用ルール（仮）</div>
-        <div class="info-card">
-          <ul>
-            <li>変更はPRレビューを必須とする</li>
-            <li>削除は無効化で対応</li>
-            <li>履歴は監査ログに記録</li>
+            <li>削除は無効化で対応、関連Workの影響を確認</li>
+            <li>変更は監査ログに記録、必要に応じてレビュー申請</li>
+            <li>保存後は一覧へ戻り、反映を確認する</li>
           </ul>
         </div>
       </div>

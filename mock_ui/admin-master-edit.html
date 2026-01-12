@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マスタ管理 - Sister 2</title>
+  <title>マスタ管理（編集） - Sister 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +75,6 @@
           </button>
         </div>
 
-
         <button class="report-export-btn" type="button" aria-label="帳票出力">
           <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,84 +84,106 @@
           </svg>
           帳票出力
         </button>
-</div>
+      </div>
     </div>
   </header>
 
   <main class="main-content">
-    <div class="container">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">マスタ管理</h1>
-          <p class="page-description">マスタ/設定/定義/お知らせを同一ナビで管理します。</p>
-        </div>
-        <div class="page-actions">
-          <a class="btn btn-secondary" href="admin.html">管理ダッシュボード</a>
-          <a class="btn btn-primary" href="admin-master-category-masters.html">カテゴリ一覧を開く</a>
-        </div>
+    <div class="container form-page">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        <a href="admin-master-category-masters.html">マスタメンテ対象</a>
+        <span>/</span>
+        <a href="admin-master-list.html">Work分類一覧</a>
+        <span>/</span>
+        編集
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">マスタメンテ対象</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-masters.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>組織/ユーザー: 会社、拠点、部門、ユーザー</li>
-            <li>権限: ロール、リソース、パーミッション</li>
-            <li>Work: Work分類、Work時間分類、Workタグ、Work対象</li>
-            <li>ナレッジ: タグ、カテゴリ</li>
-          </ul>
-        </div>
+      <div class="form-header">
+        <a class="back-link" href="admin-master-list.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          一覧へ戻る
+        </a>
+        <h1>Work分類を編集</h1>
+        <p>編集内容を保存すると一覧に反映されます。</p>
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">設定/定義/運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-settings.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>system_settings / company_settings</li>
-            <li>internal_tools / tool_definitions</li>
-            <li>report_templates / screen_feedback_templates</li>
-          </ul>
-        </div>
-      </div>
+      <form class="form-stack">
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>基本情報</h2>
+            <p>名称とコードは一意になるように管理します</p>
+          </div>
+          <div class="form-card-body form-stack">
+            <label class="form-field">
+              <span class="form-label">名称 <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="運用" placeholder="例: 運用">
+            </label>
+            <label class="form-field">
+              <span class="form-label">コード <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="OPS" placeholder="例: OPS">
+            </label>
+            <label class="form-field">
+              <span class="form-label">ステータス <span class="form-required">*</span></span>
+              <select class="form-control">
+                <option selected>有効</option>
+                <option>停止中</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span class="form-label">説明</span>
+              <textarea class="form-control" rows="4" placeholder="用途やルールを記載してください">運用作業に紐づくWork分類。障害対応とは区別する。</textarea>
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">お知らせ運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-announcements.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>announcements（掲出/停止/期間管理）</li>
-            <li>announcement_targets（対象組織/ロールの指定）</li>
-          </ul>
-        </div>
-      </div>
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>表示設定</h2>
+            <p>表示順や利用対象を調整できます</p>
+          </div>
+          <div class="form-card-body form-grid">
+            <label class="form-field">
+              <span class="form-label">表示順</span>
+              <input class="form-control" type="number" value="2" min="1">
+            </label>
+            <label class="form-field">
+              <span class="form-label">対象組織</span>
+              <select class="form-control">
+                <option>全社</option>
+                <option selected>システム運用部</option>
+                <option>開発部</option>
+              </select>
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-title">メンテナンスフロー</div>
-        <ol class="form-steps">
-          <li>一覧画面からメンテ対象のデータを見つける</li>
-          <li>一覧内の編集項目を選び、対象のメンテ画面へ遷移する</li>
-          <li>メンテ画面で編集/保存後、一覧画面に戻る</li>
-        </ol>
-      </div>
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>影響確認</h2>
+            <p>変更前に関連データへの影響を確認します</p>
+          </div>
+          <div class="form-card-body">
+            <div class="info-card">
+              <ul>
+                <li>関連Work: 64件</li>
+                <li>最終更新: 2026-01-18 09:30</li>
+                <li>編集者: 田中 太郎</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-title">運用ルール（仮）</div>
-        <div class="info-card">
-          <ul>
-            <li>変更はPRレビューを必須とする</li>
-            <li>削除は無効化で対応</li>
-            <li>履歴は監査ログに記録</li>
-          </ul>
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="admin-master-list.html">キャンセル</a>
+          <button class="btn btn-primary" type="button">保存</button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 

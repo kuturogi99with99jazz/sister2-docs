@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マスタ管理 - Sister 2</title>
+  <title>お知らせ編集 - Sister 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +75,6 @@
           </button>
         </div>
 
-
         <button class="report-export-btn" type="button" aria-label="帳票出力">
           <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,84 +84,97 @@
           </svg>
           帳票出力
         </button>
-</div>
+      </div>
     </div>
   </header>
 
   <main class="main-content">
-    <div class="container">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">マスタ管理</h1>
-          <p class="page-description">マスタ/設定/定義/お知らせを同一ナビで管理します。</p>
-        </div>
-        <div class="page-actions">
-          <a class="btn btn-secondary" href="admin.html">管理ダッシュボード</a>
-          <a class="btn btn-primary" href="admin-master-category-masters.html">カテゴリ一覧を開く</a>
-        </div>
+    <div class="container form-page">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        <a href="admin-master-category-announcements.html">お知らせ運用</a>
+        <span>/</span>
+        <a href="admin-announcements-list.html">一覧</a>
+        <span>/</span>
+        編集
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">マスタメンテ対象</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-masters.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>組織/ユーザー: 会社、拠点、部門、ユーザー</li>
-            <li>権限: ロール、リソース、パーミッション</li>
-            <li>Work: Work分類、Work時間分類、Workタグ、Work対象</li>
-            <li>ナレッジ: タグ、カテゴリ</li>
-          </ul>
-        </div>
+      <div class="form-header">
+        <a class="back-link" href="admin-announcements-list.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          一覧へ戻る
+        </a>
+        <h1>お知らせを編集</h1>
+        <p>掲出対象と期間を指定して保存します。</p>
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">設定/定義/運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-settings.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>system_settings / company_settings</li>
-            <li>internal_tools / tool_definitions</li>
-            <li>report_templates / screen_feedback_templates</li>
-          </ul>
-        </div>
-      </div>
+      <form class="form-stack">
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>基本情報</h2>
+            <p>タイトルと本文は必須です</p>
+          </div>
+          <div class="form-card-body form-stack">
+            <label class="form-field">
+              <span class="form-label">タイトル <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="メンテナンス予告: 1/30 22:00-24:00">
+            </label>
+            <label class="form-field">
+              <span class="form-label">本文 <span class="form-required">*</span></span>
+              <textarea class="form-control" rows="5">1/30 22:00-24:00 にシステムメンテナンスを実施します。期間中は一部機能が利用できません。</textarea>
+            </label>
+            <label class="form-field">
+              <span class="form-label">優先度</span>
+              <select class="form-control">
+                <option>info</option>
+                <option selected>warning</option>
+                <option>critical</option>
+              </select>
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">お知らせ運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-announcements.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>announcements（掲出/停止/期間管理）</li>
-            <li>announcement_targets（対象組織/ロールの指定）</li>
-          </ul>
-        </div>
-      </div>
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>掲出設定</h2>
+            <p>開始/終了の日時を指定します</p>
+          </div>
+          <div class="form-card-body form-grid">
+            <label class="form-field">
+              <span class="form-label">開始日時</span>
+              <input class="form-control" type="datetime-local" value="2026-01-30T22:00">
+            </label>
+            <label class="form-field">
+              <span class="form-label">終了日時</span>
+              <input class="form-control" type="datetime-local" value="2026-01-31T00:00">
+            </label>
+          </div>
+          <div class="form-card-body form-stack">
+            <label class="form-field">
+              <span class="form-label">対象スコープ</span>
+              <select class="form-control">
+                <option>global</option>
+                <option selected>company</option>
+                <option>role</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span class="form-label">対象ID</span>
+              <input class="form-control" type="text" value="company_001">
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-title">メンテナンスフロー</div>
-        <ol class="form-steps">
-          <li>一覧画面からメンテ対象のデータを見つける</li>
-          <li>一覧内の編集項目を選び、対象のメンテ画面へ遷移する</li>
-          <li>メンテ画面で編集/保存後、一覧画面に戻る</li>
-        </ol>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">運用ルール（仮）</div>
-        <div class="info-card">
-          <ul>
-            <li>変更はPRレビューを必須とする</li>
-            <li>削除は無効化で対応</li>
-            <li>履歴は監査ログに記録</li>
-          </ul>
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="admin-announcements-list.html">キャンセル</a>
+          <button class="btn btn-primary" type="button">保存</button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 

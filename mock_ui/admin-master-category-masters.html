@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マスタメンテ対象一覧 - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+              <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Sister 2
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="works.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/>
+            <path d="M8 10H16M8 14H14" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Work
+        </a>
+        <a href="chat.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 7H20V16H8L4 20V7Z" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          チャット
+        </a>
+        <a href="tools.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 4L20 9M16 8L8 16M6 18L4 20" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="7" cy="7" r="3" stroke-width="2"/>
+          </svg>
+          社内ツール
+        </a>
+        <a href="knowledge.html" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 4H19V20H5Z" stroke-width="2"/>
+            <path d="M8 8H16M8 12H16M8 16H13" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          ナレッジ
+        </a>
+        <a href="admin.html" class="nav-link admin-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 3L19 6V11C19 15.4 15.9 19.3 12 21C8.1 19.3 5 15.4 5 11V6L12 3Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12L11 14L15 10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          管理
+          <span class="admin-badge">管理者</span>
+        </a>
+      </nav>
+      <div class="header-right">
+        <div class="screen-feedback" aria-label="画面評価">
+          <button class="feedback-btn good" type="button" aria-label="この画面をGoodと評価">
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M7 11V5a2 2 0 0 1 2-2h2l1 4h6a2 2 0 0 1 2 2l-2 9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 11H4v9h3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Good <span class="feedback-count">28</span>
+          </button>
+          <button class="feedback-btn bad" type="button" aria-label="この画面をBadと評価">
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 13v6a2 2 0 0 1-2 2h-2l-1-4H6a2 2 0 0 1-2-2l2-9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17 13h3V4h-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Bad <span class="feedback-count">6</span>
+          </button>
+        </div>
+
+        <button class="report-export-btn" type="button" aria-label="帳票出力">
+          <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 3v5h5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 12v6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 15l3 3 3-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          帳票出力
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        マスタメンテ対象
+      </div>
+
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">マスタメンテ対象一覧</h1>
+          <p class="page-description">対象のマスタ種別を選択して一覧へ進みます。</p>
+        </div>
+        <div class="page-actions">
+          <a class="btn btn-secondary" href="admin-masters.html">マスタ管理トップ</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">組織/ユーザー</div>
+        <div class="master-list">
+          <div class="master-row">
+            <div>
+              <div class="master-title">会社</div>
+              <div class="master-meta">
+                <span>companies</span>
+                <span>組織の最上位単位</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-companies-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">拠点</div>
+              <div class="master-meta">
+                <span>branches</span>
+                <span>会社配下の拠点</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-branches-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">部門</div>
+              <div class="master-meta">
+                <span>divisions</span>
+                <span>組織階層の設定</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-divisions-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">ユーザー</div>
+              <div class="master-meta">
+                <span>users</span>
+                <span>ロール/所属の管理</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-users-list.html">一覧へ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">権限</div>
+        <div class="master-list">
+          <div class="master-row">
+            <div>
+              <div class="master-title">ロール</div>
+              <div class="master-meta">
+                <span>roles</span>
+                <span>権限セットの確認</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-roles-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">リソース</div>
+              <div class="master-meta">
+                <span>resources</span>
+                <span>機能単位の定義</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-resources-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">パーミッション</div>
+              <div class="master-meta">
+                <span>permissions</span>
+                <span>操作権限の定義</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-permissions-list.html">一覧へ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Work / ナレッジ</div>
+        <div class="master-list">
+          <div class="master-row">
+            <div>
+              <div class="master-title">Work分類</div>
+              <div class="master-meta">
+                <span>work_types</span>
+                <span>利用頻度: 高</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-master-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">Work時間分類</div>
+              <div class="master-meta">
+                <span>work_time_types</span>
+                <span>入力の粒度調整</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-work-time-types-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">Workタグ</div>
+              <div class="master-meta">
+                <span>work_tags</span>
+                <span>検索/分類</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-work-tags-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">Work対象</div>
+              <div class="master-meta">
+                <span>work_targets</span>
+                <span>プロジェクト/システム/共通</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-work-targets-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">ナレッジタグ</div>
+              <div class="master-meta">
+                <span>blog_tags</span>
+                <span>検索/分類</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-blog-tags-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">ナレッジカテゴリ</div>
+              <div class="master-meta">
+                <span>blog_categories</span>
+                <span>体系の整理</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-blog-categories-list.html">一覧へ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Sister 2</h4>
+          <p>Work中心業務管理システム</p>
+        </div>
+        <div class="footer-section">
+          <h4>機能</h4>
+          <ul>
+            <li><a href="works.html">Work管理</a></li>
+            <li><a href="knowledge.html">ナレッジ</a></li>
+            <li><a href="chat.html">チャット</a></li>
+            <li><a href="tools.html">社内ツール</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>リソース</h4>
+          <ul>
+            <li><a href="docs.html">ドキュメント</a></li>
+            <li><a href="api-docs.html">API仕様</a></li>
+            <li><a href="support.html">サポート</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>会社情報</h4>
+          <ul>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="terms.html">利用規約</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sister 2. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マスタ管理 - Sister 2</title>
+  <title>帳票テンプレート編集 - Sister 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +75,6 @@
           </button>
         </div>
 
-
         <button class="report-export-btn" type="button" aria-label="帳票出力">
           <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,84 +84,110 @@
           </svg>
           帳票出力
         </button>
-</div>
+      </div>
     </div>
   </header>
 
   <main class="main-content">
-    <div class="container">
-      <div class="page-header">
-        <div>
-          <h1 class="page-title">マスタ管理</h1>
-          <p class="page-description">マスタ/設定/定義/お知らせを同一ナビで管理します。</p>
-        </div>
-        <div class="page-actions">
-          <a class="btn btn-secondary" href="admin.html">管理ダッシュボード</a>
-          <a class="btn btn-primary" href="admin-master-category-masters.html">カテゴリ一覧を開く</a>
-        </div>
+    <div class="container form-page">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        <a href="admin-master-category-settings.html">設定/定義/運用</a>
+        <span>/</span>
+        <a href="admin-report-templates-list.html">帳票テンプレート一覧</a>
+        <span>/</span>
+        編集
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">マスタメンテ対象</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-masters.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>組織/ユーザー: 会社、拠点、部門、ユーザー</li>
-            <li>権限: ロール、リソース、パーミッション</li>
-            <li>Work: Work分類、Work時間分類、Workタグ、Work対象</li>
-            <li>ナレッジ: タグ、カテゴリ</li>
-          </ul>
-        </div>
+      <div class="form-header">
+        <a class="back-link" href="admin-report-templates-list.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 6L9 12L15 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          一覧へ戻る
+        </a>
+        <h1>帳票テンプレートを編集</h1>
+        <p>出力形式と公開状態を管理します。</p>
       </div>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">設定/定義/運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-settings.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>system_settings / company_settings</li>
-            <li>internal_tools / tool_definitions</li>
-            <li>report_templates / screen_feedback_templates</li>
-          </ul>
-        </div>
-      </div>
+      <form class="form-stack">
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>基本情報</h2>
+            <p>帳票の種類と出力形式を指定します</p>
+          </div>
+          <div class="form-card-body form-stack">
+            <label class="form-field">
+              <span class="form-label">帳票名 <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="月次レポート" placeholder="例: 月次レポート">
+            </label>
+            <label class="form-field">
+              <span class="form-label">帳票種別 <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="monthly_summary" placeholder="例: monthly_summary">
+            </label>
+            <label class="form-field">
+              <span class="form-label">出力形式 <span class="form-required">*</span></span>
+              <input class="form-control" type="text" value="PDF, CSV" placeholder="例: PDF, CSV">
+            </label>
+            <label class="form-field">
+              <span class="form-label">ステータス <span class="form-required">*</span></span>
+              <select class="form-control">
+                <option selected>公開</option>
+                <option>下書き</option>
+              </select>
+            </label>
+            <label class="form-field">
+              <span class="form-label">説明</span>
+              <textarea class="form-control" rows="4" placeholder="用途やルールを記載してください">月次の作業実績をまとめる帳票。</textarea>
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">お知らせ運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-announcements.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>announcements（掲出/停止/期間管理）</li>
-            <li>announcement_targets（対象組織/ロールの指定）</li>
-          </ul>
-        </div>
-      </div>
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>テンプレート設定</h2>
+            <p>テンプレートファイルと保持期間を指定します</p>
+          </div>
+          <div class="form-card-body form-grid">
+            <label class="form-field">
+              <span class="form-label">テンプレートキー</span>
+              <input class="form-control" type="text" value="templates/monthly_report.xlsx">
+            </label>
+            <label class="form-field">
+              <span class="form-label">テンプレート名</span>
+              <input class="form-control" type="text" value="monthly_report.xlsx">
+            </label>
+            <label class="form-field">
+              <span class="form-label">保持日数</span>
+              <input class="form-control" type="number" value="90" min="1">
+            </label>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-title">メンテナンスフロー</div>
-        <ol class="form-steps">
-          <li>一覧画面からメンテ対象のデータを見つける</li>
-          <li>一覧内の編集項目を選び、対象のメンテ画面へ遷移する</li>
-          <li>メンテ画面で編集/保存後、一覧画面に戻る</li>
-        </ol>
-      </div>
+        <section class="form-card">
+          <div class="form-card-header">
+            <h2>影響確認</h2>
+            <p>利用中の帳票への影響を確認します</p>
+          </div>
+          <div class="form-card-body">
+            <div class="info-card">
+              <ul>
+                <li>利用中レポート: 3件</li>
+                <li>最終更新: 2026-01-18 09:30</li>
+                <li>編集者: 田中 太郎</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-      <div class="panel">
-        <div class="panel-title">運用ルール（仮）</div>
-        <div class="info-card">
-          <ul>
-            <li>変更はPRレビューを必須とする</li>
-            <li>削除は無効化で対応</li>
-            <li>履歴は監査ログに記録</li>
-          </ul>
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="admin-report-templates-list.html">キャンセル</a>
+          <button class="btn btn-primary" type="button">保存</button>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 

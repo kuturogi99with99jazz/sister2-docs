@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>マスタ管理 - Sister 2</title>
+  <title>お知らせ運用一覧 - Sister 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -75,7 +75,6 @@
           </button>
         </div>
 
-
         <button class="report-export-btn" type="button" aria-label="帳票出力">
           <svg class="report-export-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,82 +84,57 @@
           </svg>
           帳票出力
         </button>
-</div>
+      </div>
     </div>
   </header>
 
   <main class="main-content">
     <div class="container">
+      <div class="breadcrumb">
+        <a href="admin.html">管理</a>
+        <span>/</span>
+        <a href="admin-masters.html">マスタ管理</a>
+        <span>/</span>
+        お知らせ運用
+      </div>
+
       <div class="page-header">
         <div>
-          <h1 class="page-title">マスタ管理</h1>
-          <p class="page-description">マスタ/設定/定義/お知らせを同一ナビで管理します。</p>
+          <h1 class="page-title">お知らせ運用一覧</h1>
+          <p class="page-description">掲出・停止・対象設定の一覧へ進みます。</p>
         </div>
         <div class="page-actions">
-          <a class="btn btn-secondary" href="admin.html">管理ダッシュボード</a>
-          <a class="btn btn-primary" href="admin-master-category-masters.html">カテゴリ一覧を開く</a>
+          <a class="btn btn-secondary" href="admin-masters.html">マスタ管理トップ</a>
         </div>
       </div>
 
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">マスタメンテ対象</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-masters.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>組織/ユーザー: 会社、拠点、部門、ユーザー</li>
-            <li>権限: ロール、リソース、パーミッション</li>
-            <li>Work: Work分類、Work時間分類、Workタグ、Work対象</li>
-            <li>ナレッジ: タグ、カテゴリ</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">設定/定義/運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-settings.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>system_settings / company_settings</li>
-            <li>internal_tools / tool_definitions</li>
-            <li>report_templates / screen_feedback_templates</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">お知らせ運用</div>
-          <a class="btn btn-secondary btn-small" href="admin-master-category-announcements.html">一覧を開く</a>
-        </div>
-        <div class="info-card">
-          <ul>
-            <li>announcements（掲出/停止/期間管理）</li>
-            <li>announcement_targets（対象組織/ロールの指定）</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">メンテナンスフロー</div>
-        <ol class="form-steps">
-          <li>一覧画面からメンテ対象のデータを見つける</li>
-          <li>一覧内の編集項目を選び、対象のメンテ画面へ遷移する</li>
-          <li>メンテ画面で編集/保存後、一覧画面に戻る</li>
-        </ol>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">運用ルール（仮）</div>
-        <div class="info-card">
-          <ul>
-            <li>変更はPRレビューを必須とする</li>
-            <li>削除は無効化で対応</li>
-            <li>履歴は監査ログに記録</li>
-          </ul>
+        <div class="panel-title">お知らせ</div>
+        <div class="master-list">
+          <div class="master-row">
+            <div>
+              <div class="master-title">お知らせ一覧</div>
+              <div class="master-meta">
+                <span>announcements</span>
+                <span>掲出/停止/期間管理</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-announcements-list.html">一覧へ</a>
+            </div>
+          </div>
+          <div class="master-row">
+            <div>
+              <div class="master-title">対象設定</div>
+              <div class="master-meta">
+                <span>announcement_targets</span>
+                <span>組織/ロール指定</span>
+              </div>
+            </div>
+            <div class="master-actions">
+              <a class="btn btn-secondary btn-small" href="admin-announcements-list.html">一覧へ</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
