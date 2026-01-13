@@ -44,7 +44,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemy直利用を許容する前提で評価する
 - [Assumption] 運用方針は「通常CRUDはSQLModel、難所はSQLAlchemyに降りる」ことを前提とする
 - [Assumption] フロントの入力バリデーションはZodを第一候補とし、必要に応じて代替案も検討する
-- [Open Question] 複雑な集計/分析系クエリのPoC検証範囲（最小でも扱うか/別途検証とするか）
+- [Decision] 複雑な集計/分析系クエリのPoC検証範囲は別途検証とする
 
 ---
 
@@ -54,7 +54,6 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - Work対象管理（最小CRUD）
 - Work管理（最小CRUD）
-- ToolTemplate（定義駆動の最小検証）
 - WorkLog（開始/完了の記録）
 - 認証（Cognito）
 - ファイルアップロード（S3署名URL）
@@ -71,6 +70,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 
 - チャット機能
 - 社内ツール機能
+- ToolTemplate（定義駆動）
 - 分析機能（集計/ダッシュボード）
 - 既存データ移行
 - 本番運用レベルのRBAC/監査ログ
@@ -270,7 +270,7 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 - [Assumption] PoCの意思決定者はプロジェクトリーダー
 - [Assumption] PoCの成果物レビュー形式は社内レビュー
 - [Assumption] 架空のシステム再構築シナリオをPoCのユースケースに採用する
-- [Open Question] PoCにおけるAI要約の扱い（実施/非実施）
+- [Decision] PoCにおけるAI要約は非実施とする
 - [Suggestion] 全文検索はPoCではPostgreSQLの全文検索で成立性のみ確認し、専用検索基盤の採用判断は次フェーズに回す
 - [Assumption] 専用検索基盤の候補はメモ止まりで保持し、要件確定後に選定する
   - OpenSearch（AWSマネージド）：AWS完結、運用は比較的楽、コストは中〜高
