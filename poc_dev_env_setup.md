@@ -31,7 +31,7 @@
 
 ### 1.3 開発方針（個人開発スタイル）
 
-- [Assumption] 開発環境はDockerコンテナ内に構築し、VSCodeでコンテナにアタッチして作業する
+- [Assumption] 開発環境はDockerコンテナ内に構築し、VSCodeでコンテナにアタッチして作業する（PoC段階でDev Containers必須）
 - [Assumption] ローカル環境に依存関係を直接インストールしない
 - [Assumption] SecretsはVercel/AWSの環境変数で管理し、命名規則を事前に定める
 - [Assumption] 環境分離方針（単一/複数）はPoC開始前に決定する
@@ -108,7 +108,7 @@
 - `Dockerfile` と `docker-compose.yml` を用意する
 - フロント/バックを同一composeで起動できる構成を想定
 
-- [Assumption] VSCode Remote Containers（Dev Containers）でアタッチする
+- [Assumption] VSCode Remote Containers（Dev Containers）でアタッチする（必須）
 - [Assumption] フロント/バックは別コンテナに分離する
 
 ---
