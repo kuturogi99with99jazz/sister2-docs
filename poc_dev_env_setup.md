@@ -148,9 +148,11 @@
 ### 5.1 初期セットアップ方針
 
 - FastAPIをベースに最小CRUDのAPIを作成
+- 軽い帳票出力の疎通確認を行う（Excel/PDFの最小出力）
 - Lambda実行を前提にServerless Frameworkでパッケージング/デプロイする
 - [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemyに降りる前提で構成する
 - [Assumption] マイグレーション運用はAlembic導入を第一候補として検討する
+- [Assumption] 帳票出力には追加ライブラリが必要なため、PoC開始前にExcel/PDF出力ライブラリを選定する
 
 ### 5.3 Serverless Framework方針（PoC）
 
