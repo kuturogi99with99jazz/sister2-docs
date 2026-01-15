@@ -362,6 +362,7 @@ Response:
 
 | メソッド | パス | 目的 | 備考 |
 |----------|------|------|------|
+| POST | /reports/works/export | Work一覧の帳票出力（PoC） | Excel/PDFの最小出力 |
 | GET | /reports/templates | 帳票テンプレ一覧取得 | 権限に応じてフィルタ |
 | POST | /reports/templates | 帳票テンプレ作成 | 管理者のみ |
 | GET | /reports/templates/{reportTemplateId} | 帳票テンプレ詳細取得 | |
@@ -418,6 +419,44 @@ Request:
 | cron | string | yes | cron式 |
 | timezone | string | no | タイムゾーン |
 | is_active | boolean | no | 有効/無効 |
+
+### 7.4 POST /reports/works/export（Work一覧の帳票出力・PoC）
+
+Request:
+
+| 項目 | 型 | 必須 | 説明 |
+|------|----|------|------|
+| format | string | yes | xlsx / pdf |
+| date_from | string | no | 期間開始（ISO 8601） |
+| date_to | string | no | 期間終了（ISO 8601） |
+| assignee_id | string | no | 担当者ID |
+| target_type | string | no | system / project |
+| target_id | string | no | 対象ID |
+
+Response:
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| file_url | string | 署名URL（ダウンロード用） |
+| expires_at | string | 署名URL有効期限 |
+| format | string | 出力フォーマット |
+
+- [Assumption] PoCでは一覧相当の最小項目のみを出力し、項目定義は次フェーズで確定する
+
+#### PoC出力項目（ドラフト）
+
+| 項目 | 型 | 説明 |
+|------|----|------|
+| work_id | string | Work ID（必須） |
+| title | string | Workタイトル（必須） |
+| status | string | ステータス（必須） |
+| assignee_name | string | 担当者名（必須） |
+| due_date | string | 期限（ISO 8601、必須） |
+| target_type | string | system / project（任意） |
+| target_name | string | 対象名（任意） |
+| started_at | string | 開始日時（ISO 8601、任意） |
+| completed_at | string | 完了日時（ISO 8601、任意） |
+| updated_at | string | 更新日時（ISO 8601、任意） |
 | parameters | object | no | 生成条件 |
 
 Response:
