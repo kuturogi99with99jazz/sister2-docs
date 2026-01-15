@@ -389,6 +389,7 @@ MVPは「Work中心設計が現場で回ること」を証明する最小構成�
 - 担当者別「今日のWork」
 - System/Projectを対象として紐づけ
 - WorkLog（開始・完了）
+- 軽い帳票出力（Excel/PDF）
 
 ### 5.2 SHOULD
 - コメント機能（最低限）
