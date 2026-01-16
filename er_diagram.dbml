@@ -1,6 +1,9 @@
 // Use DBML to define your database structure
 // Schema for Sister 2
 
+// High-level grouping mirrors architecture.md section 11.
+
+// Organization structure
 Table companies {
   id uuid [pk]
   name text
@@ -27,6 +30,7 @@ Table divisions {
   updated_at timestamptz
 }
 
+// Users
 Table users {
   id uuid [pk]
   company_id uuid
@@ -44,6 +48,7 @@ Table user_profiles {
   timezone text
 }
 
+// RBAC
 Table roles {
   id uuid [pk]
   name text
@@ -80,6 +85,7 @@ Table permission_resources {
   resource_id uuid
 }
 
+// Work management
 Table work_types {
   id uuid [pk]
   name text
@@ -135,6 +141,7 @@ Table work_tag_links {
   tag_id uuid
 }
 
+// Announcements
 Table announcements {
   id uuid [pk]
   title text
@@ -162,6 +169,7 @@ Table announcement_reads {
   dismissed_at timestamptz
 }
 
+// Screen feedback
 Table screen_routes {
   id uuid [pk]
   route_path text
@@ -201,6 +209,7 @@ Table screen_feedback_logs {
   created_at timestamptz
 }
 
+// Reports
 Table report_templates {
   id uuid [pk]
   name text
@@ -257,6 +266,7 @@ Table report_schedules {
   updated_at timestamptz
 }
 
+// Work targets
 Table work_targets {
   id uuid [pk]
   target_type varchar
@@ -274,6 +284,7 @@ Table work_target_links {
   target_id uuid
 }
 
+// Knowledge (blog)
 Table blog_posts {
   id uuid [pk]
   author_user_id uuid
@@ -316,6 +327,7 @@ Table blog_target_links {
   target_id uuid
 }
 
+// Audit
 Table audit_logs {
   id uuid [pk]
   user_id uuid
@@ -325,6 +337,7 @@ Table audit_logs {
   created_at timestamptz
 }
 
+// Settings
 Table system_settings {
   id uuid [pk]
   key varchar
@@ -344,6 +357,7 @@ Table company_settings {
   updated_at timestamptz
 }
 
+// Chat
 Table chat_threads {
   id uuid [pk]
   scope_type varchar
@@ -389,6 +403,7 @@ Table chat_attachments {
   size_bytes bigint
 }
 
+// Internal tools
 Table internal_tools {
   id uuid [pk]
   owner_user_id uuid
