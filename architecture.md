@@ -375,16 +375,19 @@ Roleは「ゲスト / パートナー / 担当 / リーダー / マネージャ�
 |-----------|------|------|
 | companies / branches / divisions | 組織構造 | 移行対象 |
 | users / user_profiles | ユーザー基本情報 | Cognito連携 |
-| roles / permissions / resources | RBAC制御 | 既存踏襲 |
+| roles / permissions / resources / user_roles / role_permissions / permission_resources | RBAC制御 | 既存踏襲 |
 | works / work_types / work_time_types | Work管理 | コア機能 |
+| work_assignees | Work担当者 | 主担当/副担当 |
 | work_targets / work_target_links | Work対象管理 | プロジェクト/システム/共通業務 |
 | work_tags / work_tag_links | Workタグ | 検索・分類 |
 | work_activity_logs | 操作ログ | 工数推定の基盤 |
 | announcements / announcement_targets / announcement_reads | お知らせバナー | 表示期間/対象/既読管理 |
-| blog_posts / blog_categories / blog_tags | ナレッジ機能 | Markdown本文 + HTML保持、AI要約対応 |
-| chat_threads / chat_messages | チャット機能 | Work/対象単位 |
-| internal_tools / tool_definitions / tool_entries | 社内ツール（ToolTemplate） | 定義駆動型 |
-| report_templates / report_runs / report_files | 帳票 | Excel/PDF |
+| blog_posts / blog_categories / blog_tags / blog_post_categories / blog_post_tags / blog_work_links / blog_target_links | ナレッジ機能 | Markdown本文 + HTML保持、AI要約対応 |
+| chat_threads / chat_messages / chat_members / chat_reads / chat_attachments | チャット機能 | Work/対象単位 |
+| internal_tools / tool_definitions / tool_entries / tool_entry_approvals / tool_attachments | 社内ツール（ToolTemplate） | 定義駆動型 |
+| report_templates / report_template_roles / report_runs / report_run_files / report_schedules | 帳票 | Excel/PDF |
+| screen_routes / screen_feedback_templates / screen_feedbacks / screen_feedback_logs | 画面フィードバック | 画面改善の基盤 |
+| system_settings / company_settings | 設定 | システム/企業単位 |
 | audit_logs | 操作履歴 | 自動記録 |
 
 ---
