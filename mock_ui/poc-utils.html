@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoC Utilities - Sister 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container form-page" style="margin-top: 32px; margin-bottom: 48px;">
+    <div class="form-header">
+      <h1>PoC Utilities</h1>
+      <p>通知・ジョブの成立性を手動で確認するための専用画面。</p>
+    </div>
+
+    <div class="form-stack">
+      <section class="form-card">
+        <div class="form-card-header">
+          <h2>通知テスト</h2>
+          <p>SES/SNSの到達確認用の最小フォーム。</p>
+        </div>
+        <div class="form-card-body">
+          <div class="form-field">
+            <label class="form-label" for="notify-channel">channel</label>
+            <select class="form-control" id="notify-channel">
+              <option value="ses">ses</option>
+              <option value="sns">sns</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="notify-destination">destination</label>
+            <input class="form-control" id="notify-destination" type="text" placeholder="email or topic arn" />
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="button">送信</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-card">
+        <div class="form-card-header">
+          <h2>Fargateジョブ起動</h2>
+          <p>非同期バッチ成立性の最小トリガー。</p>
+        </div>
+        <div class="form-card-body">
+          <div class="form-field">
+            <label class="form-label" for="job-type">job_type</label>
+            <select class="form-control" id="job-type">
+              <option value="report_generate">report_generate</option>
+              <option value="ai_summary">ai_summary</option>
+              <option value="noop">noop</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="job-payload">payload (optional)</label>
+            <textarea class="form-control" id="job-payload" rows="4" placeholder='{"work_id":"..."}'></textarea>
+            <p class="form-note">PoCではJSON形式のテキスト入力のみを想定。</p>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="button">起動</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
