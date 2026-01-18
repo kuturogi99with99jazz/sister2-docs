@@ -104,12 +104,114 @@ Sister 2 の主要アーキテクチャ（SvelteKit + Vercel / FastAPI on Lambda
 | GET /works | Work一覧 | フィルタ最小（担当/対象） |
 | GET /works/{id} | Work詳細 | 詳細表示の成立確認 |
 | PATCH /works/{id} | Work更新 | 状態/担当/期限など最小項目 |
+| POST /work-targets | Work対象作成 | system / project の最小作成 |
+| GET /work-targets | Work対象一覧 | 種別フィルタのみ |
 | POST /work-logs | WorkLog記録 | 開始/完了の最小記録 |
+| POST /works/{id}/links | 関連Work追加 | 手動リンクの成立確認 |
+| DELETE /works/{id}/links/{linkId} | 関連Work解除 | 解除確認の成立 |
+| GET /works/suggest | 関連Workサジェスト | タイトル検索の最小 |
 | POST /files/presign | S3署名URL発行 | アップ/ダウン両対応 |
+| POST /notifications/test | 通知送信テスト | SES/SNSの到達確認 |
+| POST /jobs/test | Fargate最小ジョブ起動 | 非同期バッチ成立性 |
 | POST /reports/works/export | 帳票出力 | Excel/PDFの最小出力 |
 
 - [Assumption] PoCのAPIは最小構成とし、詳細仕様は次フェーズで確定する
 - [Assumption] 帳票出力は一覧相当のデータを最小フォーマットで出力できれば成立とする
+
+### 4.1.1 最小リクエスト/レスポンス項目（メモ）
+
+- [Assumption] PoC成立性確認のため、必須項目のみを記載する
+- GET /health: Response `status`, `timestamp`
+- GET /me: Response `user_id`, `email`, `roles`
+- POST /works: Request `title`, `status`, `primary_assignee_id`, `start_date_planned`, `end_date_planned`, `target_links[]`; Response `work_id`, `status`
+- GET /works: Query `assignee_id?`, `target_type?`, `target_id?`, `status?`; Response `works[]` (id, title, status, assignee_id, due_date)
+- GET /works/{id}: Response `work` (id, title, content, status, assignees, targets)
+- PATCH /works/{id}: Request `status?`, `primary_assignee_id?`, `end_date_planned?`; Response `work_id`, `status`
+- POST /work-targets: Request `target_type`, `name`; Response `target_id`
+- GET /work-targets: Query `target_type?`; Response `targets[]` (id, name, type)
+- [Assumption] /work-targets最小レスポンス例: `{ \"targets\": [{\"id\":\"t_1\",\"name\":\"System A\",\"type\":\"system\"}] }`
+- [Assumption] /work-targets最小リクエスト例: `{ \"target_type\": \"system\", \"name\": \"System A\" }`
+- [Assumption] target_type許容値: `system` / `project` / `common`
+- POST /work-logs: Request `work_id`, `action` (start/complete), `occurred_at?`; Response `log_id`
+- POST /works/{id}/links: Request `linked_work_id`; Response `link_id`
+- DELETE /works/{id}/links/{linkId}: Response `status`
+- GET /works/suggest: Query `q`, `limit?`; Response `works[]` (id, title)
+- POST /files/presign: Request `file_name`, `content_type`, `size_bytes`, `purpose`; Response `upload_url`, `file_key`
+- POST /notifications/test: Request `channel`, `destination`; Response `status`, `message_id`
+- POST /jobs/test: Request `job_type`, `payload?`; Response `job_id`, `status`
+- POST /reports/works/export: Request `format`, `date_from?`, `date_to?`, `assignee_id?`, `target_type?`, `target_id?`; Response `file_url`, `expires_at`
+
+---
+
+## 4.2 画面モックとAPI対応（PoC）
+
+| 画面 | 目的 | 関連API | mock_ui |
+|---|---|---|
+| ログイン/認証確認 | 認証成立の確認 | GET /me | mock_ui/login.html |
+| Work一覧 | 担当/対象での一覧確認 | GET /works, GET /work-targets | mock_ui/works.html |
+| Work詳細 | 詳細表示・リンク/ログ操作 | GET /works/{id}, POST /works/{id}/links, DELETE /works/{id}/links/{linkId}, POST /work-logs | mock_ui/work-detail.html（サジェスト/リンクUIを含む） |
+| Work作成/編集 | 作成/更新の成立確認 | POST /works, PATCH /works/{id} | mock_ui/work-new.html / mock_ui/work-edit.html |
+| Work対象管理 | 対象の作成/一覧 | POST /work-targets, GET /work-targets | mock_ui/admin-work-targets-list.html（新規: work-new / 編集: work-edit） |
+| 関連Workサジェスト | 候補表示/追加 | GET /works/suggest, POST /works/{id}/links | mock_ui/work-detail.html |
+| ファイル添付 | 署名URLの取得確認 | POST /files/presign | mock_ui/work-edit.html |
+| 帳票出力 | 最小帳票の出力確認 | POST /reports/works/export | mock_ui/tool-report.html |
+| 検証用ユーティリティ | 通知/ジョブの手動起動 | POST /notifications/test, POST /jobs/test | mock_ui/poc-utils.html（専用画面） |
+
+- [Assumption] PoC画面モックはワイヤーフレーム〜簡易UIの範囲とし、ビジュアル完成度は評価対象外とする
+- [Assumption] Work詳細には「関連Workサジェスト」UIを配置する（検索入力＋候補リスト＋追加ボタン）
+- [Assumption] 関連Workサジェストは「検索入力 → 候補表示 → 追加 → 追加済み一覧反映」の最小フローを確認する
+- [Assumption] 関連Workの追加済み一覧はWork詳細の本文下部に表示する
+- [Assumption] Work対象の新規登録は `work-new` 画面で行う
+- [Assumption] Work対象の編集は `work-edit` 画面で行う
+- [Assumption] 導線: Work対象一覧 → 編集（work-edit）で最低限の更新が行えること
+- [Assumption] 導線: Work対象一覧 → 新規作成（work-new）で最低限の登録が行えること
+- [Assumption] 導線: Work対象一覧の行クリックで編集（work-edit）に遷移できること
+- [Assumption] iPadで一覧→編集の操作が誤タップしにくいこと
+
+---
+
+## 4.3 PoC実施前チェックリスト（最小）
+
+| 項目 | 確認内容 | 状態 |
+|---|---|---|
+| 環境 | Vercel / Lambda / Neon / S3 / Cognito の検証環境が用意済み | 未 |
+| 認証 | Cognitoのユーザー/ロールが作成済み | 未 |
+| データ | Work/Work対象の初期データを投入済み | 未 |
+| 通知 | SES/SNSの検証用宛先が登録済み | 未 |
+| 画面 | mock_uiで主要導線のモックが確認済み | 未 |
+| API | 4.1の最小エンドポイントが疎通確認済み | 未 |
+
+### 4.3.1 準備タスク（ToDo）
+
+- [ ] Cognitoのユーザー/ロールを作成し、`GET /me`で確認する
+- [ ] Work対象（system/project/common）を各1件作成する
+- [ ] Workを3件作成し、担当/対象/期限のバリエーションを用意する
+- [ ] SES/SNSの検証用宛先を登録し、`POST /notifications/test`で到達確認する
+- [ ] S3署名URLでアップ/ダウンを各1回実施し、`POST /files/presign`の疎通を確認する
+- [ ] Fargateジョブの起動結果をCloudWatchで確認する
+
+---
+
+## 4.4 API最小仕様のテスト項目（簡易）
+
+| API | 入力（例） | 期待出力/確認点 | 成功基準（例） |
+|---|---|---|
+| GET /health | - | 200 + `status` が `ok` | 200 / 1s以内 |
+| GET /me | - | 認証済みで `user_id` が返る | 200 / 1s以内 |
+| POST /works | `title/status/assignee/target_links` | 201 + `work_id` 取得 | 201 / 2s以内 |
+| GET /works | `assignee_id`, `target_id` | フィルタが反映される | 200 / 2s以内 |
+| GET /works/{id} | `id` | 詳細が取得できる | 200 / 2s以内 |
+| PATCH /works/{id} | `status` | 更新反映される | 200 / 2s以内 |
+| POST /work-targets | `target_type`, `name` | 201 + `target_id` 取得 | 201 / 2s以内 |
+| GET /work-targets | `target_type` | 種別で絞れる | 200 / 2s以内 |
+| POST /work-logs | `work_id`, `action` | 201 + `log_id` 取得 | 201 / 2s以内 |
+| POST /works/{id}/links | `linked_work_id` | 201 + `link_id` 取得 | 201 / 2s以内 |
+| DELETE /works/{id}/links/{linkId} | `linkId` | 200 + `status` | 200 / 2s以内 |
+| GET /works/suggest | `q` | 候補が返る | 200 / 2s以内 |
+| POST /files/presign | `file_name`, `content_type` | 200 + `upload_url` | 200 / 2s以内 |
+| POST /notifications/test | `channel`, `destination` | 200 + 到達確認 | 200 / 到達が確認できる |
+| POST /jobs/test | `job_type` | 202 + `job_id` 取得 | 202 / 3s以内 |
+| POST /reports/works/export | `format` | 200 + `file_url` | 200 / 10s以内 |
 
 ---
 
