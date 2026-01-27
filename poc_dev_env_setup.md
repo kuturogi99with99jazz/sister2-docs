@@ -79,7 +79,23 @@
 ## 2. リポジトリ準備
 
 1. GitHubでPoC用リポジトリを作成する
+   - [Suggestion] リポジトリ名: sister2-project  Description: Sister 2 repository (monorepo).
+   - [Suggestion] 所有先: 個人
+   - [Suggestion] 公開範囲: Private
+   - [Suggestion] デフォルトブランチ名: main
+   - [Suggestion] 初期ファイルの有無: 無
+   - [Suggestion] GitHub設定: Issues/Projects/Discussionsの利用無、Actionsの利用有
+   - [Suggestion] GitHub Actionsの用途: PR/Push時のCI（lint/test/formatの最小実行）
+   - [Suggestion] GitHub ActionsのSecrets利用: なし（Vercel/AWS側で管理）
+   - [Suggestion] Secrets/Variables の管理方針: Vercel/AWS側のみで管理
+   - [Suggestion] ライセンス方針: apache2.0
+   - [Suggestion] LICENSE 追加方法: 作成時は「No license」→作成後に `LICENSE` を追加（Apache 2.0）
+   - [Suggestion] LICENSE 追加タイミング: 初回コミット前に追加
 2. ローカルにクローンする
+   - [Suggestion] Gitの初期設定を確認（`user.name` / `user.email`）
+   - [Suggestion] 認証方式はSSHを推奨（HTTPSでも可）
+   - [Suggestion] クローン例: `git clone git@github.com:<owner>/sister2-project.git`
+   - [Suggestion] 作業ディレクトリへ移動: `cd sister2-project`
 3. monorepo前提の基本ディレクトリ構成を用意する（例: `frontend/`, `backend/`, `infra/`, `docs/`）
 
 ### 2.1 monorepoの想定構成（例）
@@ -105,11 +121,114 @@
 
 ### 3.2 開発用コンテナの雛形作成
 
-- `Dockerfile` と `docker-compose.yml` を用意する
+- `Dockerfile` と `docker-compose.yml` と `.devcontainer/devcontainer.json` を用意する
 - フロント/バックを同一composeで起動できる構成を想定
 
 - [Assumption] VSCode Remote Containers（Dev Containers）でアタッチする（必須）
 - [Assumption] フロント/バックは別コンテナに分離する
+
+#### 3.2.1 推奨構成（例）
+
+- `Dockerfile`（共通ベース）
+
+```Dockerfile
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
+
+RUN apt-get update && apt-get install -y \
+  curl git \
+  && rm -rf /var/lib/apt/lists/*
+```
+
+- `docker-compose.yml`（frontend/backendを分離、Dev Containers向け）
+
+```yaml
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace/frontend
+    volumes:
+      - .:/workspace:cached
+    ports:
+      - "5177:5177"
+    command: sleep infinity
+    init: true
+    tty: true
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace/backend
+    volumes:
+      - .:/workspace:cached
+    ports:
+      - "8002:8002"
+    command: sleep infinity
+    init: true
+    tty: true
+```
+
+- `.devcontainer/devcontainer.json`（Dev Containers設定）
+
+```json
+{
+  "name": "sister2-project",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "frontend",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "forwardPorts": [5177, 8002],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "svelte.svelte-vscode",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
+
+#### 3.2.2 backend 用 Dev Container（分離例）
+
+- `.devcontainer-backend/devcontainer.json`
+
+```json
+{
+  "name": "sister2-project-backend",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "forwardPorts": [8002],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
 
 ---
 
@@ -122,6 +241,11 @@
 
 - [Assumption] UIフレームワークはshadcn-svelteを採用する
 - [Assumption] フロントの入力バリデーションはZodを第一候補とする
+
+#### 4.1.1 ローカル起動（例）
+
+- `frontend/` で依存関係をインストール: `npm install`
+- 開発サーバ起動: `npm run dev -- --host 0.0.0.0 --port 5177`
 
 ### 4.1.1 shadcn-svelte 導入（PoC）
 
@@ -153,6 +277,18 @@
 - [Assumption] ORMはSQLModelを第一候補とし、複雑クエリ時はSQLAlchemyに降りる前提で構成する
 - [Assumption] マイグレーション運用はAlembic導入を第一候補として検討する
 - [Assumption] 帳票出力には追加ライブラリが必要なため、PoC開始前にExcel/PDF出力ライブラリを選定する
+
+#### 5.1.1 ローカル起動（例）
+
+- `backend/` で依存関係をインストール: `pip install -r requirements.txt`
+- 開発サーバ起動: `uvicorn app.main:app --host 0.0.0.0 --port 8002 --reload`
+
+#### 5.1.2 `requirements.txt` 初期例
+
+```
+fastapi
+uvicorn[standard]
+```
 
 ### 5.3 Serverless Framework方針（PoC）
 
