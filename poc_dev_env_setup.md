@@ -182,10 +182,10 @@ services:
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "24"
     },
     "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.12"
+      "version": "3.14"
     }
   },
   "forwardPorts": [5177, 8002],
